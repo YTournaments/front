@@ -15,7 +15,7 @@ npm install -g pnpm
 ```
 
 ```bash
-  cd ytournamentsFront
+  cd front
   pnpm install
 
 ```
@@ -31,7 +31,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd ytournamentsFront
+  cd front
 ```
 
 Install dependencies
@@ -43,7 +43,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run vite
+  npm run dev
 ```
 
 ## Environment Variables
