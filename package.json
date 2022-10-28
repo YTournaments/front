@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite preview --port 3000",
+    "start": "vite preview --port $PORT",
     "build": "vite build",
     "preview": "vite preview"
   },
