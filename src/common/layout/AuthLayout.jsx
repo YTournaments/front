@@ -6,17 +6,16 @@ const AuthLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const isAuth = async () => {
+    const checkAuth = async () => {
       const token = localStorage.getItem("user");
-      if (token) {
+      if (!token) {
         setLoading(false);
-        navigate("/app");
       } else {
-        navigate("/login");
-        setLoading(false);
+        navigate("/");
+        setLoading(true);
       }
     };
-    isAuth();
+    checkAuth();
   }, [navigate]);
   return (
     <Container component="main">
