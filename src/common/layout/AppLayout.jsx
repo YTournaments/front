@@ -16,7 +16,11 @@ const AppLayout = () => {
     };
     isAuth();
   }, [navigate]);
-  return <Container>Hello world</Container>;
+  return (
+    <Container>
+      <Outlet />
+    </Container>
+  );
 };
 
 export default AppLayout;

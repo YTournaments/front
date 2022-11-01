@@ -6,6 +6,8 @@ import AuthLayout from "./common/layout/AuthLayout";
 import Landing from "./common/pages/Landing";
 import Signup from "./common/pages/Signup";
 import Login from "./common/pages/Login";
+import Home from "./common/pages/Home";
+
 function App() {
   const theme = createTheme({
     palette: { mode: "light" },
@@ -20,7 +22,10 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
             </Route>
-            <Route path="/app" element={<AppLayout />}></Route>
+            <Route path="/app/" element={<AppLayout />}>
+              <Route path="home" element={<Home />} />
+            </Route>
+            <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </BrowserRouter>
       </CssBaseLine>
