@@ -1,4 +1,4 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseLine from "@mui/material/CssBaseline";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./common/layout/AppLayout";
@@ -7,11 +7,8 @@ import Landing from "./common/pages/Landing";
 import Signup from "./common/pages/Signup";
 import Login from "./common/pages/Login";
 import Home from "./common/pages/Home";
-
+import { theme } from "./theme";
 function App() {
-  const theme = createTheme({
-    palette: { mode: "light" },
-  });
   return (
     <ThemeProvider theme={theme}>
       <CssBaseLine>
