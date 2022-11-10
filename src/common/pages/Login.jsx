@@ -37,7 +37,7 @@ const Login = () => {
       setLoading(false);
       await login(email, password);
       //localStorage.setItem("token", res.token);
-      navigate("/app");
+      navigate("/home");
     } catch (err) {
       console.log("je suis la" + err);
       const errors = err.data.errors;

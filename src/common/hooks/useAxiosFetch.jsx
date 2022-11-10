@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.baseURL = "https://ytournaments-apui.onrender.com/api";
 
 export const useAxiosFetch = (axiosParams) => {
   const [data, setData] = useState(undefined);
