@@ -7,6 +7,7 @@ import Landing from "./common/pages/Landing";
 import Signup from "./common/pages/Signup";
 import Login from "./common/pages/Login";
 import Home from "./common/pages/Home";
+import Error from "./common/pages/Error";
 import { theme } from "./theme";
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <Route path="/app/" element={<AppLayout />}>
               <Route path="home" element={<Home />} />
             </Route>
-            <Route path="*" element={<h1>404</h1>} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
       </CssBaseLine>
