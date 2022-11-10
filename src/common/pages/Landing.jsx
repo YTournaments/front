@@ -1,21 +1,22 @@
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
+import { CustomButton } from "../components/Button";
 import React from "react";
 import { appName } from "../constants";
 const Landing = () => {
   return (
     <Container>
-      <Button variant="contained" color="primary">
+      <CustomButton variant="contained" color="primary" size="large">
+        lol
+      </CustomButton>
+      <CustomButton variant="contained" color="info">
         {appName}
-      </Button>
-      <Button variant="contained" color="info">
+      </CustomButton>
+      <CustomButton variant="contained" color="secondary">
         {appName}
-      </Button>
-      <Button variant="contained" color="secondary">
+      </CustomButton>
+      <CustomButton variant="contained" color="tertiary">
         {appName}
-      </Button>
-      <Button variant="contained" color="tertiary">
-        {appName}
-      </Button>
+      </CustomButton>
     </Container>
   );
 };
