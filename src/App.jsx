@@ -24,8 +24,8 @@ function App() {
             </Route>
             <Route path="/" element={<AppLayout />}>
               <Route path="home" element={<Home />} />
-              <Route path="dev" element={<DevBlog />} />
-              <Route path="dev/creator" element={<Post />} />
+              <Route path="blog" element={<DevBlog />} />
+              <Route path="admin/blog" element={<Post />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
