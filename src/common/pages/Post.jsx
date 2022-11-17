@@ -16,26 +16,45 @@ const Post = () => {
   const sendPost = () => {
     fetchData();
   };
+  const modules = {
+    toolbar: [
+      [{ 'font': [
+        
+      ] }],
+      [{ header: [1, 2, 3,false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image", "video", "formula", "code-block"],
+      [{ align: [
+        "",
+        "center",
+        "right",
+        "justify",
+        
+      ] }, { color: [
+      ] }, { background: [] }], // dropdown with defaults from theme
+      ["clean"],
+    ],
+  };
+  
+  
+  
 
-  const Font = Quill.import("formats/font");
-  Font.whitelist = [
-    "arial",
-    "comic-sans",
-    "courier-new",
-    "georgia",
-    "helvetica",
-    "lucid,a",
-  ];
-  Quill.register(Font, true);
 
   return (
     <>
 
       <Typography variant="h3" component="h1" gutterBottom>
         Suivi de developpement creation de post
-        je m'apelle toto
       </Typography>
-      <ReactQuill theme="snow" value={value} onChange={setValue} formats={Font} />
+      <ReactQuill theme="snow" value={value} onChange={setValue}  modules={modules}
+    
+        />
       <Button variant="contained" color="primary" onClick={() => sendPost()}>
         Send
       </Button>
