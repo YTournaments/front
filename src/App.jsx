@@ -8,7 +8,9 @@ import Signup from "./common/pages/Signup";
 import Login from "./common/pages/Login";
 import Home from "./common/pages/Home";
 import Error from "./common/pages/Error";
+import Post from "./common/pages/Post";
 import { theme } from "./theme";
+import DevBlog from "./common/pages/devBlog";
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -22,6 +24,8 @@ function App() {
             </Route>
             <Route path="/" element={<AppLayout />}>
               <Route path="home" element={<Home />} />
+              <Route path="dev" element={<DevBlog />} />
+              <Route path="dev/creator" element={<Post />} />
             </Route>
             <Route path="*" element={<Error />} />
           </Routes>
