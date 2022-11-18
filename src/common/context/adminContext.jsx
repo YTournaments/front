@@ -30,7 +30,9 @@ export const AdminContextProvider = ({ children }) => {
         isAnAdmin();
     }, []);
     const isAnAdmin = () => {
-        fetch("http://localhost:5000/api/users/me", {
+
+
+        fetch("https://ytournaments-apui.onrender.com/api/users/me", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -48,6 +50,8 @@ export const AdminContextProvider = ({ children }) => {
             dispatch({ type: "USER", payload: false });
           }
         });
+       
+
       };
     console.log("AdminContext state:", state);
     return (
