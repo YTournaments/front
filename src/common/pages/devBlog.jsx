@@ -24,7 +24,9 @@ const DevBlog = () => {
       {data && (
         <>
           {data.posts.map((post) => (
-           <Card sx={{
+           <Card 
+           key={post._id}
+           sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -33,6 +35,7 @@ const DevBlog = () => {
               margin: "1rem",
               borderRadius: "1rem",
               boxShadow: "0 0 20px 0 rgba(0,0,0,0.2)",
+
 
            }}>
             
