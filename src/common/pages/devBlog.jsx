@@ -3,12 +3,11 @@ import { Box, Card, Typography } from "@mui/material";
 import { useAxiosFetch } from "../hooks/useAxiosFetch";
 const DevBlog = () => {
   const { data, error, loading } = useAxiosFetch({
+    headers: {"Content-Type": "application/json", Accept: "application/json", Authorization: `Bearer ${localStorage.getItem("user")}` },
     method: "GET",
     url: "/posts",
+
   });
-
-
-
   return (
     <>
     
@@ -23,7 +22,7 @@ const DevBlog = () => {
 
       {data && (
         <>
-          {data.posts.map((post) => (
+          {data.data.map((post) => (
            <Card sx={{
               display: "flex",
               flexDirection: "column",
@@ -44,7 +43,7 @@ const DevBlog = () => {
               margin: "1rem",
  
             }}>
-              {post.createdAt.slice(0, 10).split("-").reverse().join("/")}
+              {post.created_at.slice(0, 10).split("-").reverse().join("/")}
             </Typography>
             <Box sx={{
              

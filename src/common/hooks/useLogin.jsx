@@ -11,7 +11,8 @@ export const useLogin = () => {
     setError(null);
 
     const response = await fetch(
-      "https://ytournaments-apui.onrender.com/api/users/login",
+      import.meta.env.VITE_ENV === "prod" ? import.meta.env.VITE_API_URL +"/user/login" : "http://localhost:3001/user/login",
+      
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

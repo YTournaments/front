@@ -30,18 +30,19 @@ export const AdminContextProvider = ({ children }) => {
         isAnAdmin();
     }, []);
     const isAnAdmin = () => {
-        fetch("http://localhost:5000/api/users/me", {
+        fetch( import.meta.env.VITE_ENV === "prod" ? import.meta.env.VITE_API_URL + "/user/role" : "http://localhost:3001/user/role", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("user")}`,
           },
         }).then((res) => {
+          
           if (res.ok) {
             return res.json();
           }
         }).then((data) => {
-          if (data.users.isAdmin === true) {
+          if (data.role === "admin" || data.role === "superadmin") {
             
             dispatch({ type: "ADMIN", payload: true });
           } else {
