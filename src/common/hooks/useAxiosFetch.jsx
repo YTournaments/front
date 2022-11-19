@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://ytournaments-apui.onrender.com/api";
+axios.defaults.baseURL = import.meta.env.VITE_ENV === "prod" ? import.meta.env.VITE_API_URL : "http://localhost:3001";
 
 export const useAxiosFetch = (axiosParams) => {
   const [data, setData] = useState(undefined);
@@ -11,7 +11,7 @@ export const useAxiosFetch = (axiosParams) => {
   const fetchData = async () => {
     try {
       const response = await axios.request(axiosParams);
-      setData(response.data);
+      setData(response);
     } catch (error) {
       setError(error);
       setLoading(false);

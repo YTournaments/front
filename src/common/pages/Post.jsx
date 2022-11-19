@@ -9,9 +9,15 @@ const Post = () => {
   const [admin, setAdmin] = useState(false);
   const {  admin: isAdmin,} = useAdminContext();
   const { data, error, loading, fetchData } = useAxiosFetch({
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("user")}`,
+    },
     method: "POST",
     url: "/posts",
     data: {
+      title: "Suivi",
       content: value,
     },
   });
