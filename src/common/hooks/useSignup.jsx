@@ -4,15 +4,15 @@ import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { dispatch } = useAuthContext();
 
   const signup = async (name, email, password) => {
     setIsLoading(true);
-    setError(null);
-
     const response = await fetch(
-    import.meta.env.VITE_ENV === "prod" ? import.meta.env.VITE_API_URL + "/user/register" : "http://localhost:3001/user/register",
+      import.meta.env.VITE_ENV === "prod"
+        ? import.meta.env.VITE_API_URL + "/user/register"
+        : "http://localhost:3001/user/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -20,21 +20,21 @@ export const useSignup = () => {
       }
     );
     const json = await response.json();
-
-    if (!response.ok) {
-      setIsLoading(false);
+    if (json.error) {
       setError(json.error);
+      setIsLoading(false);
+      return;
     }
-    if (response.ok) {
+    if (response.ok && json.token) {
       // update loading state
       setIsLoading(false);
-
+      localStorage.setItem("user", json.token);
       // update the auth context
       dispatch({ type: "LOGIN", payload: json });
 
       // update loading state
       setIsLoading(false);
-      return <Navigate to="/login" />;
+      return <Navigate to="/home" />;
     }
   };
 

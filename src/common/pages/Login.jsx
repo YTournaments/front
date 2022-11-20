@@ -2,6 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
+import { verifyDataForm } from "../utils";
 const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -17,18 +18,23 @@ const Login = () => {
     const email = data.get("email").trim();
     const password = data.get("password").trim();
 
-    let err = false;
+    const isEmpty = () => {
+      let error = true;
+      verifyDataForm(email)
+        ? setEmailErrText("")
+        : setEmailErrText("Veulliez remplir ce champ");
+      verifyDataForm(password)
+        ? setPasswordErrText("")
+        : setPasswordErrText("Veulliez remplir ce champ");
+      if (verifyDataForm(email) && verifyDataForm(password)) {
+        error = false;
+      }
+      return error;
+    };
 
-    if (email === "") {
-      err = true;
-      setEmailErrText("Veulliez remplir ce champ");
+    if (isEmpty()) {
+      return;
     }
-    if (password === "") {
-      err = true;
-      setPasswordErrText("Veulliez remplir ce champ");
-    }
-
-    if (err) return;
 
     setLoading(true);
 
@@ -37,7 +43,7 @@ const Login = () => {
       await login(email, password);
       navigate("/home");
     } catch (err) {
-      const errors = err.data.errors;
+      /*  const errors = err.data.errors;
       errors.forEach((e) => {
         if (e.param === "username") {
           setUsernameErrText(e.msg);
@@ -45,7 +51,7 @@ const Login = () => {
         if (e.param === "password") {
           setPasswordErrText(e.msg);
         }
-      });
+      }); */
       setLoading(false);
     }
   };
