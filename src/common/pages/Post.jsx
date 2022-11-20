@@ -2,12 +2,14 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useAxiosFetch } from "../hooks/useAxiosFetch";
+import { useAxiosPost } from "../hooks/useAxiosFetch";
 import { useAdminContext } from "../hooks/useAdminContext";
+import { useAlertContext } from "../hooks/useAlertContext";
 const Post = () => {
   const [value, setValue] = useState("");
+  let { setAlert } = useAlertContext();
   const { admin: isAdmin } = useAdminContext();
-  const { data, error, loading, fetchData } = useAxiosFetch({
+  const { data, error, loading, postData } = useAxiosPost({
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -21,9 +23,17 @@ const Post = () => {
     },
   });
 
-  const sendPost = () => {
-    fetchData();
+  const sendPost = async () => {
+    await postData();
+    let errors = error?.response?.status;
+    console.log(error?.response?.status);
+    if (errors === 401 || errors === 403 || errors === 500) {
+      setAlert("Une erreur est survenue", "error");
+    } else {
+      setAlert("Votre post a bien été envoyé", "success");
+    }
   };
+
   const modules = {
     toolbar: [
       [{ font: [] }],
