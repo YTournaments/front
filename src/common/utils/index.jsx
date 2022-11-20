@@ -15,3 +15,10 @@ export const removeDuplicates = (arr) => {
   }
   return [...new Set(arr)];
 };
+
+export const verifyDataForm = (value) => {
+  if (value === "") {
+    return false;
+  }
+  return true;
+};
