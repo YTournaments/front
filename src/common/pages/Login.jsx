@@ -2,6 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
+import { useAlertContext } from "../hooks/useAlertContext";
 import { verifyDataForm } from "../utils";
 const Login = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const Login = () => {
   const [emailErrText, setEmailErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
   const { login, error, isLoading } = useLogin();
+  let { setAlert } = useAlertContext();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEmailErrText("");
@@ -41,8 +43,10 @@ const Login = () => {
     try {
       setLoading(false);
       await login(email, password);
+
       navigate("/home");
     } catch (err) {
+      setAlert(" Veuillez vérifier vos informations", "error");
       /*  const errors = err.data.errors;
       errors.forEach((e) => {
         if (e.param === "username") {

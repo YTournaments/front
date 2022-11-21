@@ -1,13 +1,12 @@
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 
 import { useAdminContext } from "../hooks/useAdminContext";
 import { useAlertContext } from "../hooks/useAlertContext";
 import useAxios from "../hooks/useAxios";
 import axios from "../api/index";
-import { useMemo } from "react";
 const Post = () => {
   const [value, setValue] = useState("");
   let { setAlert } = useAlertContext();
@@ -39,6 +38,7 @@ const Post = () => {
     }
     if (response?.status === 200) {
       setAlert("Votre article a bien été publié", "success");
+      setValue("");
     }
   }, [error, response]);
 
