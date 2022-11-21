@@ -2,37 +2,45 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useAxiosPost } from "../hooks/useAxiosFetch";
+
 import { useAdminContext } from "../hooks/useAdminContext";
 import { useAlertContext } from "../hooks/useAlertContext";
+import useAxios from "../hooks/useAxios";
+import axios from "../api/index";
+import { useMemo } from "react";
 const Post = () => {
   const [value, setValue] = useState("");
   let { setAlert } = useAlertContext();
   const { admin: isAdmin } = useAdminContext();
-  const { data, error, loading, postData } = useAxiosPost({
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${localStorage.getItem("user")}`,
-    },
-    method: "POST",
-    url: "/posts",
-    data: {
-      title: "Suivi",
-      content: value,
-    },
-  });
+  const [response, data, error, loading, axiosFetch] = useAxios();
 
-  const sendPost = async () => {
-    await postData();
+  const sendPost = () => {
+    axiosFetch({
+      axiosInstance: axios,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+      method: "post",
+      url: "/posts",
+      requestConfig: {
+        data: {
+          content: value,
+        },
+      },
+    });
+  };
+  useEffect(() => {
     let errors = error?.response?.status;
-    console.log(error?.response?.status);
+
     if (errors === 401 || errors === 403 || errors === 500) {
       setAlert("Une erreur est survenue", "error");
-    } else {
-      setAlert("Votre post a bien été envoyé", "success");
     }
-  };
+    if (response?.status === 200) {
+      setAlert("Votre article a bien été publié", "success");
+    }
+  }, [error, response]);
 
   const modules = {
     toolbar: [
@@ -69,11 +77,7 @@ const Post = () => {
             onChange={setValue}
             modules={modules}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => sendPost()}
-          >
+          <Button variant="contained" color="primary" onClick={sendPost}>
             Send
           </Button>
         </>
