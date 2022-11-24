@@ -5,7 +5,7 @@ import AppLayout from "./common/layout/AppLayout";
 import AuthLayout from "./common/layout/AuthLayout";
 import AdminLayout from "./common/layout/AdminLayout";
 import Landing from "./common/pages/Landing";
-import Signup from "./common/pages/Signup";
+import Register from "./common/pages/Register";
 import Login from "./common/pages/Login";
 import Home from "./common/pages/Home";
 import Error from "./common/pages/Error";
@@ -28,7 +28,7 @@ function App() {
 
               <Route path="/" element={<AuthLayout />}>
                 <Route path="login" element={<Login />} />
-                <Route path="signup" element={<Signup />} />
+                <Route path="register" element={<Register />} />
               </Route>
               <Route path="/" element={<AppLayout />}>
                 <Route path="home" element={<Home />} />
