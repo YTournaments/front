@@ -97,7 +97,7 @@ const Login = () => {
           Login
         </Button>
       </Box>
-      <Button component={Link} to="/signup" sx={{ textTransform: "none" }}>
+      <Button component={Link} to="/register" sx={{ textTransform: "none" }}>
         Don't have an account? Signup
       </Button>
     </>

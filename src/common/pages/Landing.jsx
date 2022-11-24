@@ -19,7 +19,7 @@ const Landing = () => {
       <CustomButton
         variant="contained"
         color="info"
-        onClick={() => navigate("/signup")}
+        onClick={() => navigate("/register")}
       >
         register
       </CustomButton>
