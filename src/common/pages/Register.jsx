@@ -1,19 +1,23 @@
 import { Box, Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignup } from "../hooks/useSignup";
+//import { useRegister } from "../hooks/useRegister";
 import { verifyDataForm } from "../utils";
-const Signup = () => {
+import useAxios from "../hooks/useAxios";
+import axios from "../api/index";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useAlertContext } from "../hooks/useAlertContext";
+const Register = () => {
   const navigate = useNavigate();
-
-  const [loading, setLoading] = useState();
   const [nameErrText, setnameErrText] = useState("");
   const [emailErrText, setEmailErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
   const [confirmPasswordErrText, setConfirmPasswordErrText] = useState("");
-  const { signup, isLoading, error } = useSignup();
+  const [response, data, error, loading, axiosFetch] = useAxios();
+  const { dispatch } = useAuthContext();
+  let { setAlert } = useAlertContext();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setnameErrText("");
     setPasswordErrText("");
@@ -60,36 +64,49 @@ const Signup = () => {
     if (isEmpty()) {
       return;
     }
-    setLoading(true);
-
-    try {
-      setLoading(false);
-      await signup(name, email, password);
-
-      if (!error && !isLoading) {
-        navigate("/home");
-      }
-    } catch (err) {}
+    axiosFetch({
+      axiosInstance: axios,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "post",
+      url: "/user/register",
+      requestConfig: {
+        data: {
+          name: name,
+          email: email,
+          password: password,
+        },
+      },
+    });
   };
-  /*    const errors = err.data.errors;
-      console.log(errors);
-      errors.forEach((e) => {
-        if (e.param === "name") {
-          setnameErrText(e.msg);
-        }
-        if (e.param === "password") {
-          setPasswordErrText(e.msg);
-        }
-        if (e.param === "email") {
-          setEmailErrText(e.msg);
-        }
-        if (e.param === "confirmPassword") {
-          setConfirmPasswordErrText(e.msg);
-        }
-      });
-      setLoading(false);
+
+  useMemo(() => {
+    if (response) {
+      const json = response.data;
+      console.log(response);
+      localStorage.setItem("user", data.token);
+      dispatch({ type: "LOGIN", payload: json });
+      setAlert("Bienvenur sur Ytournaments", "info");
+      return navigate("/home");
     }
-  }; */
+  }, [response]);
+
+  useMemo(() => {
+    if (error) {
+      const json = error.response.data;
+      console.log(error);
+      if (
+        json.statusCode === 401 ||
+        json.statusCode === 403 ||
+        json.statusCode === 500
+      ) {
+        // console.log(error);
+        setAlert("Une erreur est survenue", "error");
+      }
+    }
+  }, [error]);
 
   return (
     <>
@@ -148,7 +165,7 @@ const Signup = () => {
           type="submit"
           loading={loading}
         >
-          Signup
+          Register
         </Button>
       </Box>
       <Button component={Link} to="/login" sx={{ textTransform: "none" }}>
@@ -158,4 +175,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

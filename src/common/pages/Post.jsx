@@ -30,6 +30,7 @@ const Post = () => {
       },
     });
   };
+
   useEffect(() => {
     let errors = error?.response?.status;
 
