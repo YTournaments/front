@@ -1,8 +1,10 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Container, Typography } from "@mui/material";
 import { CustomButton } from "../components/Button";
-import React from "react";
 import { appName } from "../constants";
-import { Link, useNavigate } from "react-router-dom";
+
 const Landing = () => {
   const navigate = useNavigate();
   return (
