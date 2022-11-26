@@ -1,12 +1,14 @@
+import { useState, useMemo } from "react";
 import { Box, Button, TextField } from "@mui/material";
-import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-//import { useRegister } from "../hooks/useRegister";
-import { verifyDataForm } from "../utils";
-import useAxios from "../hooks/useAxios";
-import axios from "../api/index";
+
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useAlertContext } from "../hooks/useAlertContext";
+import useAxios from "../hooks/useAxios";
+
+import { verifyDataForm } from "../utils";
+import axios from "../api/index";
+
 const Register = () => {
   const navigate = useNavigate();
   const [nameErrText, setnameErrText] = useState("");
@@ -165,11 +167,11 @@ const Register = () => {
           type="submit"
           loading={loading}
         >
-          Register
+          S'inscrire
         </Button>
       </Box>
       <Button component={Link} to="/login" sx={{ textTransform: "none" }}>
-        Already have an account? Login
+        Vous avez un compte ? Se Connecter
       </Button>
     </>
   );

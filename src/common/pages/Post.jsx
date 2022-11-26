@@ -1,12 +1,14 @@
-import ReactQuill, { Quill } from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import React, { useState, useEffect } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Button, Typography } from "@mui/material";
 
 import { useAdminContext } from "../hooks/useAdminContext";
 import { useAlertContext } from "../hooks/useAlertContext";
+
 import useAxios from "../hooks/useAxios";
 import axios from "../api/index";
+
 const Post = () => {
   const [value, setValue] = useState("");
   let { setAlert } = useAlertContext();
@@ -79,7 +81,7 @@ const Post = () => {
             modules={modules}
           />
           <Button variant="contained" color="primary" onClick={sendPost}>
-            Send
+            Envoyer
           </Button>
         </>
       ) : (
