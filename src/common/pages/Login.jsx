@@ -1,16 +1,22 @@
-import { Box, Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogin } from "../hooks/useLogin";
+import { Box, Button, TextField } from "@mui/material";
+
 import { useAlertContext } from "../hooks/useAlertContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+import useAxios from "../hooks/useAxios";
+
 import { verifyDataForm } from "../utils";
+import axios from "../api/index";
 const Login = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+
   const [emailErrText, setEmailErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
-  const { login, error, isLoading } = useLogin();
-  let { setAlert } = useAlertContext();
+  const [response, data, error, loading, axiosFetch] = useAxios();
+  const { dispatch } = useAuthContext();
+  const { setAlert } = useAlertContext();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEmailErrText("");
@@ -28,6 +34,7 @@ const Login = () => {
       verifyDataForm(password)
         ? setPasswordErrText("")
         : setPasswordErrText("Veulliez remplir ce champ");
+
       if (verifyDataForm(email) && verifyDataForm(password)) {
         error = false;
       }
@@ -38,27 +45,42 @@ const Login = () => {
       return;
     }
 
-    setLoading(true);
-
-    try {
-      setLoading(false);
-      await login(email, password);
-
-      navigate("/home");
-    } catch (err) {
-      setAlert(" Veuillez vérifier vos informations", "error");
-      /*  const errors = err.data.errors;
-      errors.forEach((e) => {
-        if (e.param === "username") {
-          setUsernameErrText(e.msg);
-        }
-        if (e.param === "password") {
-          setPasswordErrText(e.msg);
-        }
-      }); */
-      setLoading(false);
-    }
+    axiosFetch({
+      axiosInstance: axios,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "post",
+      url: "/user/login",
+      requestConfig: {
+        data: {
+          email: email,
+          password: password,
+        },
+      },
+    });
   };
+
+  useMemo(() => {
+    if (response) {
+      const json = response.data;
+      console.log(response);
+      localStorage.setItem("user", data.token);
+      dispatch({ type: "LOGIN", payload: json });
+      setAlert("Vous etes connecté ", "success");
+      return navigate("/home");
+    }
+  }, [response]);
+
+  useMemo(() => {
+    if (error) {
+      const json = error.response;
+      if (json.status === 401 || json.status === 403 || json.status === 500) {
+        setAlert("Une erreur est survenue", "error");
+      }
+    }
+  }, [error]);
 
   return (
     <>
@@ -70,7 +92,7 @@ const Login = () => {
           id="email"
           label="email"
           name="email"
-          disabled={loading}
+          disabled={loading ? true : false}
           error={emailErrText !== ""}
           helperText={emailErrText}
         />
@@ -82,7 +104,7 @@ const Login = () => {
           label="Password"
           name="password"
           type="password"
-          disabled={loading}
+          disabled={loading ? true : false}
           error={passwordErrText !== ""}
           helperText={passwordErrText}
         />
@@ -92,13 +114,13 @@ const Login = () => {
           fullWidth
           color="success"
           type="submit"
-          loading={loading}
+          loading={loading ? true : false}
         >
-          Login
+          Conexion
         </Button>
       </Box>
       <Button component={Link} to="/register" sx={{ textTransform: "none" }}>
-        Don't have an account? Signup
+        Vous n'avez pas de compte ? S'enregister
       </Button>
     </>
   );

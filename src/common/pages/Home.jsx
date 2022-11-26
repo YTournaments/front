@@ -1,7 +1,8 @@
-import { Container } from "@mui/material";
 import React from "react";
+import { Container } from "@mui/material";
 import CustomButton from "../components/Button";
 import { useNavigate } from "react-router-dom";
+
 export const Home = () => {
   const navigate = useNavigate();
   return (

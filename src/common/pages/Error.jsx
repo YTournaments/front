@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import background from "../../assets/background.gif";
+
 const Error = () => {
   return (
     <Box>
