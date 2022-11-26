@@ -17,6 +17,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import DragHandleIcon from "@mui/icons-material/DragHandle";
 
 const drawerWidth = 240;
 
@@ -105,7 +106,10 @@ export const Navbar = () => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center", background: "trasnparent" }}
+    >
       <Typography variant="h6" sx={{ my: 2 }}>
         <img src={logo} alt="logo ytournaments" width="60" />
       </Typography>
@@ -114,10 +118,20 @@ export const Navbar = () => {
         {navItems.guest.map((item) => (
           <ListItem key={item.id} disablePadding>
             <ListItemButton
-              sx={{ textAlign: "center" }}
+              sx={{
+                textAlign: "center",
+              }}
               onClick={() => navigate(item.path)}
             >
-              <ListItemText primary={item.text} />
+              <ListItemText
+                primary={item.text}
+                sx={{
+                  fontWeight: "bold",
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: "2.5rem",
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -142,7 +156,12 @@ export const Navbar = () => {
             sx={{ mr: 2, display: { sm: "none" } }}
             color="primary"
           >
-            Open
+            <DragHandleIcon
+              sx={{
+                color: "white",
+                fontSize: "3rem",
+              }}
+            />
           </IconButton>
           <Typography
             variant="h6"
@@ -184,6 +203,9 @@ export const Navbar = () => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              background: "rgba(255, 255, 255, 0.30)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
             },
           }}
         >

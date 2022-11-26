@@ -37,6 +37,7 @@ const Landing = () => {
         }}
       >
         <Typography
+          variant="h1"
           sx={{
             fontSize: "5rem",
             fontWeight: "bold",
@@ -51,6 +52,7 @@ const Landing = () => {
           Trouve ton Tournois ici!
         </Typography>
         <Typography
+          variant="h2"
           sx={{
             fontSize: "2rem",
             fontWeight: "bold",
