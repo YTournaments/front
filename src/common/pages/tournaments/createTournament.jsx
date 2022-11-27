@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -9,22 +9,21 @@ import {
   Select,
   MenuItem,
   ListSubheader,
-  Grid,
-  Slider,
-  Input,
   OutlinedInput,
-  Paper,
   Chip,
-  ListItem,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import { grey, yellow } from "@mui/material/colors";
+import useAxios from "../../hooks/useAxios";
+import axios from "../../api/index";
+import { useAlertContext } from "../../hooks/useAlertContext";
 
 const CreateTournament = () => {
-  const [loading, setloading] = useState(false);
-  const [startdate, setStartDate] = React.useState(new Date());
+  const [startdate, setStartDate] = useState(new Date());
   const names = ["PC", "XBOX", "PS4", "Nintendo Switch", "Mobile", "Other"];
-  const [platformTournament, setplatformTournament] = React.useState([]);
+  const [platformTournament, setplatformTournament] = useState([]);
+  const [response, data, error, loading, axiosFetch] = useAxios();
+  const { setAlert } = useAlertContext();
+
   const handlePlatformChange = (event) => {
     const {
       target: { value },
@@ -55,30 +54,44 @@ const CreateTournament = () => {
       });
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword");
-    const dataTournaments = {
-      name,
-      description,
-      game,
-      start_date,
-      max_players,
-      prize,
-      rules,
-      platform,
-      participants,
-      password,
-      confirmPassword,
-    };
 
-    console.log(dataTournaments);
-    fetch("http://localhost:5000/tournaments", {
-      method: "POST",
+    axiosFetch({
+      axiosInstance: axios,
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
-      body: JSON.stringify(dataTournaments),
+      method: "post",
+      url: "/tournaments",
+      requestConfig: {
+        data: {
+          name,
+          description,
+          game,
+          start_date,
+          max_players,
+          prize,
+          rules,
+          platform,
+          participants,
+          password,
+          confirmPassword,
+        },
+      },
     });
+    console.log(data, error);
   };
+  useEffect(() => {
+    let errors = error?.response?.status;
+
+    if (errors === 401 || errors === 403 || errors === 500 || errors === 400) {
+      setAlert("Une erreur est survenue", "error");
+    }
+    if (response?.status === 200) {
+      setAlert("🎉🎉 Bravo Tournois créer", "success");
+    }
+  }, [error, response]);
 
   return (
     <>
