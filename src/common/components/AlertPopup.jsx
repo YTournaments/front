@@ -12,7 +12,7 @@ const AlertPopup = () => {
           sx={{
             position: "absolute",
             top: "20px",
-            right: "10px",
+            right: "20px",
             width: "auto",
             zIndex: 10,
           }}
