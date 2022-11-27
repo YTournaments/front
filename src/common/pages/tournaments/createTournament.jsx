@@ -17,43 +17,68 @@ import {
   Chip,
   ListItem,
 } from "@mui/material";
-import { DatePicker, StaticTimePicker } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers";
 import { grey, yellow } from "@mui/material/colors";
 
 const CreateTournament = () => {
   const [loading, setloading] = useState(false);
+  const [startdate, setStartDate] = React.useState(new Date());
+  const names = ["PC", "XBOX", "PS4", "Nintendo Switch", "Mobile", "Other"];
+  const [platformTournament, setplatformTournament] = React.useState([]);
+  const handlePlatformChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setplatformTournament(typeof value === "string" ? value.split(",") : value);
+  };
+  const handleChange = (newValue) => {
+    setStartDate(newValue);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const data = new FormData(e.target);
     const name = data.get("name");
     const description = data.get("description");
     const game = data.get("game");
-    const date = data.get("date");
-    const time = data.get("time");
-    const maxPlayers = data.get("maxPlayers");
-    const cashPrice = data.get("cashPrice");
+    const start_date = startdate;
+    const max_players = data.get("maxPlayers");
+    const prize = data.get("cashPrice");
     const rules = data.get("rules");
-    const platform = data.get("platform");
-    const team = data.get("team");
+    const platform = platformTournament;
+    const participants = data
+      .get("team")
+      .trim("")
+      .split("\n")
+      .map((team) => {
+        return { name: team };
+      });
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword");
     const dataTournaments = {
       name,
       description,
       game,
-      date,
-      time,
-      maxPlayers,
-      cashPrice,
+      start_date,
+      max_players,
+      prize,
       rules,
       platform,
-      team,
+      participants,
       password,
       confirmPassword,
     };
+
     console.log(dataTournaments);
+    fetch("http://localhost:5000/tournaments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+      body: JSON.stringify(dataTournaments),
+    });
   };
-  const names = ["PC", "XBOX", "PS4", "Nintendo Switch", "Mobile", "Other"];
 
   return (
     <>
@@ -103,62 +128,20 @@ const CreateTournament = () => {
           label="date"
           id="date"
           name="date"
-          value={null}
-          onChange={() => {}}
+          value={startdate}
+          onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
         />
-        <StaticTimePicker
-          ampm
-          label="time"
-          id="time"
-          name="time"
-          orientation="landscape"
-          openTo="minutes"
-          value={null}
-          onChange={() => {}}
-          renderInput={(params) => <TextField {...params} />}
+
+        <TextField
+          fullWidth
+          sx={{ mt: 1 }}
+          rows={4}
+          id="maxPlayers"
+          label="Max Players"
+          name="maxPlayers"
+          disabled={loading}
         />
-        <Box
-          sx={{
-            border: 1,
-            borderRadius: 1,
-            p: 1,
-            mt: 1,
-            borderColor: grey[400],
-          }}
-        >
-          <Typography id="input-slider" gutterBottom>
-            Max player
-          </Typography>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item>logo</Grid>
-            <Grid item xs>
-              <Slider
-                name="maxPlayers"
-                aria-label="maxPlayers"
-                defaultValue={30}
-                value={typeof value === "number" ? value : 2}
-                onChange={() => {}}
-                aria-labelledby="input-slider"
-              />
-            </Grid>
-            <Grid item>
-              <Input
-                value={0}
-                size="small"
-                onChange={() => {}}
-                onBlur={() => {}}
-                inputProps={{
-                  step: 10,
-                  min: 2,
-                  max: 100,
-                  type: "number",
-                  "aria-labelledby": "input-slider",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Box>
         <TextField
           fullWidth
           sx={{ mt: 1 }}
@@ -183,8 +166,8 @@ const CreateTournament = () => {
             labelId="platform-select-label"
             id="platform"
             multiple
-            value={[]}
-            onChange={() => {}}
+            value={platformTournament}
+            onChange={handlePlatformChange}
             input={
               <OutlinedInput id="select-multiple-plateform" label="Chip" />
             }
