@@ -70,6 +70,7 @@ const Post = () => {
     <>
       {isRole === "admin" || "superadmin" ? (
         <Box sx={{ mt: 1, height: "100vh" }}>
+
           <Typography variant="h3" component="h1" gutterBottom>
             Suivi de developpement creation de post
           </Typography>
@@ -89,7 +90,7 @@ const Post = () => {
           Vous n'avez pas les droits pour acceder a cette page
         </Typography>
       )}
-    </>
+    </Box>
   );
 };
 
