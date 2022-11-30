@@ -16,6 +16,7 @@ import { theme } from "./theme";
 import DevBlog from "./common/pages/devBlog";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>

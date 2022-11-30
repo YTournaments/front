@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button, Typography } from "@mui/material";
+import Box from '@mui/material/Box';
+
 
 import { useRoleContext } from "../hooks/useRoleContext";
 import { useAlertContext } from "../hooks/useAlertContext";
@@ -9,7 +11,11 @@ import { useAlertContext } from "../hooks/useAlertContext";
 import useAxios from "../hooks/useAxios";
 import axios from "../api/index";
 
+
+
 const Post = () => {
+
+
   const [value, setValue] = useState("");
   let { setAlert } = useAlertContext();
   const { role: isRole } = useRoleContext();
@@ -70,19 +76,25 @@ const Post = () => {
     <>
       {isRole === "admin" || "superadmin" ? (
         <>
-          <Typography variant="h3" component="h1" gutterBottom>
-            Suivi de developpement creation de post
-          </Typography>
+         <Box  sx={{}}>
+            <Typography variant="h3" component="h1" gutterBottom>
+              Suivi de developpement creation de post
+            </Typography>
 
-          <ReactQuill
-            theme="snow"
-            value={value}
-            onChange={setValue}
-            modules={modules}
-          />
-          <Button variant="contained" color="primary" onClick={sendPost}>
-            Envoyer
-          </Button>
+            <ReactQuill
+              theme="snow"
+              value={value}
+              onChange={setValue}
+              modules={modules}
+
+              
+            />
+            <Box sx={{ display:"flex", justifyContent:"flex-end" }}>
+              <Button variant="contained" color="primary" onClick={sendPost}>
+                Envoyer
+              </Button>
+            </Box>
+          </Box>
         </>
       ) : (
         <Typography variant="h3" component="h1" gutterBottom>
