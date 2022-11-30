@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material/styles";
-import { yellow, indigo, blue, black } from "./colors";
+import { yellow, indigo, blue, black, purple } from "./colors";
 export const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
       main: yellow[100],
       dark: yellow[200],
@@ -10,6 +10,10 @@ export const theme = createTheme({
     secondary: {
       main: indigo[100],
       dark: indigo[200],
+    },
+    purple: {
+      main: purple[100],
+      dark: purple[200],
     },
     info: {
       main: blue[100],

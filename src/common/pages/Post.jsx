@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 import { useRoleContext } from "../hooks/useRoleContext";
 import { useAlertContext } from "../hooks/useAlertContext";
@@ -69,7 +69,8 @@ const Post = () => {
   return (
     <>
       {isRole === "admin" || "superadmin" ? (
-        <>
+        <Box sx={{ mt: 1, height: "100vh" }}>
+
           <Typography variant="h3" component="h1" gutterBottom>
             Suivi de developpement creation de post
           </Typography>
@@ -83,13 +84,13 @@ const Post = () => {
           <Button variant="contained" color="primary" onClick={sendPost}>
             Envoyer
           </Button>
-        </>
+        </Box>
       ) : (
         <Typography variant="h3" component="h1" gutterBottom>
           Vous n'avez pas les droits pour acceder a cette page
         </Typography>
       )}
-    </>
+    </Box>
   );
 };
 

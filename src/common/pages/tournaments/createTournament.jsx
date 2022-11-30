@@ -94,7 +94,7 @@ const CreateTournament = () => {
   }, [error, response]);
 
   return (
-    <>
+    <Box sx={{ mt: 1, height: "100vh" }}>
       <Typography variant="h4" gutterBottom>
         Créer votre tournois
       </Typography>
@@ -232,7 +232,7 @@ const CreateTournament = () => {
           Créer
         </Button>
       </Box>
-    </>
+    </Box>
   );
 };
 
