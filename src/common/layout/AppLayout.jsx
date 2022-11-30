@@ -1,6 +1,7 @@
 import { Box, Container } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { Navbar } from "../components/Navbar";
 const AppLayout = () => {
   const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ const AppLayout = () => {
   }, [navigate]);
   return (
     <Container>
+      <Navbar />
       <Outlet />
     </Container>
   );

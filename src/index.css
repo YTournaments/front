@@ -7,5 +7,27 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  
 }
+
+* {
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+}
+
+body {
+
+  font-family: 'Montserrat', sans-serif;
+background: rgb(2, 0, 36);
+background: linear-gradient(175.6deg, #030303 -47.21%, #06135D 148.55%);
+  background-repeat: no-repeat;
+
+}
+
+
+ 
 

@@ -112,7 +112,12 @@ const Register = () => {
 
   return (
     <>
-      <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit} noValidate>
+      <Box
+        component="form"
+        sx={{ mt: 1, height: "100vh" }}
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <TextField
           margin="normal"
           required
@@ -169,10 +174,10 @@ const Register = () => {
         >
           S'inscrire
         </Button>
+        <Button component={Link} to="/login" sx={{ textTransform: "none" }}>
+          Vous avez un compte ? Se Connecter
+        </Button>
       </Box>
-      <Button component={Link} to="/login" sx={{ textTransform: "none" }}>
-        Vous avez un compte ? Se Connecter
-      </Button>
     </>
   );
 };
