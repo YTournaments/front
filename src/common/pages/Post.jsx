@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button, Typography } from "@mui/material";
 
-import { useAdminContext } from "../hooks/useAdminContext";
+import { useRoleContext } from "../hooks/useRoleContext";
 import { useAlertContext } from "../hooks/useAlertContext";
 
 import useAxios from "../hooks/useAxios";
@@ -12,7 +12,7 @@ import axios from "../api/index";
 const Post = () => {
   const [value, setValue] = useState("");
   let { setAlert } = useAlertContext();
-  const { admin: isAdmin } = useAdminContext();
+  const { role: isRole } = useRoleContext();
   const [response, data, error, loading, axiosFetch] = useAxios();
 
   const sendPost = () => {
@@ -68,7 +68,7 @@ const Post = () => {
 
   return (
     <>
-      {isAdmin ? (
+      {isRole === "admin" || "superadmin" ? (
         <>
           <Typography variant="h3" component="h1" gutterBottom>
             Suivi de developpement creation de post

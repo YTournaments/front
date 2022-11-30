@@ -18,16 +18,44 @@ import {
   Button,
 } from "@mui/material";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useRoleContext } from "../hooks/useRoleContext";
 
 const drawerWidth = 240;
 
 const navItems = {
+  superadmin: [
+    {
+      id: 1,
+      text: "Dashboard",
+      //icon: <DashboardIcon />,
+      path: "/dashboard",
+    },
+    {
+      id: 2,
+      text: "Blog",
+      //icon: <BlogIcon />,
+      path: "/admin/blog",
+    },
+    {
+      id: 3,
+      text: "Tournament",
+      //icon: <TournamentIcon />,
+      path: "/tournament",
+    },
+    {
+      id: 4,
+      text: "User",
+      // icon: <UserIcon />,
+      path: "/admin/user",
+    },
+  ],
   admin: [
     {
       id: 1,
       text: "Dashboard",
       //icon: <DashboardIcon />,
-      path: "/admin",
+      path: "/dashboard",
     },
     {
       id: 2,
@@ -99,7 +127,7 @@ const navItems = {
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
-  //const { admin: isAdmin } = useAdminContext();
+  const { role: isrole } = useRoleContext();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -108,7 +136,7 @@ export const Navbar = () => {
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", background: "trasnparent" }}
+      sx={{ textAlign: "center", background: "transparent" }}
     >
       <Typography variant="h6" sx={{ my: 2 }}>
         <img src={logo} alt="logo ytournaments" width="60" />
@@ -171,22 +199,24 @@ export const Navbar = () => {
             <img src={logo} alt="logo ytournaments" width="60" />
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.guest.map((item) => (
-              <Button
-                key={item.id}
-                sx={{
-                  color: "white",
-                  fontWeight: "bold",
-                  borderRadius: "100px",
-                  backgroundColor: item.color,
-                  margin: "0 0.5rem",
-                  padding: "0.5rem 1rem",
-                }}
-                onClick={() => navigate(item.path)}
-              >
-                {item.text}
-              </Button>
-            ))}
+            {isrole
+              ? navItems[isrole].map((item) => (
+                  <Button
+                    key={item.id}
+                    sx={{
+                      color: "white",
+                      fontWeight: "bold",
+                      borderRadius: "100px",
+                      backgroundColor: item.color,
+                      margin: "0 0.5rem",
+                      padding: "0.5rem 1rem",
+                    }}
+                    onClick={() => navigate(item.path)}
+                  >
+                    {item.text}
+                  </Button>
+                ))
+              : null}
           </Box>
         </Toolbar>
       </AppBar>
