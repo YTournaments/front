@@ -8,9 +8,11 @@ export const CustomButton = styled(Button)((props) => {
   return {
     ...others,
     variant: variant || "contained",
-    color: color || "primary",
+    color: "white",
+    backgroundColor: theme.palette[color].main,
     size: size || "large",
     text: text || "Button",
+    borderRadius: "10px",
     onClick: onClick || (() => {}),
   };
 });

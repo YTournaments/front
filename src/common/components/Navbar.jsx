@@ -101,22 +101,38 @@ const navItems = {
     {
       id: 8,
 
-      text: "Tournaments",
+      text: "Tournois",
       //icon: <TournamentIcon />,
-      path: "/tournament",
+      path: "#tournois",
       color: "transparent",
     },
     {
       id: 9,
 
-      text: "Login",
+      text: "Evenement",
+      //icon: <TournamentIcon />,
+      path: "#evenement",
+      color: "transparent",
+    },
+    {
+      id: 10,
+
+      text: "Notre Concept",
+      //icon: <TournamentIcon />,
+      path: "#concept",
+      color: "transparent",
+    },
+    {
+      id: 11,
+
+      text: "Se connecter",
       //   icon: <LoginIcon />,
       path: "/login",
       color: "transparent",
     },
     {
-      id: 10,
-      text: "Register",
+      id: 12,
+      text: "S'inscrire",
       //icon: <RegisterIcon />,
       path: "/register",
       color: "primary.main",
@@ -194,9 +210,15 @@ export const Navbar = () => {
           <Typography
             variant="h6"
             component="div"
+            onClick={() => navigate("/")}
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <img src={logo} alt="logo ytournaments" width="60" />
+            <img
+              src={logo}
+              alt="logo ytournaments"
+              width="60"
+              onClick={() => navigate("/")}
+            />
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {isrole

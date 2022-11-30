@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const Home = () => {
   const navigate = useNavigate();
   return (
-    <Container>
+    <Container sx={{ mt: 1, height: "100vh" }}>
       <h2>You are in the app</h2>
       <CustomButton
         variant="contained"

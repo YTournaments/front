@@ -25,7 +25,7 @@ const DevBlog = () => {
   }, []);
 
   return (
-    <>
+    <Box sx={{ mt: 1, height: "100vh" }}>
       <Typography
         variant="h3"
         component="h1"
@@ -71,7 +71,7 @@ const DevBlog = () => {
         </>
       )}
       {!loading && !error && !data.length && <p>Pas d'article</p>}
-    </>
+    </Box>
   );
 };
 
