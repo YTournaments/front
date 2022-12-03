@@ -7,6 +7,9 @@ const StyledTextField = styled(TextField)(({ theme, textcolor }) => ({
   },
   "& .MuiFormLabel-root": {
     color: textcolor || "transparent",
+    "&.Mui-focused": {
+      color: textcolor || "transparent",
+    },
   },
   "& .MuiInputBase-input": {
     webkitAutofill: {
