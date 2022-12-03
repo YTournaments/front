@@ -138,13 +138,13 @@ const Login = () => {
             noValidate
           >
             <CustomTextField
+              id="email"
               margin="normal"
               required
               fullWidth
               name="email"
               type="email"
               label="email"
-              id="email"
               autoComplete="email"
               placeholder="Email *"
               disabled={loading ? true : false}
@@ -175,7 +175,6 @@ const Login = () => {
               helperText={passwordErrText}
               sx={{
                 backgroundColor: "#34353C",
-
                 maxWidth: "50%",
                 margin: "auto",
                 display: "flex",
