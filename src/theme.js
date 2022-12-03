@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { yellow, indigo, blue, black, purple } from "./colors";
+import { yellow, indigo, blue, black, purple, darkBlue } from "./colors";
 export const theme = createTheme({
   palette: {
     mode: "dark",
@@ -22,6 +22,10 @@ export const theme = createTheme({
     tertiary: {
       main: black[100],
       dark: black[200],
+    },
+    darkBlue: {
+      main: darkBlue[100],
+      dark: darkBlue[200],
     },
   },
   typography: {

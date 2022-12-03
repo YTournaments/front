@@ -103,7 +103,7 @@ const navItems = {
 
       text: "Tournois",
       //icon: <TournamentIcon />,
-      path: "#tournois",
+      path: "/#tournois",
       color: "transparent",
     },
     {

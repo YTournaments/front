@@ -29,6 +29,13 @@ export const blue = {
   400: "#0071BC",
   500: "#0071BC",
 };
+export const darkBlue = {
+  100: "#050B29",
+  200: "#050B29",
+  300: "#050B29",
+  400: "#050B29",
+  500: "#050B29",
+};
 export const black = {
   100: "#OOOOOO",
   200: "#OOOOOO",
