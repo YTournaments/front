@@ -15,6 +15,8 @@ const AlertPopup = () => {
             right: "20px",
             width: "auto",
             zIndex: 10,
+            color: "white",
+            backgroundColor: "#34353C",
           }}
         >
           <AlertTitle>{type}</AlertTitle>

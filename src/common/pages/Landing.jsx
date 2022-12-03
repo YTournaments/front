@@ -2,34 +2,25 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Container } from "@mui/material";
 import { CustomButton } from "../components/Button";
 import { Navbar } from "../components/Navbar";
 import Video from "../components/Video";
+import CardCustom from "../components/Card/CardCustom";
+import ImageWarzone from "../../assets/warzoneImage.png";
 
 const Landing = () => {
   const navigate = useNavigate();
-  const videoEl = useRef(null);
 
-  const attemptPlay = () => {
-    videoEl &&
-      videoEl.current &&
-      videoEl.current.play().catch((error) => {
-        console.error("Error attempting to play", error);
-      });
-  };
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(2),
     textAlign: "center",
   }));
-  useEffect(() => {
-    attemptPlay();
-  }, []);
 
   return (
-    <Box>
+    <>
       <Navbar />
       <Video />
       <Box
@@ -83,33 +74,47 @@ const Landing = () => {
           Nous rejoindre
         </CustomButton>
       </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {Array.from(Array(6)).map((_, index) => (
-            <Grid item xs={2} sm={4} md={4} key={index}>
-              <Item>xs=2</Item>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-      <Box
+      <Container
+        maxWidth="xl"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
+          color: "white",
         }}
       >
-        <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-          Tournois
-        </Typography>
-      </Box>
-    </Box>
+        <Box
+          sx={{
+            flexGrow: 1,
+
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Grid
+            container
+            spacing={{ xs: 4, md: 4 }}
+            rowSpacing={{ xs: 4, sm: 8, md: 10 }}
+            columns={{ xs: 1, sm: 2, md: 2, lg: 4 }}
+          >
+            {Array.from(Array(8)).map((_, index) => (
+              <Grid item xs={2} sm={1} md={1} key={index}>
+                <CardCustom imageGame={ImageWarzone} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            margin: "10rem 0",
+          }}
+        >
+          <Typography id="tournois" variant="h2" sx={{ fontWeight: "bold" }}>
+            Tournois
+          </Typography>
+        </Box>
+      </Container>
+    </>
   );
 };
 
