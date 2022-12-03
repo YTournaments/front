@@ -2,6 +2,7 @@ import { Container, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
+import Video from "../components/Video";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
@@ -19,8 +20,14 @@ const AuthLayout = () => {
     checkAuth();
   }, [navigate]);
   return (
-    <Container component="main">
+    <Container
+      component="main"
+      sx={{
+        height: "100vh",
+      }}
+    >
       <Navbar />
+      <Video />
       <Outlet />
     </Container>
   );
