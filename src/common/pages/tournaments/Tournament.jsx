@@ -1,11 +1,12 @@
 import React from "react";
-
+import { Box } from "@mui/material";
+import { BracketGame } from "../../components/Bracket/Bracket";
+import { useLocation } from "react-router-dom";
 const Tournament = () => {
-  return (
-    <div>
-      <h1>Tournaments</h1>
-    </div>
-  );
+  const location = useLocation();
+  const { id, participants } = location.state.tournament;
+
+  return <BracketGame participants={participants} />;
 };
 
 export default Tournament;
