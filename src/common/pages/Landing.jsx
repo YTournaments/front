@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Box, Grid, Typography, Container } from "@mui/material";
-import { CustomButton } from "../components/Button";
-import { Navbar } from "../components/Navbar";
-import Video from "../components/Video";
+import { CustomButton } from "../components/Button/Button";
+import { Navbar } from "../components/Navbar/Navbar";
+import Video from "../components/Video/Video";
 import CardCustom from "../components/Card/CardCustom";
 import ImageWarzone from "../../assets/warzoneImage.png";
 

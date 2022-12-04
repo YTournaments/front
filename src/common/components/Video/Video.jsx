@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import video from "../../assets/ytournaments-video.mp4";
+import video from "../../../assets/ytournaments-video.mp4";
 const Video = () => {
   const videoEl = useRef(null);
 
@@ -13,6 +13,7 @@ const Video = () => {
   useEffect(() => {
     attemptPlay();
   }, []);
+
   return (
     <video
       style={{
@@ -30,7 +31,7 @@ const Video = () => {
       playsInline
       loop
       muted
-      alt="All the devices"
+      alt="video presentation"
       src={video}
       ref={videoEl}
     />
