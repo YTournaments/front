@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 import { Button } from "@mui/material";
-import { theme } from "../../theme";
+import { theme } from "../../../theme";
 
 export const CustomButton = styled(Button)((props) => {
   const { variant, color, size, text, onClick, ...others } = props;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import { useAdminContext } from "../hooks/useAdminContext";
 
-import logo from "../../assets/android-chrome-192x192.png";
+import logo from "../../../assets/android-chrome-192x192.png";
 import {
   AppBar,
   Box,
@@ -18,8 +18,8 @@ import {
   Button,
 } from "@mui/material";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useRoleContext } from "../hooks/useRoleContext";
+
+import { useRoleContext } from "../../hooks/useRoleContext";
 
 const drawerWidth = 240;
 
@@ -187,9 +187,9 @@ export const Navbar = () => {
       <AppBar
         component="nav"
         color="transparent"
+        position="absolute"
         sx={{
           boxShadow: "none",
-          backgroundColor: "transparent",
         }}
       >
         <Toolbar sx={{ mx: 10 }}>
@@ -238,7 +238,22 @@ export const Navbar = () => {
                     {item.text}
                   </Button>
                 ))
-              : null}
+              : navItems.guest.map((item) => (
+                  <Button
+                    key={item.id}
+                    sx={{
+                      color: "white",
+                      fontWeight: "bold",
+                      borderRadius: "100px",
+                      backgroundColor: item.color,
+                      margin: "0 0.5rem",
+                      padding: "0.5rem 1rem",
+                    }}
+                    onClick={() => navigate(item.path)}
+                  >
+                    {item.text}
+                  </Button>
+                ))}
           </Box>
         </Toolbar>
       </AppBar>

@@ -5,7 +5,7 @@ import Logo from "../../assets/android-chrome-192x192.png";
 import { useAlertContext } from "../hooks/useAlertContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import useAxios from "../hooks/useAxios";
-import CustomButton from "../components/Button";
+import CustomButton from "../components/Button/Button";
 import { verifyDataForm } from "../utils";
 import axios from "../api/index";
 import EmailIcon from "@mui/icons-material/Email";

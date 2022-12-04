@@ -1,8 +1,8 @@
 import { Container, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
-import Video from "../components/Video";
+import { Navbar } from "../components/Navbar/Navbar";
+import Video from "../components/Video/Video";
 
 const AuthLayout = () => {
   const navigate = useNavigate();

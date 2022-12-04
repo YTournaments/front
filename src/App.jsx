@@ -10,7 +10,7 @@ import Login from "./common/pages/Login";
 import Home from "./common/pages/Home";
 import Error from "./common/pages/Error";
 import Post from "./common/pages/Post";
-import AlertPopup from "./common/components/AlertPopup";
+import AlertPopup from "./common/components/Popup/AlertPopup";
 import CreateTournament from "./common/pages/tournaments/createTournament";
 import { theme } from "./theme";
 import DevBlog from "./common/pages/devBlog";
