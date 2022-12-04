@@ -41,7 +41,7 @@ const navItems = {
       id: 3,
       text: "Tournament",
       //icon: <TournamentIcon />,
-      path: "/tournament",
+      path: "/tournaments",
     },
     {
       id: 4,
@@ -67,7 +67,7 @@ const navItems = {
       id: 3,
       text: "Tournament",
       //icon: <TournamentIcon />,
-      path: "/tournament",
+      path: "/tournaments",
     },
     {
       id: 4,
@@ -81,7 +81,7 @@ const navItems = {
       id: 5,
       text: "Tournament",
       //icon: <TournamentIcon />,
-      path: "/tournament",
+      path: "/tournaments",
     },
     {
       id: 6,
