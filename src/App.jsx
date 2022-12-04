@@ -12,6 +12,8 @@ import Error from "./common/pages/Error";
 import Post from "./common/pages/Post";
 import AlertPopup from "./common/components/Popup/AlertPopup";
 import CreateTournament from "./common/pages/tournaments/createTournament";
+import Tournaments from "./common/pages/tournaments/Tournaments";
+import Tournament from "./common/pages/tournaments/Tournament";
 import { theme } from "./theme";
 import DevBlog from "./common/pages/devBlog";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
@@ -37,6 +39,8 @@ function App() {
                   path="tournament/create"
                   element={<CreateTournament />}
                 />
+                <Route path="tournaments" element={<Tournaments />} />
+                <Route path="tournament/:id" element={<Tournament />} />
               </Route>
               <Route path="/admin" element={<AdminLayout />}>
                 <Route path="blog" element={<Post />} />
