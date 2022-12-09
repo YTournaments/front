@@ -12,6 +12,9 @@ import EmailIcon from "@mui/icons-material/Email";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import LockIcon from "@mui/icons-material/Lock";
 import CustomTextField from "../components/Input/TextField";
+import { viewPassword } from "../utils";
+
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -21,14 +24,7 @@ const Login = () => {
   const { dispatch } = useAuthContext();
   const { setAlert } = useAlertContext();
 
-  const viewPassword = () => {
-    const password = document.getElementById("password");
-    if (password.type === "password") {
-      password.type = "text";
-    } else {
-      password.type = "password";
-    }
-  };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
