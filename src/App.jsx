@@ -14,13 +14,13 @@ import AlertPopup from "./common/components/Popup/AlertPopup";
 import CreateTournament from "./common/pages/tournaments/createTournament";
 import Tournaments from "./common/pages/tournaments/Tournaments";
 import Tournament from "./common/pages/tournaments/Tournament";
-import { theme } from "./theme";
+import { theme, responsiveTheme } from "./theme";
 import DevBlog from "./common/pages/devBlog";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={responsiveTheme}>
       <CssBaseLine>
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <AlertPopup />

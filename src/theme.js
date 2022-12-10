@@ -1,5 +1,6 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { yellow, indigo, blue, black, purple, darkBlue } from "./colors";
+
 export const theme = createTheme({
   palette: {
     mode: "dark",
@@ -36,3 +37,5 @@ export const theme = createTheme({
     fontWeightBold: 700,
   },
 });
+
+export const responsiveTheme = responsiveFontSizes(theme);

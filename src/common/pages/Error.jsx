@@ -1,39 +1,50 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import background from "../../assets/background.gif";
+import { Navbar } from "../components/Navbar/Navbar";
 
 const Error = () => {
   return (
-    <Box>
-      <Typography
+    <>
+      <Navbar />
+      <Box
         sx={{
-          fontSize: "8rem",
           display: "flex",
-          fontWeight: "bold",
-          color: "transparent",
-          textAlign: "center",
-          margin: "2rem 0",
-          backgroundImage: `url(${background})`,
-          backgroundSize: "cover",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          height: "100vh",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        Oops something went wrong
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "6rem",
-          fontWeight: "bold",
-          color: "secondary.main",
-          textAlign: "center",
-          margin: "2rem 0",
-        }}
-      >
-        404 Error
-      </Typography>
-    </Box>
+        <Typography
+          sx={{
+            fontSize: "8rem",
+            display: "flex",
+            fontWeight: "bold",
+            color: "transparent",
+            textAlign: "center",
+            margin: "2rem 0",
+            backgroundImage: `url(${background})`,
+            backgroundSize: "cover",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          Aie, nous avons rencontrer une erreur
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: "6rem",
+            fontWeight: "bold",
+
+            textAlign: "center",
+            margin: "2rem 0",
+          }}
+        >
+          404 Error
+        </Typography>
+      </Box>
+    </>
   );
 };
 

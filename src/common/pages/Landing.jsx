@@ -6,6 +6,7 @@ import { Box, Grid, Typography, Container } from "@mui/material";
 import { CustomButton } from "../components/Button/Button";
 import { Navbar } from "../components/Navbar/Navbar";
 import Video from "../components/Video/Video";
+import background from "../../assets/video-background.mp4";
 import CardCustom from "../components/Card/CardCustom";
 import ImageWarzone from "../../assets/warzoneImage.png";
 
@@ -22,7 +23,7 @@ const Landing = () => {
   return (
     <>
       <Navbar />
-      <Video />
+      <Video video={background} />
       <Box
         sx={{
           display: "flex",
@@ -35,9 +36,9 @@ const Landing = () => {
         }}
       >
         <Typography
+          component="h1"
           variant="h1"
           sx={{
-            fontSize: "5rem",
             fontWeight: "bold",
             color: "white",
             textAlign: "center",
@@ -50,9 +51,9 @@ const Landing = () => {
           Devenez le maître de votre tournois !
         </Typography>
         <Typography
-          variant="h2"
+          variant="h4"
+          component="h2"
           sx={{
-            fontSize: "2rem",
             fontWeight: "normal",
             color: "white",
             textAlign: "center",
