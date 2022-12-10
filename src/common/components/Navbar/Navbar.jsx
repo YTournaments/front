@@ -18,7 +18,7 @@ import {
   Button,
 } from "@mui/material";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
-
+import { useLogout } from "../../hooks/useLogout";
 import { useRoleContext } from "../../hooks/useRoleContext";
 
 const drawerWidth = 240;
@@ -160,9 +160,15 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { role: isrole } = useRoleContext();
   const [updateNav, setUpdateNav] = useState(navItems["guest"]);
-
+  const { logout } = useLogout();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+  const handleLogout = async (item) => {
+    if (item.text === "Logout") {
+      return logout();
+    }
+    return navigate(item.path);
   };
 
   useMemo(
@@ -186,7 +192,7 @@ export const Navbar = () => {
               sx={{
                 textAlign: "center",
               }}
-              onClick={() => navigate(item.path)}
+              onClick={() => handleLogout(item)}
             >
               <ListItemText
                 primary={item.text}
@@ -253,7 +259,7 @@ export const Navbar = () => {
                   margin: "0 0.5rem",
                   padding: "0.5rem 1rem",
                 }}
-                onClick={() => navigate(item.path)}
+                onClick={() => handleLogout(item)}
               >
                 {item.text}
               </Button>

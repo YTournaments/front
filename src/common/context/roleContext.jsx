@@ -53,7 +53,7 @@ export const RoleContextProvider = ({ children }) => {
   useEffect(() => {
     userRole();
   }, [
-    userRole,
+    state.role,
     localStorage.getItem("user"),
     localStorage.getItem("user") !== null,
   ]);
