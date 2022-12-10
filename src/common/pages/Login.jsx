@@ -4,6 +4,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Logo from "../../assets/android-chrome-192x192.png";
 import { useAlertContext } from "../hooks/useAlertContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useRoleContext } from "../hooks/useRoleContext";
 import useAxios from "../hooks/useAxios";
 import CustomButton from "../components/Button/Button";
 import { verifyDataForm } from "../utils";
@@ -14,17 +15,15 @@ import LockIcon from "@mui/icons-material/Lock";
 import CustomTextField from "../components/Input/TextField";
 import { viewPassword } from "../utils";
 
-
 const Login = () => {
   const navigate = useNavigate();
 
   const [emailErrText, setEmailErrText] = useState("");
   const [passwordErrText, setPasswordErrText] = useState("");
   const [response, data, error, loading, axiosFetch] = useAxios();
-  const { dispatch } = useAuthContext();
+  const { dispatch: dispatchAuth } = useAuthContext();
+  const { dispatch: dispatchRole } = useRoleContext();
   const { setAlert } = useAlertContext();
-
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,7 +74,8 @@ const Login = () => {
       const json = response.data;
       console.log(response);
       localStorage.setItem("user", data.token);
-      dispatch({ type: "LOGIN", payload: json });
+      dispatchAuth({ type: "LOGIN", payload: json });
+      dispatchRole({ type: "SET_ROLE", payload: json.role });
       setAlert("Vous etes connecté ", "success");
       return navigate("/home");
     }

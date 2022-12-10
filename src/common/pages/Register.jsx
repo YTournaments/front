@@ -1,5 +1,12 @@
 import { useState, useMemo } from "react";
-import { Box, Button, Card, CardMedia, CardContent, Typography} from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -17,8 +24,6 @@ import { viewPassword } from "../utils";
 import Logo from "../../assets/android-chrome-192x192.png";
 import CustomButton from "../components/Button/Button";
 
-
-
 const Register = () => {
   const navigate = useNavigate();
   const [nameErrText, setnameErrText] = useState("");
@@ -26,7 +31,8 @@ const Register = () => {
   const [passwordErrText, setPasswordErrText] = useState("");
   const [confirmPasswordErrText, setConfirmPasswordErrText] = useState("");
   const [response, data, error, loading, axiosFetch] = useAxios();
-  const { dispatch } = useAuthContext();
+  const { dispatch: dispatchAuth } = useAuthContext();
+  const { dispatch: dispatchRole } = useRoleContext();
   let { setAlert } = useAlertContext();
 
   const handleSubmit = (e) => {
@@ -98,8 +104,9 @@ const Register = () => {
       const json = response.data;
       console.log(response);
       localStorage.setItem("user", data.token);
-      dispatch({ type: "LOGIN", payload: json });
-      setAlert("Bienvenur sur Ytournaments", "info");
+      dispatchAuth({ type: "LOGIN", payload: json });
+      dispatchRole({ type: "SET_ROLE", payload: json.role });
+      setAlert("Bienvenue sur Ytournaments", "info");
       return navigate("/home");
     }
   }, [response]);
@@ -119,8 +126,6 @@ const Register = () => {
     }
   }, [error]);
 
-
-
   return (
     <>
       <Card
@@ -134,7 +139,7 @@ const Register = () => {
           marginTop: "10%",
         }}
       >
-         <CardMedia
+        <CardMedia
           component="img"
           image={Logo}
           sx={{
@@ -157,121 +162,121 @@ const Register = () => {
           >
             Inscription
           </Typography>
-        <Box
-          component="form"
-          sx={{ mt: 1, height: "100vh" }}
-          onSubmit={handleSubmit}
-          noValidate
-        >
-          <CustomTextField
-            id="name" 
-            margin="normal"
-            required
-            fullWidth
-            label="name"
-            type="text"
-            name="name"
-            placeholder="Pseudo"
-            autoComplete="name"
-            disabled={loading ? true : false}
-            error={nameErrText !== ""}
-            helperText={nameErrText}
-            sx={{
-              backgroundColor: "#34353C",
-              maxWidth: "50%",
-              margin: "auto",
-              display: "flex",
-              marginTop: "30px",
-            }}
-            startAdornment={<PersonIcon />}
-          />
-          <CustomTextField
-            id="email"
-            margin="normal"
-            required
-            fullWidth
-            label="email"
-            type="email"
-            name="email"
-            placeholder="Email"
-            autoComplete="email"
-            disabled={loading}
-            error={emailErrText !== ""}
-            helperText={emailErrText}
-            sx={{
-              backgroundColor: "#34353C",
-              maxWidth: "50%",
-              margin: "auto",
-              display: "flex",
-              marginTop: "30px",
-            }}
-            startAdornment={<EmailIcon />}
-          />
-          <CustomTextField
-            id="password"
-            margin="normal"
-            required
-            fullWidth
-            label="password"
-            name="password"
-            placeholder="Mot de passe"
-            autoComplete="password"
-            type="password"
-            disabled={loading}
-            error={passwordErrText !== ""}
-            helperText={passwordErrText}
-            sx={{
-              backgroundColor: "#34353C",
-              maxWidth: "50%",
-              margin: "auto",
-              display: "flex",
-              marginTop: "30px",
-            }}
-            startAdornment={<LockIcon />}
-            endAdornment={
-              <VisibilityIcon
-                sx={{
-                  cursor: "pointer",
-                }}
-                onClick={(e) => {
-                  viewPassword();
-                }}
-              />
-            }
-          />
-          <CustomTextField
-            id="confirmPassword" 
-            margin="normal"
-            required
-            fullWidth
-            label="confirmPassword"
-            name="confirmPassword"
-            placeholder="Confirmer le mot de passe"
-            autoComplete="confirmPassword"
-            type="password"
-            disabled={loading}
-            error={confirmPasswordErrText !== ""}
-            helperText={confirmPasswordErrText}
-            sx={{
-              backgroundColor: "#34353C",
-              maxWidth: "50%",
-              margin: "auto",
-              display: "flex",
-              marginTop: "30px",
-            }}
-            startAdornment={<LockIcon />}
-            endAdornment={
-              <VisibilityIcon
-                sx={{
-                  cursor: "pointer",
-                }}
-                onClick={(e) => {
-                  viewPassword();
-                }}
-              />
-            }
-          />
-           <CustomButton
+          <Box
+            component="form"
+            sx={{ mt: 1, height: "100vh" }}
+            onSubmit={handleSubmit}
+            noValidate
+          >
+            <CustomTextField
+              id="name"
+              margin="normal"
+              required
+              fullWidth
+              label="name"
+              type="text"
+              name="name"
+              placeholder="Pseudo"
+              autoComplete="name"
+              disabled={loading ? true : false}
+              error={nameErrText !== ""}
+              helperText={nameErrText}
+              sx={{
+                backgroundColor: "#34353C",
+                maxWidth: "50%",
+                margin: "auto",
+                display: "flex",
+                marginTop: "30px",
+              }}
+              startAdornment={<PersonIcon />}
+            />
+            <CustomTextField
+              id="email"
+              margin="normal"
+              required
+              fullWidth
+              label="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              autoComplete="email"
+              disabled={loading}
+              error={emailErrText !== ""}
+              helperText={emailErrText}
+              sx={{
+                backgroundColor: "#34353C",
+                maxWidth: "50%",
+                margin: "auto",
+                display: "flex",
+                marginTop: "30px",
+              }}
+              startAdornment={<EmailIcon />}
+            />
+            <CustomTextField
+              id="password"
+              margin="normal"
+              required
+              fullWidth
+              label="password"
+              name="password"
+              placeholder="Mot de passe"
+              autoComplete="password"
+              type="password"
+              disabled={loading}
+              error={passwordErrText !== ""}
+              helperText={passwordErrText}
+              sx={{
+                backgroundColor: "#34353C",
+                maxWidth: "50%",
+                margin: "auto",
+                display: "flex",
+                marginTop: "30px",
+              }}
+              startAdornment={<LockIcon />}
+              endAdornment={
+                <VisibilityIcon
+                  sx={{
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    viewPassword();
+                  }}
+                />
+              }
+            />
+            <CustomTextField
+              id="confirmPassword"
+              margin="normal"
+              required
+              fullWidth
+              label="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirmer le mot de passe"
+              autoComplete="confirmPassword"
+              type="password"
+              disabled={loading}
+              error={confirmPasswordErrText !== ""}
+              helperText={confirmPasswordErrText}
+              sx={{
+                backgroundColor: "#34353C",
+                maxWidth: "50%",
+                margin: "auto",
+                display: "flex",
+                marginTop: "30px",
+              }}
+              startAdornment={<LockIcon />}
+              endAdornment={
+                <VisibilityIcon
+                  sx={{
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    viewPassword();
+                  }}
+                />
+              }
+            />
+            <CustomButton
               sx={{
                 maxWidth: "30%",
                 display: "flex",
@@ -287,7 +292,7 @@ const Register = () => {
               S’inscrire
             </CustomButton>
 
-          <Typography
+            <Typography
               component={Link}
               to="/login"
               sx={{
@@ -304,8 +309,7 @@ const Register = () => {
             >
               Vous avez un compte ? Se Connecter
             </Typography>
-          
-        </Box>
+          </Box>
         </CardContent>
       </Card>
     </>
