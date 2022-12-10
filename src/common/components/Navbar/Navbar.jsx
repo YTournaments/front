@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //import { useAdminContext } from "../hooks/useAdminContext";
 
@@ -18,7 +18,7 @@ import {
   Button,
 } from "@mui/material";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
-
+import { useLogout } from "../../hooks/useLogout";
 import { useRoleContext } from "../../hooks/useRoleContext";
 
 const drawerWidth = 240;
@@ -49,6 +49,11 @@ const navItems = {
       // icon: <UserIcon />,
       path: "/admin/user",
     },
+    {
+      id: 5,
+      text: "Logout",
+      // icon: <UserIcon />,
+    },
   ],
   admin: [
     {
@@ -75,6 +80,11 @@ const navItems = {
       // icon: <UserIcon />,
       path: "/admin/user",
     },
+    {
+      id: 5,
+      text: "Logout",
+      // icon: <UserIcon />,
+    },
   ],
   user: [
     {
@@ -95,6 +105,11 @@ const navItems = {
       text: "Profile",
       //  icon: <ProfileIcon />,
       path: "/profile",
+    },
+    {
+      id: 8,
+      text: "Logout",
+      // icon: <UserIcon />,
     },
   ],
   guest: [
@@ -144,11 +159,23 @@ export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const { role: isrole } = useRoleContext();
-
+  const [updateNav, setUpdateNav] = useState(navItems["guest"]);
+  const { logout } = useLogout();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const handleLogout = async (item) => {
+    if (item.text === "Logout") {
+      return logout();
+    }
+    return navigate(item.path);
+  };
 
+  useMemo(
+    () =>
+      isrole ? setUpdateNav(navItems[isrole]) : setUpdateNav(navItems["guest"]),
+    [isrole]
+  );
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -159,13 +186,13 @@ export const Navbar = () => {
       </Typography>
       <Divider />
       <List>
-        {navItems.guest.map((item) => (
+        {updateNav.map((item) => (
           <ListItem key={item.id} disablePadding>
             <ListItemButton
               sx={{
                 textAlign: "center",
               }}
-              onClick={() => navigate(item.path)}
+              onClick={() => handleLogout(item)}
             >
               <ListItemText
                 primary={item.text}
@@ -221,39 +248,22 @@ export const Navbar = () => {
             />
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {isrole
-              ? navItems[isrole].map((item) => (
-                  <Button
-                    key={item.id}
-                    sx={{
-                      color: "white",
-                      fontWeight: "bold",
-                      borderRadius: "100px",
-                      backgroundColor: item.color,
-                      margin: "0 0.5rem",
-                      padding: "0.5rem 1rem",
-                    }}
-                    onClick={() => navigate(item.path)}
-                  >
-                    {item.text}
-                  </Button>
-                ))
-              : navItems.guest.map((item) => (
-                  <Button
-                    key={item.id}
-                    sx={{
-                      color: "white",
-                      fontWeight: "bold",
-                      borderRadius: "100px",
-                      backgroundColor: item.color,
-                      margin: "0 0.5rem",
-                      padding: "0.5rem 1rem",
-                    }}
-                    onClick={() => navigate(item.path)}
-                  >
-                    {item.text}
-                  </Button>
-                ))}
+            {updateNav.map((item) => (
+              <Button
+                key={item.id}
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  borderRadius: "100px",
+                  backgroundColor: item.color,
+                  margin: "0 0.5rem",
+                  padding: "0.5rem 1rem",
+                }}
+                onClick={() => handleLogout(item)}
+              >
+                {item.text}
+              </Button>
+            ))}
           </Box>
         </Toolbar>
       </AppBar>
