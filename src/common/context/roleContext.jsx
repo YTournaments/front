@@ -1,5 +1,5 @@
 import { WindowSharp } from "@mui/icons-material";
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useMemo, useEffect } from "react";
 export const RoleContext = createContext();
 
 export const roleReducer = (state, action) => {
@@ -52,7 +52,12 @@ export const RoleContextProvider = ({ children }) => {
   };
   useEffect(() => {
     userRole();
-  }, []);
+  }, [
+    state.role,
+    localStorage.getItem("user"),
+    localStorage.getItem("user") !== null,
+  ]);
+
   console.log("RoleContext state:", state);
   return (
     <RoleContext.Provider value={{ ...state, dispatch }}>
