@@ -3,11 +3,11 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Box, Button, Typography } from "@mui/material";
 
-import { useRoleContext } from "../hooks/useRoleContext";
-import { useAlertContext } from "../hooks/useAlertContext";
+import { useRoleContext } from "@/common/hooks/useRoleContext";
+import { useAlertContext } from "@/common/hooks/useAlertContext";
 
-import useAxios from "../hooks/useAxios";
-import axios from "../api/index";
+import useAxios from "@/common/hooks/useAxios";
+import axios from "@/common/api/index";
 
 const Post = () => {
   const [value, setValue] = useState("");
