@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import video from "../../../assets/video8.mp4";
-const Video = () => {
+
+const Video = (props) => {
+  const { video } = props;
   const videoEl = useRef(null);
 
   const attemptPlay = () => {
@@ -17,11 +18,16 @@ const Video = () => {
   return (
     <video
       style={{
-        maxWidth: "100%",
+        maxWidth: "100wh",
+        maxHeight: "100vh",
         width: "100%",
         height: "100%",
+        objectPosition: "center",
+        aspectRatio: "16/9",
         objectFit: "cover",
         position: "absolute",
+        controlsList: "nodownload",
+        playsinline: "true",
         top: 0,
         left: 0,
         right: 0,
