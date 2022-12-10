@@ -7,8 +7,8 @@ import { chunkSplitPlugin } from "vite-plugin-chunk-split";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    chunkSplitPlugin(),
     react(),
+    chunkSplitPlugin(),
     VitePWA({
       registerType: "autoUpdate",
       devOptions: {
@@ -54,5 +54,14 @@ export default defineConfig({
     brotliSize: false,
     chunkSizeWarningLimit: 1000,
     minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    robots: true,
+    modulePreload: true,
+    cssCodeSplit: true,
   },
 });
