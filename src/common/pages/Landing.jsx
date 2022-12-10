@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Box, Grid, Typography, Container } from "@mui/material";
-import { CustomButton } from "../components/Button/Button";
-import { Navbar } from "../components/Navbar/Navbar";
-import Video from "../components/Video/Video";
-import background from "../../assets/video-background.mp4";
-import CardCustom from "../components/Card/CardCustom";
-import ImageWarzone from "../../assets/warzoneImage.png";
+import { CustomButton } from "@/common/components/Button/Button";
+import { Navbar } from "@/common/components/Navbar/Navbar";
+import Video from "@/common/components/Video/Video";
+import background from "@/assets/video-background.mp4";
+import CardCustom from "@/common/components/Card/CardCustom";
+import ImageWarzone from "@/assets/warzoneImage.png";
 
 const Landing = () => {
   const navigate = useNavigate();

@@ -13,9 +13,9 @@ import {
   Chip,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import useAxios from "../../hooks/useAxios";
-import axios from "../../api/index";
-import { useAlertContext } from "../../hooks/useAlertContext";
+import useAxios from "@/common/hooks/useAxios";
+import axios from "@/common/api/index";
+import { useAlertContext } from "@/common/hooks/useAlertContext";
 
 const CreateTournament = () => {
   const [startdate, setStartDate] = useState(new Date());

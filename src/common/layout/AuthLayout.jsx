@@ -1,9 +1,9 @@
-import { Container, Box } from "@mui/material";
-import { useState, useEffect } from "react";
+import { Container } from "@mui/material";
+import { useState, useEffect, lazy } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Navbar } from "../components/Navbar/Navbar";
-import formBackground from "../../assets/form-background.mp4";
-import Video from "../components/Video/Video";
+import formBackground from "@/assets/form-background.mp4";
+import Video from "@/common/components/Video/Video";
+import { Navbar } from "@/common/components/Navbar/Navbar";
 
 const AuthLayout = () => {
   const navigate = useNavigate();

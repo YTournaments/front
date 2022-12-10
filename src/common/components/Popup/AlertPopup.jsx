@@ -1,5 +1,5 @@
 import { Alert, AlertTitle } from "@mui/material";
-import { useAlertContext } from "../../hooks/useAlertContext";
+import { useAlertContext } from "@/common/hooks/useAlertContext";
 import Slide from "@mui/material/Slide";
 const AlertPopup = () => {
   const { text, type } = useAlertContext();

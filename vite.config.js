@@ -2,10 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import viteCompression from "vite-plugin-compression";
-
+import path from "path";
+import { chunkSplitPlugin } from "vite-plugin-chunk-split";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    chunkSplitPlugin(),
     react(),
     VitePWA({
       registerType: "autoUpdate",
@@ -34,11 +36,23 @@ export default defineConfig({
     }),
     viteCompression(),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+
   server: {
     port: 3000,
     host: true,
   },
   preview: {
     host: true,
+  },
+  build: {
+    sourcemap: true,
+    brotliSize: false,
+    chunkSizeWarningLimit: 1000,
+    minify: "terser",
   },
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@mui/material";
-import CustomButton from "../components/Button/Button";
+import CustomButton from "@/common/components/Button/Button";
 import { useNavigate } from "react-router-dom";
 
 export const Home = () => {

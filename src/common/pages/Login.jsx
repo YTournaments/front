@@ -1,19 +1,19 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import Logo from "../../assets/android-chrome-192x192.png";
-import { useAlertContext } from "../hooks/useAlertContext";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useRoleContext } from "../hooks/useRoleContext";
-import useAxios from "../hooks/useAxios";
-import CustomButton from "../components/Button/Button";
-import { verifyDataForm } from "../utils";
-import axios from "../api/index";
+import Logo from "@/assets/android-chrome-192x192.png";
+import { useAlertContext } from "@/common/hooks/useAlertContext";
+import { useAuthContext } from "@/common/hooks/useAuthContext";
+import { useRoleContext } from "@/common/hooks/useRoleContext";
+import useAxios from "@/common/hooks/useAxios";
+import CustomButton from "@/common/components/Button/Button";
+import { verifyDataForm } from "@/common/utils";
+import axios from "@/common/api/index";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import LockIcon from "@mui/icons-material/Lock";
-import CustomTextField from "../components/Input/TextField";
-import { viewPassword } from "../utils";
+import CustomTextField from "@/common/components/Input/TextField";
+import { viewPassword } from "@/common/utils";
 
 const Login = () => {
   const navigate = useNavigate();
