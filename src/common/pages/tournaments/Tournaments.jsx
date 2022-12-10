@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Typography, Card } from "@mui/material";
-import useAxios from "../../hooks/useAxios";
-import axios from "../../api/index";
+import useAxios from "@/common/hooks/useAxios";
+import axios from "@/common/api/index";
 import { useNavigate } from "react-router-dom";
 const Tournaments = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { BracketGame } from "../../components/Bracket/Bracket";
+import { BracketGame } from "@/common/components/Bracket/Bracket";
 import { useLocation } from "react-router-dom";
 const Tournament = () => {
   const location = useLocation();

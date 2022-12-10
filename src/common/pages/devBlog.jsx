@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Box, Card, Typography } from "@mui/material";
 
-import useAxios from "../hooks/useAxios";
-import axios from "../api/index";
+import useAxios from "@/common/hooks/useAxios";
+import axios from "@/common/api/index";
 
 const DevBlog = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();

@@ -9,21 +9,21 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useAlertContext } from "../hooks/useAlertContext";
-import { useRoleContext } from "../hooks/useRoleContext";
-import useAxios from "../hooks/useAxios";
+import { useAuthContext } from "@/common/hooks/useAuthContext";
+import { useAlertContext } from "@/common/hooks/useAlertContext";
+import { useRoleContext } from "@/common/hooks/useRoleContext";
+import useAxios from "@/common/hooks/useAxios";
 
-import { verifyDataForm } from "../utils";
-import axios from "../api/index";
-import CustomTextField from "../components/Input/TextField";
+import { verifyDataForm } from "@/common/utils";
+import axios from "@/common/api/index";
+import CustomTextField from "@/common/components/Input/TextField";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { viewPassword } from "../utils";
-import Logo from "../../assets/android-chrome-192x192.png";
-import CustomButton from "../components/Button/Button";
+import { viewPassword } from "@/common/utils";
+import Logo from "@/assets/android-chrome-192x192.png";
+import CustomButton from "@/common/components/Button/Button";
 
 const Register = () => {
   const navigate = useNavigate();

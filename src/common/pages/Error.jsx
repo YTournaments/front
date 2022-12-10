@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import background from "../../assets/background.gif";
-import { Navbar } from "../components/Navbar/Navbar";
+import background from "@/assets/background.gif";
+import { Navbar } from "@/common/components/Navbar/Navbar";
 
 const Error = () => {
   return (

@@ -9,6 +9,14 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions",
+    "last 2 iOS versions",
+    "last 2 ChromeAndroid versions"
+  ],
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -38,6 +46,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "vite": "^4.0.0",
+    "vite-plugin-chunk-split": "^0.4.6",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-pwa": "^0.13.1"
   }

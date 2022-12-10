@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //import { useAdminContext } from "../hooks/useAdminContext";
 
-import logo from "../../../assets/android-chrome-192x192.png";
+import logo from "@/assets/android-chrome-192x192.png";
 import {
   AppBar,
   Box,

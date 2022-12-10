@@ -1,7 +1,7 @@
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { AdminContextProvider } from "../context/adminContext";
+import { AdminContextProvider } from "@/common/context/adminContext";
 const AdminLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
