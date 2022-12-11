@@ -9,7 +9,7 @@ import {
 } from "react-brackets";
 import { Box, Container } from "@mui/material";
 import { indigo, purple, yellow } from "../../../colors";
-import { StayPrimaryLandscape } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 export const BracketGame = ({ participants }) => {
   const checkValues = (number) => {
     if (number === 1) return 1;
@@ -137,6 +137,7 @@ export const BracketGame = ({ participants }) => {
 
   const rounds = [...days, ...finals];
   const CustomSeed = ({ seed, title, breakpoint, roundIndex, seedIndex }) => {
+    const navigate = useNavigate();
     console.log(seed);
     const [home, away] = seed.teams;
     if (seed.teams !== undefined || seed.teams !== null || seed.teams !== "") {
@@ -145,7 +146,24 @@ export const BracketGame = ({ participants }) => {
           mobileBreakpoint={breakpoint}
           style={{ fontSize: 14, fontWeight: "bold" }}
         >
-          <SeedItem>
+          <SeedItem
+            sx={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              console.log(seed);
+              if (seed.id !== undefined && seed.id !== null) {
+                navigate(`/match/${seed.id}`, {
+                  state: {
+                    home: home,
+                    away: away,
+                    roundIndex: roundIndex,
+                    seedIndex: seedIndex,
+                  },
+                });
+              }
+            }}
+          >
             <div>
               <SeedTeam
                 style={{

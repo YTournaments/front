@@ -11,6 +11,24 @@ export default defineConfig({
     chunkSplitPlugin(),
     VitePWA({
       registerType: "autoUpdate",
+      sourcemap: true,
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,png,jpg,gif,svg,woff2}"],
+        globDirectory: "dist",
+        globIgnores: ["**/node_modules/**/*"],
+        swDest: "dist/sw.js",
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "google-fonts-stylesheets",
+            },
+          },
+        ],
+      },
       devOptions: {
         enabled: true,
       },

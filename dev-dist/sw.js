@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-148cb7e5'], (function (workbox) { 'use strict';
+define(['./workbox-7412c51e'], (function (workbox) { 'use strict';
 
   self.skipWaiting();
   workbox.clientsClaim();
@@ -88,6 +88,10 @@ define(['./workbox-148cb7e5'], (function (workbox) { 'use strict';
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
+  workbox.registerRoute(/^https:\/\/fonts\.googleapis\.com/, new workbox.CacheFirst({
+    "cacheName": "google-fonts-stylesheets",
+    plugins: []
+  }), 'GET');
 
 }));
 //# sourceMappingURL=sw.js.map
