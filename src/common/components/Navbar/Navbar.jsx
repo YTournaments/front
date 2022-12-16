@@ -33,24 +33,30 @@ const navItems = {
     },
     {
       id: 2,
-      text: "Blog",
+      text: "Créer Blog",
       //icon: <BlogIcon />,
       path: "/admin/blog",
     },
     {
       id: 3,
+      text: "blog",
+      path: "/blog",
+    },
+    {
+      id: 4,
       text: "Tournament",
       //icon: <TournamentIcon />,
       path: "/tournaments",
     },
     {
-      id: 4,
+      id: 5,
       text: "User",
       // icon: <UserIcon />,
       path: "/admin/user",
     },
+
     {
-      id: 5,
+      id: 6,
       text: "Logout",
       // icon: <UserIcon />,
     },
@@ -64,24 +70,24 @@ const navItems = {
     },
     {
       id: 2,
-      text: "Blog",
+      text: "Créer Blog",
       //icon: <BlogIcon />,
       path: "/admin/blog",
     },
     {
       id: 3,
+      text: "blog",
+      path: "/blog",
+    },
+    {
+      id: 4,
       text: "Tournament",
       //icon: <TournamentIcon />,
       path: "/tournaments",
     },
+
     {
-      id: 4,
-      text: "User",
-      // icon: <UserIcon />,
-      path: "/admin/user",
-    },
-    {
-      id: 5,
+      id: 6,
       text: "Logout",
       // icon: <UserIcon />,
     },
@@ -92,12 +98,6 @@ const navItems = {
       text: "Tournament",
       //icon: <TournamentIcon />,
       path: "/tournaments",
-    },
-    {
-      id: 6,
-      text: "Event",
-      //icon: <EventIcon />,
-      path: "/event",
     },
     {
       id: 7,
@@ -181,7 +181,11 @@ export const Navbar = () => {
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center", background: "transparent" }}
     >
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography
+        variant="h6"
+        sx={{ my: 2 }}
+        onClick={() => (isrole ? navigate("/home") : navigate("/"))}
+      >
         <img src={logo} alt="logo ytournaments" width="60" />
       </Typography>
       <Divider />
@@ -237,7 +241,7 @@ export const Navbar = () => {
           <Typography
             variant="h6"
             component="div"
-            onClick={() => navigate("/")}
+            onClick={() => (isrole ? navigate("/home") : navigate("/"))}
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             <img
