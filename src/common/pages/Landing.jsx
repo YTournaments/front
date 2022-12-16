@@ -6,7 +6,7 @@ import { Box, Grid, Typography, Container } from "@mui/material";
 import { CustomButton } from "@/common/components/Button/Button";
 import { Navbar } from "@/common/components/Navbar/Navbar";
 import Video from "@/common/components/Video/Video";
-import background from "@/assets/video-background.mp4";
+import background from "@/assets/landingVideo.mp4";
 import CardCustom from "@/common/components/Card/CardCustom";
 import ImageWarzone from "@/assets/warzoneImage.png";
 
@@ -48,7 +48,7 @@ const Landing = () => {
             WebkitTextFillColor: "white",
           }}
         >
-          Devenez le maître de votre tournois !
+          Devenez le maître de votre tournoi !
         </Typography>
         <Typography
           variant="h4"
