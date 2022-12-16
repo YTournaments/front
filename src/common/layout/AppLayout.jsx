@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useState, useEffect, lazy } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -19,10 +19,10 @@ const AppLayout = () => {
     isAuth();
   }, [navigate]);
   return (
-    <Container>
+    <Box>
       <Navbar />
       <Outlet />
-    </Container>
+    </Box>
   );
 };
 
