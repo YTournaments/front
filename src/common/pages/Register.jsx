@@ -89,7 +89,7 @@ const Register = () => {
         Accept: "application/json",
       },
       method: "post",
-      url: "/user/register",
+      url: "api/v1/users/register",
       requestConfig: {
         data: {
           name: name,

@@ -24,7 +24,7 @@ export const AdminContextProvider = ({ children }) => {
   const isAnAdmin = () => {
     fetch(
       import.meta.env.VITE_ENV === "prod"
-        ? import.meta.env.VITE_API_URL + "/user/role"
+        ? import.meta.env.VITE_API_URL + "api/V1/users/role"
         : "http://localhost:3001/user/role",
       {
         method: "GET",
