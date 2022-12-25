@@ -16,7 +16,7 @@ const DevBlog = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
       method: "get",
-      url: "/posts",
+      url: "api/v1/posts",
     });
   };
 
@@ -40,7 +40,7 @@ const DevBlog = () => {
 
       {!loading && !error && (
         <>
-          {data.map((post) => (
+          {data?.docs?.map((post) => (
             <Card
               key={post._id}
               sx={{
@@ -63,7 +63,7 @@ const DevBlog = () => {
                   margin: "1rem",
                 }}
               >
-                {post.created_at.slice(0, 10).split("-").reverse().join("/")}
+                {post.createdAt && post.createdAt.split("T")[0]}
               </Typography>
               <Box sx={{}} dangerouslySetInnerHTML={{ __html: post.content }} />
             </Card>

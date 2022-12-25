@@ -24,7 +24,7 @@ const Post = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
       method: "post",
-      url: "/posts",
+      url: "api/v1/posts",
       requestConfig: {
         data: {
           content: value,
@@ -39,7 +39,7 @@ const Post = () => {
     if (errors === 401 || errors === 403 || errors === 500) {
       setAlert("Une erreur est survenue", "error");
     }
-    if (response?.status === 200) {
+    if (response?.status === 201) {
       setAlert("Votre article a bien été publié", "success");
       setValue("");
     }

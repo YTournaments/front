@@ -63,7 +63,7 @@ const CreateTournament = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
       method: "post",
-      url: "/tournaments",
+      url: "api/v1/tournaments",
       requestConfig: {
         data: {
           name,
@@ -88,7 +88,7 @@ const CreateTournament = () => {
     if (errors === 401 || errors === 403 || errors === 500 || errors === 400) {
       setAlert("Une erreur est survenue", "error");
     }
-    if (response?.status === 200) {
+    if (response?.status === 201) {
       setAlert("🎉🎉 Bravo Tournois créer", "success");
     }
   }, [error, response]);
