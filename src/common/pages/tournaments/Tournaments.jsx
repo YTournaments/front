@@ -16,14 +16,13 @@ const Tournaments = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
       method: "get",
-      url: "/tournaments",
+      url: "api/v1/tournaments",
     });
   };
 
   useEffect(() => {
     getData();
   }, []);
-
   return (
     <Box sx={{ mt: 1, height: "100vh" }}>
       <Typography component="h1" variant="h4">
@@ -33,7 +32,7 @@ const Tournaments = () => {
       {!loading && error && <p>{error}</p>}
       {!loading && !error && (
         <>
-          {data.map((tournament) => (
+          {data?.docs?.map((tournament) => (
             <Card
               key={tournament._id}
               sx={{

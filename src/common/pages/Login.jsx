@@ -59,7 +59,7 @@ const Login = () => {
         Accept: "application/json",
       },
       method: "post",
-      url: "/user/login",
+      url: "api/v1/users/login",
       requestConfig: {
         data: {
           email: email,
