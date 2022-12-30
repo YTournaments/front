@@ -18,8 +18,9 @@ const Post = lazy(() => import("./common/pages/Post"));
 const AlertPopup = lazy(() => import("./common/components/Popup/AlertPopup"));
 const DevBlog = lazy(() => import("./common/pages/devBlog"));
 import Match from "./common/pages/Match";
-import CreateTournament from "./common/pages/tournaments/CreateTournament";
-import Tournaments from "./common/pages/tournaments/Tournaments";
+import Detail from "./common/pages/tournaments/Detail";
+import Create from "./common/pages/tournaments/Create";
+import List from "./common/pages/tournaments/List";
 import Tournament from "./common/pages/tournaments/Tournament";
 
 function App() {
@@ -40,12 +41,10 @@ function App() {
                 <Route path="/" element={<AppLayout />}>
                   <Route path="home" element={<Home />} />
                   <Route path="blog" element={<DevBlog />} />
-                  <Route
-                    path="tournament/create"
-                    element={<CreateTournament />}
-                  />
-                  <Route path="tournaments" element={<Tournaments />} />
+                  <Route path="tournament/create" element={<Create />} />
+                  <Route path="tournaments" element={<List />} />
                   <Route path="tournament/:id" element={<Tournament />} />
+                  <Route path="tournament/:id/detail" element={<Detail />} />
                   <Route path="match/:id" element={<Match />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
