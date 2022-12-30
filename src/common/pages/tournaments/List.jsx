@@ -3,7 +3,7 @@ import { Box, Typography, Card } from "@mui/material";
 import useAxios from "@/common/hooks/useAxios";
 import axios from "@/common/api/index";
 import { useNavigate } from "react-router-dom";
-const Tournaments = () => {
+const List = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const Tournaments = () => {
                 boxShadow: "0 0 20px 0 rgba(0,0,0,0.2)",
               }}
               onClick={() =>
-                navigate(`/tournament/${tournament._id}`, {
+                navigate(`/tournament/${tournament._id}/detail`, {
                   state: { tournament },
                 })
               }
@@ -65,4 +65,4 @@ const Tournaments = () => {
   );
 };
 
-export default Tournaments;
+export default List;
