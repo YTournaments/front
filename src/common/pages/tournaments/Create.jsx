@@ -17,7 +17,7 @@ import useAxios from "@/common/hooks/useAxios";
 import axios from "@/common/api/index";
 import { useAlertContext } from "@/common/hooks/useAlertContext";
 
-const CreateTournament = () => {
+const Create = () => {
   const [startdate, setStartDate] = useState(new Date());
   const names = ["PC", "XBOX", "PS4", "Nintendo Switch", "Mobile", "Other"];
   const [platformTournament, setplatformTournament] = useState([]);
@@ -236,4 +236,4 @@ const CreateTournament = () => {
   );
 };
 
-export default CreateTournament;
+export default Create;
