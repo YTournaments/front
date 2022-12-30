@@ -70,7 +70,6 @@ const DevBlog = () => {
           ))}
         </>
       )}
-      {!loading && !error && !data.length && <p>Pas d'article</p>}
     </Box>
   );
 };
