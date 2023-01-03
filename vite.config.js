@@ -68,7 +68,7 @@ export default defineConfig({
     host: true,
   },
   build: {
-    sourcemap: true,
+    sourcemap: false,
     brotliSize: false,
     chunkSizeWarningLimit: 1000,
     minify: "terser",
