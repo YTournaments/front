@@ -1,7 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-//import { useAdminContext } from "../hooks/useAdminContext";
-
 import logo from "@/assets/android-chrome-192x192.png";
 import {
   AppBar,
@@ -13,11 +11,13 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  ListItemIcon,
   Toolbar,
   Typography,
   Button,
 } from "@mui/material";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useLogout } from "../../hooks/useLogout";
 import { useRoleContext } from "../../hooks/useRoleContext";
 
@@ -32,6 +32,12 @@ const navItems = {
       path: "/dashboard",
     },
     {
+      id: 5,
+      text: "User",
+      // icon: <UserIcon />,
+      path: "/admin/user",
+    },
+    {
       id: 2,
       text: "Créer Blog",
       //icon: <BlogIcon />,
@@ -39,26 +45,21 @@ const navItems = {
     },
     {
       id: 3,
-      text: "blog",
+      text: "Blog",
       path: "/blog",
     },
     {
       id: 4,
-      text: "Tournament",
+      text: "Tournois",
       //icon: <TournamentIcon />,
       path: "/tournaments",
-    },
-    {
-      id: 5,
-      text: "User",
-      // icon: <UserIcon />,
-      path: "/admin/user",
     },
 
     {
       id: 6,
       text: "Logout",
-      // icon: <UserIcon />,
+      icon: <LogoutIcon />,
+      action: "logout",
     },
   ],
   admin: [
@@ -76,12 +77,12 @@ const navItems = {
     },
     {
       id: 3,
-      text: "blog",
+      text: "Blog",
       path: "/blog",
     },
     {
       id: 4,
-      text: "Tournament",
+      text: "Tournois",
       //icon: <TournamentIcon />,
       path: "/tournaments",
     },
@@ -89,27 +90,36 @@ const navItems = {
     {
       id: 6,
       text: "Logout",
-      // icon: <UserIcon />,
+      icon: <LogoutIcon />,
+      action: "logout",
     },
   ],
   user: [
     {
-      id: 5,
-      text: "Tournament",
+      id: 1,
+      text: "Tournois",
       //icon: <TournamentIcon />,
       path: "/tournaments",
     },
     {
-      id: 7,
+      id: 2,
 
       text: "Profile",
       //  icon: <ProfileIcon />,
-      path: "/profile",
+      path: "/profil",
     },
     {
-      id: 8,
+      id: 3,
+
+      text: "Organiser",
+      //  icon: <ProfileIcon />,
+      path: "/tournament/create",
+    },
+    {
+      id: 4,
       text: "Logout",
-      // icon: <UserIcon />,
+      icon: <LogoutIcon />,
+      action: "logout",
     },
   ],
   guest: [
@@ -165,10 +175,11 @@ export const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
   const handleLogout = async (item) => {
-    if (item.text === "Logout") {
+    if (item.action === "logout") {
       return logout();
+    } else {
+      return navigate(item.path);
     }
-    return navigate(item.path);
   };
 
   useMemo(
@@ -198,6 +209,15 @@ export const Navbar = () => {
               }}
               onClick={() => handleLogout(item)}
             >
+              <ListItemIcon
+                sx={{
+                  color: "white",
+                  minWidth: "auto",
+                  marginRight: "0",
+                }}
+              >
+                {item.icon}
+              </ListItemIcon>
               <ListItemText
                 primary={item.text}
                 sx={{
@@ -265,7 +285,7 @@ export const Navbar = () => {
                 }}
                 onClick={() => handleLogout(item)}
               >
-                {item.text}
+                {item.action ? item.icon : item.text}
               </Button>
             ))}
           </Box>
