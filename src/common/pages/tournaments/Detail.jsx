@@ -24,6 +24,25 @@ const Detail = () => {
     });
   };
 
+  const startTournament = () => {
+    axiosFetch({
+      axiosInstance: axios,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+      method: "post",
+      url: `api/v1/brackets?tournament_id=${data._id}`,
+      requestConfig: {
+        data: {
+          title: data.name,
+          tournament_id: data._id,
+          players: data.participants,
+        },
+      },
+    });
+  };
   useEffect(() => {
     getDetail();
   }, []);
@@ -164,7 +183,7 @@ const Detail = () => {
           </Box>
         </CardContent>
         <Typography>
-          SI tournois est en cours, tu peux voir les brackets ici
+          SI tournois est en cours, tu peux voir le brackets ici
         </Typography>
         <CustomButton
           onClick={() =>
@@ -175,6 +194,17 @@ const Detail = () => {
           color="purple"
         >
           Brackets
+        </CustomButton>
+        <Typography>
+          SI tu es le créateur du tournois, tu peux le lancer ici
+        </Typography>
+        <CustomButton
+          onClick={() => startTournament()}
+          sx={{ margin: "auto" }}
+          variant="contained"
+          color="primary"
+        >
+          Lancer
         </CustomButton>
       </Card>
     </Box>
