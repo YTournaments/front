@@ -6,6 +6,7 @@ import { Grid, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Video from "@/common/components/Video/Video";
 import background from "@/assets/landingVideo.mp4";
+import Paginate from "../components/Paginate/Paginate";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -156,6 +157,7 @@ export const Home = () => {
             }}
           >
             <SearchBar />
+
             <Grid
               container
               spacing={2}
@@ -185,6 +187,7 @@ export const Home = () => {
                 </Grid>
               ))}
             </Grid>
+            <Paginate />
           </Box>
         </Box>
       </Container>
