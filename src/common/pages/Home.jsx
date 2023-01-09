@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import Video from "@/common/components/Video/Video";
 import background from "@/assets/landingVideo.mp4";
 import Paginate from "../components/Paginate/Paginate";
-
+import CardImage from "../components/Card/CardImage";
+import WarZoneImage from "../../assets/warzoneImage.png";
 export const Home = () => {
   const navigate = useNavigate();
   return (
@@ -160,30 +161,43 @@ export const Home = () => {
 
             <Grid
               container
-              spacing={2}
               sx={{
-                mt: 4,
-                pl: 4,
                 display: "flex",
+                mt: 4,
 
-                width: "100%",
                 border: "1px solid green",
-
-                alignItems: "center",
               }}
             >
               {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((value) => (
-                <Grid key={value} item xs={12} sm={6} md={4} lg={3}>
-                  <Paper
+                <Grid
+                  key={value}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "10px",
+                  }}
+                >
+                  {/* <Paper
                     sx={{
-                      p: 2,
                       display: "flex",
                       borderRadius: 2,
                       flexDirection: "column",
-                      height: 220,
-                      width: 200,
+                      height: 245,
+                      width: 223,
                     }}
-                  ></Paper>
+                  ></Paper> */}
+                  <CardImage
+                    image={WarZoneImage}
+                    title="Warzone"
+                    description="Tournoi Warzone"
+                    date="30/06/2021"
+                  />
                 </Grid>
               ))}
             </Grid>
