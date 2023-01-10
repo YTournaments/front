@@ -19,7 +19,11 @@ const AppLayout = () => {
     isAuth();
   }, [navigate]);
   return (
-    <Box>
+    <Box
+      sx={{
+        height: "100vh",
+      }}
+    >
       <Navbar />
       <Outlet />
     </Box>

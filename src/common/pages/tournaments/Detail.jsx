@@ -50,23 +50,26 @@ const Detail = () => {
   return (
     <Box
       sx={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        alignContent: "center",
+        display: "flex",
+        flexWrap: "nowrap",
         justifyContent: "center",
-
-        gap: "1rem",
+        alignItems: "center",
+        alignContent: "center",
+        height: "80vh",
+        flexDirection: "row",
       }}
     >
       <Card
         sx={{
           backgroundColor: "darkBlue.main",
           boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
-          margin: "auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          borderRadius: "1rem",
+          width: "80%",
+          height: " 80%",
+          margin: "8px",
+          padding: "2rem",
+
+          borderRadius: "2rem",
+          textAlign: "center",
         }}
       >
         <Typography variant="h5">{data.name}</Typography>
@@ -97,14 +100,12 @@ const Detail = () => {
         sx={{
           backgroundColor: "darkBlue.main",
           boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
-          margin: "auto",
-          display: "flex",
-          flexDirection: "column",
-
-          alignItems: "center",
-          padding: "1rem",
-          margin: "1rem",
-          borderRadius: "1rem",
+          width: "80%",
+          height: " 80%",
+          margin: "8px",
+          padding: "2rem",
+          borderRadius: "2rem",
+          textAlign: "center",
         }}
       >
         <CardContent>

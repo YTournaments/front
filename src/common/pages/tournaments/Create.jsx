@@ -94,7 +94,7 @@ const Create = () => {
   }, [error, response]);
 
   return (
-    <Box sx={{ mt: 1, height: "100vh" }}>
+    <Box sx={{ mt: 1 }}>
       <Typography variant="h4" gutterBottom>
         Créer votre tournois
       </Typography>
