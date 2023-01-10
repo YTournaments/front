@@ -25,7 +25,7 @@ export const CustomMenu = (props) => {
 
   return (
     <>
-      <Button
+      <Box
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
@@ -33,7 +33,7 @@ export const CustomMenu = (props) => {
         onClick={handleClick}
       >
         {component}
-      </Button>
+      </Box>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -45,6 +45,7 @@ export const CustomMenu = (props) => {
             overflow: "visible",
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             ml: 8,
+            mt: 1.5,
             "&:before": {
               content: '""',
               display: "block",

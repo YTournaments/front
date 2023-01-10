@@ -22,8 +22,54 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useLogout } from "../../hooks/useLogout";
 import { useRoleContext } from "../../hooks/useRoleContext";
 import { CustomMenu } from "../Menu/Menu";
+
 const drawerWidth = 240;
 
+const commonItems = [
+  {
+    text: "Tournois",
+    //icon: <TournamentIcon />,
+    path: "/tournaments",
+  },
+  {
+    text: "Organiser",
+    //  icon: <ProfileIcon />,
+    path: "/tournament/create",
+  },
+
+  {
+    component: (
+      <CustomMenu
+        component={<Avatar sx={{ width: 32, height: 32 }} />}
+        items={[
+          {
+            id: 1,
+            text: "Profil",
+            path: "/profile",
+          },
+          {
+            id: 2,
+            text: "Logout",
+            action: "logout",
+          },
+        ]}
+      />
+    ),
+    action: "profil",
+  },
+  {
+    text: "Profil",
+    //icon: <ProfileIcon />,
+    path: "/profile",
+    mobile: true,
+  },
+  {
+    text: "Logout",
+    icon: <LogoutIcon />,
+    action: "logout",
+    mobile: true,
+  },
+];
 const navItems = {
   superadmin: [
     {
@@ -43,35 +89,7 @@ const navItems = {
       text: "Blog",
       path: "/blog",
     },
-    {
-      id: 4,
-      text: "Tournois",
-      //icon: <TournamentIcon />,
-      path: "/tournaments",
-    },
-
-    {
-      id: 5,
-
-      component: (
-        <CustomMenu
-          component={<Avatar sx={{ width: 32, height: 32 }} name="A" />}
-          items={[
-            {
-              id: 1,
-              text: "Profil",
-              path: "/profile",
-            },
-            {
-              id: 2,
-              text: "Logout",
-              action: "logout",
-            },
-          ]}
-        />
-      ),
-      action: "profil",
-    },
+    ...commonItems,
   ],
   admin: [
     {
@@ -91,74 +109,9 @@ const navItems = {
       text: "Blog",
       path: "/blog",
     },
-    {
-      id: 4,
-      text: "Tournois",
-      //icon: <TournamentIcon />,
-      path: "/tournaments",
-    },
-
-    {
-      id: 5,
-
-      component: (
-        <CustomMenu
-          component={<Avatar sx={{ width: 32, height: 32 }} name="A" />}
-          items={[
-            {
-              id: 1,
-              text: "Profil",
-              path: "/profile",
-            },
-            {
-              id: 2,
-              text: "Logout",
-              action: "logout",
-            },
-          ]}
-        />
-      ),
-      action: "profil",
-    },
+    ...commonItems,
   ],
-  user: [
-    {
-      id: 1,
-      text: "Tournois",
-      //icon: <TournamentIcon />,
-      path: "/tournaments",
-    },
-    {
-      id: 3,
-
-      text: "Organiser",
-      //  icon: <ProfileIcon />,
-      path: "/tournament/create",
-    },
-
-    {
-      id: 2,
-
-      component: (
-        <CustomMenu
-          component={<Avatar sx={{ width: 24, height: 24 }} />}
-          items={[
-            {
-              id: 1,
-              text: "Profil",
-              path: "/profile",
-            },
-            {
-              id: 2,
-              text: "Logout",
-              action: "logout",
-            },
-          ]}
-        />
-      ),
-      action: "profil",
-    },
-  ],
+  user: [...commonItems],
   guest: [
     {
       id: 8,
@@ -238,8 +191,8 @@ export const Navbar = () => {
       </Typography>
       <Divider />
       <List>
-        {updateNav.map((item) => (
-          <ListItem key={item.id} disablePadding>
+        {updateNav.map((item, id) => (
+          <ListItem key={id} disablePadding>
             <ListItemButton
               sx={{
                 textAlign: "center",
@@ -256,7 +209,7 @@ export const Navbar = () => {
                 {item.icon}
               </ListItemIcon>
               <ListItemText
-                primary={item.text}
+                primary={item.text || item.component.text}
                 sx={{
                   fontWeight: "bold",
                   color: "white",
@@ -316,11 +269,11 @@ export const Navbar = () => {
               },
             }}
           >
-            {updateNav.map((item) => (
+            {updateNav.slice(0, 3).map((item, id) => (
               <>
                 {item.text ? (
                   <Button
-                    key={item.id}
+                    key={id}
                     sx={{
                       color: "white",
                       fontWeight: "bold",
