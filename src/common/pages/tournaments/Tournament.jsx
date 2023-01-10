@@ -36,7 +36,7 @@ const Tournament = () => {
         </p>
       )}
       {!loading && !error && (
-        <Box sx={{ mt: 1, height: "100vh" }}>
+        <Box sx={{ mt: 1 }}>
           {data.seeds !== undefined || [] || null ? (
             <BracketGame
               bracket={data}

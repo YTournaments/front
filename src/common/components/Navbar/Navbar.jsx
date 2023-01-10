@@ -15,12 +15,13 @@ import {
   Toolbar,
   Typography,
   Button,
+  Avatar,
 } from "@mui/material";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useLogout } from "../../hooks/useLogout";
 import { useRoleContext } from "../../hooks/useRoleContext";
-
+import { CustomMenu } from "../Menu/Menu";
 const drawerWidth = 240;
 
 const navItems = {
@@ -30,12 +31,6 @@ const navItems = {
       text: "Dashboard",
       //icon: <DashboardIcon />,
       path: "/dashboard",
-    },
-    {
-      id: 5,
-      text: "User",
-      // icon: <UserIcon />,
-      path: "/admin/user",
     },
     {
       id: 2,
@@ -56,10 +51,26 @@ const navItems = {
     },
 
     {
-      id: 6,
-      text: "Logout",
-      icon: <LogoutIcon />,
-      action: "logout",
+      id: 5,
+
+      component: (
+        <CustomMenu
+          component={<Avatar sx={{ width: 32, height: 32 }} name="A" />}
+          items={[
+            {
+              id: 1,
+              text: "Profil",
+              path: "/profile",
+            },
+            {
+              id: 2,
+              text: "Logout",
+              action: "logout",
+            },
+          ]}
+        />
+      ),
+      action: "profil",
     },
   ],
   admin: [
@@ -88,10 +99,26 @@ const navItems = {
     },
 
     {
-      id: 6,
-      text: "Logout",
-      icon: <LogoutIcon />,
-      action: "logout",
+      id: 5,
+
+      component: (
+        <CustomMenu
+          component={<Avatar sx={{ width: 32, height: 32 }} name="A" />}
+          items={[
+            {
+              id: 1,
+              text: "Profil",
+              path: "/profile",
+            },
+            {
+              id: 2,
+              text: "Logout",
+              action: "logout",
+            },
+          ]}
+        />
+      ),
+      action: "profil",
     },
   ],
   user: [
@@ -102,24 +129,34 @@ const navItems = {
       path: "/tournaments",
     },
     {
-      id: 2,
-
-      text: "Profile",
-      //  icon: <ProfileIcon />,
-      path: "/profil",
-    },
-    {
       id: 3,
 
       text: "Organiser",
       //  icon: <ProfileIcon />,
       path: "/tournament/create",
     },
+
     {
-      id: 4,
-      text: "Logout",
-      icon: <LogoutIcon />,
-      action: "logout",
+      id: 2,
+
+      component: (
+        <CustomMenu
+          component={<Avatar sx={{ width: 24, height: 24 }} />}
+          items={[
+            {
+              id: 1,
+              text: "Profil",
+              path: "/profile",
+            },
+            {
+              id: 2,
+              text: "Logout",
+              action: "logout",
+            },
+          ]}
+        />
+      ),
+      action: "profil",
     },
   ],
   guest: [
@@ -271,22 +308,35 @@ export const Navbar = () => {
               onClick={() => navigate("/")}
             />
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                sm: "block",
+              },
+            }}
+          >
             {updateNav.map((item) => (
-              <Button
-                key={item.id}
-                sx={{
-                  color: "white",
-                  fontWeight: "bold",
-                  borderRadius: "100px",
-                  backgroundColor: item.color,
-                  margin: "0 0.5rem",
-                  padding: "0.5rem 1rem",
-                }}
-                onClick={() => handleLogout(item)}
-              >
-                {item.action ? item.icon : item.text}
-              </Button>
+              <>
+                {item.text ? (
+                  <Button
+                    key={item.id}
+                    sx={{
+                      color: "white",
+                      fontWeight: "bold",
+                      borderRadius: "100px",
+                      backgroundColor: item.color,
+                      margin: "0 0.5rem",
+                      padding: "0.5rem 1rem",
+                    }}
+                    onClick={() => handleLogout(item)}
+                  >
+                    {item.action ? item.icon : item.text}
+                  </Button>
+                ) : (
+                  <Button>{item.component ? item.component : null}</Button>
+                )}
+              </>
             ))}
           </Box>
         </Toolbar>
