@@ -24,7 +24,18 @@ import { useRoleContext } from "../../hooks/useRoleContext";
 import { CustomMenu } from "../Menu/Menu";
 
 const drawerWidth = 240;
-
+const mobileItems = [
+  {
+    text: "Profil",
+    //icon: <ProfileIcon />,
+    path: "/profile",
+  },
+  {
+    text: "Logout",
+    icon: <LogoutIcon />,
+    action: "logout",
+  },
+];
 const commonItems = [
   {
     text: "Tournois",
@@ -56,18 +67,6 @@ const commonItems = [
       />
     ),
     action: "profil",
-  },
-  {
-    text: "Profil",
-    //icon: <ProfileIcon />,
-    path: "/profile",
-    mobile: true,
-  },
-  {
-    text: "Logout",
-    icon: <LogoutIcon />,
-    action: "logout",
-    mobile: true,
   },
 ];
 const navItems = {
@@ -191,7 +190,7 @@ export const Navbar = () => {
       </Typography>
       <Divider />
       <List>
-        {updateNav.map((item, id) => (
+        {updateNav.concat(mobileItems).map((item, id) => (
           <ListItem key={id} disablePadding>
             <ListItemButton
               sx={{
@@ -269,7 +268,7 @@ export const Navbar = () => {
               },
             }}
           >
-            {updateNav.slice(0, 3).map((item, id) => (
+            {updateNav.map((item, id) => (
               <>
                 {item.text ? (
                   <Button
