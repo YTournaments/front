@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 :root {
   font-family: 'Montserrat', sans-serif;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  
   
 }
 
@@ -25,6 +26,7 @@ body {
 background: rgb(2, 0, 36);
 background: linear-gradient(175.6deg, #030303 -47.21%, #06135D 148.55%);
   background-repeat: no-repeat;
+  
 
 }
 

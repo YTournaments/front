@@ -23,16 +23,10 @@ const AuthLayout = () => {
     checkAuth();
   }, [navigate]);
   return (
-    <Box
-      component="main"
-      sx={{
-        height: "100vh",
-      }}
-    >
+    <Box component="main">
       <Navbar />
       <Video video={formBackground} />
       <Outlet />
-      <Footer />
     </Box>
   );
 };

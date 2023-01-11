@@ -23,7 +23,6 @@ const AppLayout = () => {
     <Box>
       <Navbar />
       <Outlet />
-      <Footer />
     </Box>
   );
 };
