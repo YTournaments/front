@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography, Container } from "@mui/material";
 import CustomButton from "@/common/components/Button/Button";
 import { SearchBar } from "@/common/components/SearchBar/SearchBar";
 import { Grid, Paper } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import Video from "@/common/components/Video/Video";
 import background from "@/assets/landingVideo.mp4";
-import Paginate from "../components/Paginate/Paginate";
-import CardImage from "../components/Card/CardImage";
-
+import Paginate from "@/common/components/Paginate/Paginate";
+import CardImage from "@/common/components/Card/CardImage";
+import useAxios from "@/common/hooks/useAxios";
+import axios from "@/common/api/index";
+import { useNavigate } from "react-router-dom";
 export const Home = () => {
   const navigate = useNavigate();
+  const [response, data, error, loading, axiosFetch] = useAxios();
+
+  const getData = () => {
+    axiosFetch({
+      axiosInstance: axios,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+      method: "get",
+      url: "api/v1/tournaments",
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <Video video={background} />
@@ -158,7 +178,8 @@ export const Home = () => {
             }}
           >
             <SearchBar />
-
+            {loading && <p>Loading...</p>}
+            {!loading && error && <p>{error}</p>}
             <Grid
               container
               sx={{
@@ -168,28 +189,36 @@ export const Home = () => {
                 border: "1px solid green",
               }}
             >
-              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((value) => (
-                <Grid
-                  key={value}
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "10px",
-                  }}
-                >
-                  <CardImage
-                    title="Warzone"
-                    description="Tournoi Warzone"
-                    date="30/06/2021"
-                  />
-                </Grid>
-              ))}
+              {!loading && !error && (
+                <>
+                  {data?.docs?.map((tournament, id) => (
+                    <Grid
+                      key={tournament._id}
+                      item
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: "10px",
+                      }}
+                    >
+                      <CardImage
+                        title={tournament.name}
+                        tournamentId={tournament._id}
+                        description={
+                          "le tournois débute le " +
+                          tournament.start_date?.slice(0, 10)
+                        }
+                        date={tournament.date}
+                      />
+                    </Grid>
+                  ))}
+                </>
+              )}
             </Grid>
             <Paginate />
           </Box>

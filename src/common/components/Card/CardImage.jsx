@@ -47,7 +47,7 @@ const CustomizedSlider = styled(Slider)(({ theme }) => ({
 }));
 
 const CardImage = (props) => {
-  const { image, title, description, nbplayers } = props;
+  const { image, title, description, nbplayers, tournamentId } = props;
   const navigate = useNavigate();
   return (
     <StyledCard sx={{ maxWidth: 345, borderRadius: "10px" }}>
@@ -99,7 +99,11 @@ const CardImage = (props) => {
           sx={{
             fontSize: "12px",
           }}
-          onClick={() => navigate("/login")}
+          onClick={() =>
+            navigate(`/tournament/${tournamentId}/detail`, {
+              state: { tournamentId },
+            })
+          }
         >
           Participer
         </CustomButton>

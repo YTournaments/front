@@ -20,7 +20,7 @@ const Detail = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
       method: "get",
-      url: `api/v1/tournaments/${location.state.tournament._id}`,
+      url: `api/v1/tournaments/${location.state.tournamentId}`,
     });
   };
 

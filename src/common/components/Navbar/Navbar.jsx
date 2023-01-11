@@ -40,7 +40,7 @@ const commonItems = [
   {
     text: "Tournois",
     //icon: <TournamentIcon />,
-    path: "/tournaments",
+    path: "#tournament",
   },
   {
     text: "Organiser",
