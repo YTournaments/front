@@ -88,6 +88,7 @@ const CardImage = (props) => {
           size="small"
           sx={{
             fontSize: "12px",
+            marginRight: "10px",
           }}
         >
           Inscription ouverte
