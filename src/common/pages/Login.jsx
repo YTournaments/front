@@ -98,9 +98,9 @@ const Login = () => {
           backgroundColor: "darkBlue.main",
           boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
           margin: "auto",
-          maxWidth: "678px",
-          maxHeight: "668px",
-          marginTop: "10%",
+          width: "678px",
+          height: "600px",
+          marginTop: "5%",
         }}
       >
         <CardMedia
@@ -129,8 +129,7 @@ const Login = () => {
 
           <Box
             component="form"
-            sx={{ mt: 1,
-              height: "100vh"}}
+            sx={{ mt: 1, height: "100vh" }}
             onSubmit={handleSubmit}
             noValidate
           >

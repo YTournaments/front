@@ -22,7 +22,8 @@ import Match from "./common/pages/Match";
 import Detail from "./common/pages/tournaments/Detail";
 import Create from "./common/pages/tournaments/Create";
 import Tournament from "./common/pages/tournaments/Tournament";
-
+import Footer from "./common/components/Footer/Footer";
+import "./App.css";
 function App() {
   return (
     <ThemeProvider theme={responsiveTheme}>
@@ -53,6 +54,7 @@ function App() {
                 <Route path="*" element={<Error />} />
               </Routes>
             </BrowserRouter>
+            <Footer />
           </Suspense>
         </LocalizationProvider>
       </CssBaseLine>

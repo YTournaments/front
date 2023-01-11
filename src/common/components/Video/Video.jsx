@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-
+import { Box } from "@mui/material";
 const Video = (props) => {
   const { video } = props;
   const videoEl = useRef(null);

@@ -22,9 +22,7 @@ const AdminLayout = () => {
       <Container>
         <Outlet />
       </Container>
-      <Footer />
     </AdminContextProvider>
-
   );
 };
 
