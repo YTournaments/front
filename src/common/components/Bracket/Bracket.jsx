@@ -22,9 +22,6 @@ export const BracketGame = ({ bracket }) => {
           style={{ fontSize: 14, fontWeight: "bold" }}
         >
           <SeedItem
-            sx={{
-              cursor: "pointer",
-            }}
             onClick={() => {
               console.log(seed);
               if (seed.id !== undefined && seed.id !== null) {
@@ -40,24 +37,67 @@ export const BracketGame = ({ bracket }) => {
             }}
           >
             <div>
-              <SeedTeam
-                style={{
-                  backgroundColor: yellow[100],
-                  color: "black",
+              <Box
+                sx={{
+                  height: "2rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignContent: "center",
+                  borderBottom: "1px solid #FFF",
                 }}
               >
-                <div>{home.name}</div>
-                <div>{home.score}</div>
-              </SeedTeam>
-              <SeedTeam
-                style={{
-                  backgroundColor: purple[100],
-                  fontWeight: "bold",
+                <div
+                  style={{
+                    width: "80%",
+                  }}
+                >
+                  {home.name}
+                </div>
+
+                <div
+                  style={{
+                    width: "20%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: purple[100],
+                  }}
+                >
+                  {home.score}
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  height: "2rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  alignContent: "center",
                 }}
               >
-                <div>{away.name}</div>
-                <div>{away.score}</div>
-              </SeedTeam>
+                <div
+                  style={{
+                    width: "80%",
+                  }}
+                >
+                  {away.name}
+                </div>
+
+                <div
+                  style={{
+                    width: "20%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: yellow[100],
+                  }}
+                >
+                  {away.score}
+                </div>
+              </Box>
             </div>
           </SeedItem>
         </Seed>
