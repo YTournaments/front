@@ -6,7 +6,8 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-const CardCustom = ({ imageGame }) => {
+import DefaultImage from "../../../assets/defaultImage.png";
+const CardCustom = ({ image }) => {
   return (
     <Card
       sx={{
@@ -19,7 +20,7 @@ const CardCustom = ({ imageGame }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          image={imageGame}
+          image={image ? image : DefaultImage}
           sx={{
             borderRadius: "5px",
             height: "100%",

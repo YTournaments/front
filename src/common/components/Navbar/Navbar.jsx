@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "@/assets/android-chrome-192x192.png";
+import logo from "@/assets/logo.svg";
 import {
   AppBar,
   Box,
@@ -28,7 +28,7 @@ const mobileItems = [
   {
     text: "Profil",
     //icon: <ProfileIcon />,
-    path: "/profile",
+    path: "/profil",
   },
   {
     text: "Logout",
@@ -56,7 +56,7 @@ const commonItems = [
           {
             id: 1,
             text: "Profil",
-            path: "/profile",
+            path: "/profil",
           },
           {
             id: 2,
