@@ -99,7 +99,7 @@ const Landing = () => {
           >
             {Array.from(Array(8)).map((_, index) => (
               <Grid item xs={2} sm={1} md={1} key={index}>
-                <CardCustom imageGame={ImageWarzone} />
+                <CardCustom image={ImageWarzone} />
               </Grid>
             ))}
           </Grid>

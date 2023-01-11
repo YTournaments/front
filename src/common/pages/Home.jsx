@@ -8,7 +8,7 @@ import Video from "@/common/components/Video/Video";
 import background from "@/assets/landingVideo.mp4";
 import Paginate from "../components/Paginate/Paginate";
 import CardImage from "../components/Card/CardImage";
-import WarZoneImage from "../../assets/warzoneImage.png";
+
 export const Home = () => {
   const navigate = useNavigate();
   return (
@@ -183,17 +183,7 @@ export const Home = () => {
                     padding: "10px",
                   }}
                 >
-                  {/* <Paper
-                    sx={{
-                      display: "flex",
-                      borderRadius: 2,
-                      flexDirection: "column",
-                      height: 245,
-                      width: 223,
-                    }}
-                  ></Paper> */}
                   <CardImage
-                    image={WarZoneImage}
                     title="Warzone"
                     description="Tournoi Warzone"
                     date="30/06/2021"
