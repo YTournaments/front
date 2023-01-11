@@ -21,7 +21,6 @@ const Profil = lazy(() => import("./common/pages/Profil"));
 import Match from "./common/pages/Match";
 import Detail from "./common/pages/tournaments/Detail";
 import Create from "./common/pages/tournaments/Create";
-import List from "./common/pages/tournaments/List";
 import Tournament from "./common/pages/tournaments/Tournament";
 
 function App() {
@@ -44,7 +43,6 @@ function App() {
                   <Route path="blog" element={<DevBlog />} />
                   <Route path="profil" element={<Profil />} />
                   <Route path="tournament/create" element={<Create />} />
-                  <Route path="tournaments" element={<List />} />
                   <Route path="tournament/:id" element={<Tournament />} />
                   <Route path="tournament/:id/detail" element={<Detail />} />
                   <Route path="match/:id" element={<Match />} />
