@@ -9,6 +9,7 @@ import Video from "@/common/components/Video/Video";
 import background from "@/assets/landingVideo.mp4";
 import CardCustom from "@/common/components/Card/CardCustom";
 import ImageWarzone from "@/assets/warzoneImage.png";
+import Footer from "@/common/components/Footer/Footer";
 
 
 const Landing = () => {
@@ -116,7 +117,7 @@ const Landing = () => {
           </Typography>
         </Box>
       </Container>
-      
+      <Footer />
     </>
   );
 };

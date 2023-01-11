@@ -129,7 +129,8 @@ const Login = () => {
 
           <Box
             component="form"
-            sx={{ mt: 1 }}
+            sx={{ mt: 1,
+              height: "100vh"}}
             onSubmit={handleSubmit}
             noValidate
           >

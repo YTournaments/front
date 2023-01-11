@@ -2,7 +2,7 @@ import { Container } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AdminContextProvider } from "@/common/context/adminContext";
-import { Footer } from "@/common/components/Footer/Footer";
+import Footer from "@/common/components/Footer/Footer";
 const AdminLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);

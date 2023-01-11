@@ -1,10 +1,11 @@
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
+
 import { useState, useEffect, lazy } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import formBackground from "@/assets/form-background.mp4";
 import Video from "@/common/components/Video/Video";
 import { Navbar } from "@/common/components/Navbar/Navbar";
-import { Footer } from "@/common/components/Footer/Footer";
+import Footer from "@/common/components/Footer/Footer";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const AuthLayout = () => {
     checkAuth();
   }, [navigate]);
   return (
-    <Container
+    <Box
       component="main"
       sx={{
         height: "100vh",
@@ -32,7 +33,7 @@ const AuthLayout = () => {
       <Video video={formBackground} />
       <Outlet />
       <Footer />
-    </Container>
+    </Box>
   );
 };
 

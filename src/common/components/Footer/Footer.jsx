@@ -15,6 +15,8 @@ export default function Footer() {
             alignItems:"center",
             background: "#050B29",
             px: "10%",
+            margin:"100px 0 0 0",
+            height:"311px",
             
         }}>
         <img
