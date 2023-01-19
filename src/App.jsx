@@ -54,7 +54,6 @@ function App() {
                 <Route path="*" element={<Error />} />
               </Routes>
             </BrowserRouter>
-            <Footer />
           </Suspense>
         </LocalizationProvider>
       </CssBaseLine>

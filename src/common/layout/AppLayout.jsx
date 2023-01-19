@@ -1,9 +1,8 @@
 import { Box, Container } from "@mui/material";
 import { useState, useEffect, lazy } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import Footer from "@/common/components/Footer/Footer";
-
 import { Navbar } from "@/common/components/Navbar/Navbar";
+import { Wrapper } from "@/common/components/Wrapper/Wrapper";
 const AppLayout = () => {
   const navigate = useNavigate();
 
@@ -20,10 +19,13 @@ const AppLayout = () => {
     isAuth();
   }, [navigate]);
   return (
-    <Box>
+    <Container component="main">
       <Navbar />
-      <Outlet />
-    </Box>
+
+      <Wrapper>
+        <Outlet />
+      </Wrapper>
+    </Container>
   );
 };
 

@@ -135,9 +135,8 @@ const Register = () => {
           backgroundColor: "darkBlue.main",
           boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
           margin: "auto",
-          maxWidth: "678px",
-          maxHeight: "668px",
-          marginTop: "10%",
+          width: "678px",
+          height: "610px",
         }}
       >
         <CardMedia
