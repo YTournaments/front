@@ -19,21 +19,10 @@ import {
   mortalKombat,
   fifa23,
 } from "@/assets/img/index";
-import { useAnimation, motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-const squareVariants = {
-  visible: { opacity: 1, scale: 1 },
-  hidden: { opacity: 0, scale: 0 },
-};
+import { motion } from "framer-motion";
+
 const Landing = () => {
   const navigate = useNavigate();
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
 
   const images = [
     warzone,
@@ -87,18 +76,31 @@ const Landing = () => {
         >
           Plus de 1000 tournois disponibles
         </Typography>
-        <CustomButton
-          variant="contained"
-          color="purple"
-          onClick={() => navigate("/login")}
-          sx={{
-            margin: "1rem",
-            padding: "1rem 2rem",
-            fontWeight: "bold",
+        <motion.div
+          className="box"
+          animate={{
+            scale: [1, 1.1, 1, 1.1, 1, 1.1, 1, 1.1, 1],
+          }}
+          transition={{
+            duration: 10,
+            ease: "easeInOut",
+            infinite: Infinity,
+            repeatDelay: 1,
           }}
         >
-          Nous rejoindre
-        </CustomButton>
+          <CustomButton
+            variant="contained"
+            color="purple"
+            onClick={() => navigate("/login")}
+            sx={{
+              margin: "1rem",
+              padding: "1rem 2rem",
+              fontWeight: "bold",
+            }}
+          >
+            Nous rejoindre
+          </CustomButton>
+        </motion.div>
       </Box>
       <Container
         maxWidth="xl"
@@ -125,12 +127,18 @@ const Landing = () => {
             {Array.from(Array(8)).map((_, index) => (
               <Grid item xs={2} sm={1} md={1} key={index}>
                 <motion.div
-                  ref={ref}
+                  viewport={{
+                    once: false,
+                  }}
                   transition={{ duration: index * 0.1 }}
-                  animate={controls}
-                  initial="hidden"
-                  variants={squareVariants}
-                  className="square"
+                  initial={{
+                    pacity: 0,
+                    scale: 0,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
                 >
                   <CardCustom image={images[index]} />
                 </motion.div>
