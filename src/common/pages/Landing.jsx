@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { experimentalStyled as styled } from "@mui/material/styles";
@@ -19,9 +19,21 @@ import {
   mortalKombat,
   fifa23,
 } from "@/assets/img/index";
-
+import { useAnimation, motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+const squareVariants = {
+  visible: { opacity: 1, scale: 1 },
+  hidden: { opacity: 0, scale: 0 },
+};
 const Landing = () => {
   const navigate = useNavigate();
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
 
   const images = [
     warzone,
@@ -112,7 +124,16 @@ const Landing = () => {
           >
             {Array.from(Array(8)).map((_, index) => (
               <Grid item xs={2} sm={1} md={1} key={index}>
-                <CardCustom image={images[index]} />
+                <motion.div
+                  ref={ref}
+                  transition={{ duration: index * 0.1 }}
+                  animate={controls}
+                  initial="hidden"
+                  variants={squareVariants}
+                  className="square"
+                >
+                  <CardCustom image={images[index]} />
+                </motion.div>
               </Grid>
             ))}
           </Grid>
