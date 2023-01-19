@@ -76,18 +76,31 @@ const Landing = () => {
         >
           Plus de 1000 tournois disponibles
         </Typography>
-        <CustomButton
-          variant="contained"
-          color="purple"
-          onClick={() => navigate("/login")}
-          sx={{
-            margin: "1rem",
-            padding: "1rem 2rem",
-            fontWeight: "bold",
+        <motion.div
+          className="box"
+          animate={{
+            scale: [1, 1.1, 1, 1.1, 1, 1.1, 1, 1.1, 1],
+          }}
+          transition={{
+            duration: 10,
+            ease: "easeInOut",
+            infinite: Infinity,
+            repeatDelay: 1,
           }}
         >
-          Nous rejoindre
-        </CustomButton>
+          <CustomButton
+            variant="contained"
+            color="purple"
+            onClick={() => navigate("/login")}
+            sx={{
+              margin: "1rem",
+              padding: "1rem 2rem",
+              fontWeight: "bold",
+            }}
+          >
+            Nous rejoindre
+          </CustomButton>
+        </motion.div>
       </Box>
       <Container
         maxWidth="xl"
