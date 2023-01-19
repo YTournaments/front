@@ -126,11 +126,7 @@ const Profil = () => {
           }
         >
           <img
-            src={
-              data && data.banner
-                ? data.banner
-                : "https://picsum.photos/1000/300"
-            }
+            src={data && data.banner}
             alt="image"
             style={{
               borderRadius: "28px",
@@ -159,8 +155,8 @@ const Profil = () => {
             <Avatar
               src={data && data.profilePicture}
               sx={{
-                width: "100%",
-                height: "8rem",
+                width: "10rem",
+                height: "10rem",
                 objectFit: "cover",
                 objectPosition: "center",
                 display: "flex",
@@ -278,6 +274,46 @@ const Profil = () => {
                   backgroundColor: "#34353C",
                 }}
               />
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography>Nouveau mot de passe:</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                id="password"
+                margin="normal"
+                required
+                fullWidth
+                label="password"
+                name="password"
+                placeholder="Mot de passe"
+                autoComplete="password"
+                type="password"
+                startAdornment={<LockIcon />}
+                sx={{
+                  width: "100%",
+                  backgroundColor: "#34353C",
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}></Grid>
+            <Grid item xs={6}>
+              <CustomButton
+                variant="contained"
+                color={"purple"}
+                loading={loading}
+                onClick={() => updateProfil()}
+              >
+                Enregister les modifications
+              </CustomButton>
             </Grid>
           </Grid>
         </Container>

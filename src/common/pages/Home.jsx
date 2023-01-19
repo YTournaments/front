@@ -86,10 +86,7 @@ export const Home = () => {
           Participer au tournoi
         </CustomButton>
       </Box>
-      <Container
-        maxWidth="xl"
-        sx={{ color: "white", border: "1px solid red", height: "100vh" }}
-      >
+      <Container maxWidth="xl" sx={{ color: "white", border: "1px solid red" }}>
         <Box
           sx={{
             display: "flex",
