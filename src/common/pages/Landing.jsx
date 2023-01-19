@@ -1,30 +1,42 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import { experimentalStyled as styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import { Box, Grid, Typography, Container } from "@mui/material";
+import { Box, Grid, Typography, Container, Paper } from "@mui/material";
 import { CustomButton } from "@/common/components/Button/Button";
 import { Navbar } from "@/common/components/Navbar/Navbar";
 import Video from "@/common/components/Video/Video";
-import background from "@/assets/landingVideo.mp4";
+import CardImage from "@/common/components/Card/CardImage";
+import { landingVideo } from "@/assets/video/index";
 import CardCustom from "@/common/components/Card/CardCustom";
-import ImageWarzone from "@/assets/warzoneImage.png";
-import Footer from "@/common/components/Footer/Footer";
+import {
+  warzone,
+  warcraft,
+  apexLegends,
+  superSmashBros,
+  nba2k23,
+  bloodHunt,
+  mortalKombat,
+  fifa23,
+} from "@/assets/img/index";
 
 const Landing = () => {
   const navigate = useNavigate();
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-  }));
-
+  const images = [
+    warzone,
+    fifa23,
+    mortalKombat,
+    superSmashBros,
+    warcraft,
+    apexLegends,
+    nba2k23,
+    bloodHunt,
+  ];
   return (
     <>
       <Navbar />
-      <Video video={background} />
+      <Video video={landingVideo} />
       <Box
         sx={{
           display: "flex",
@@ -100,7 +112,7 @@ const Landing = () => {
           >
             {Array.from(Array(8)).map((_, index) => (
               <Grid item xs={2} sm={1} md={1} key={index}>
-                <CardCustom image={ImageWarzone} />
+                <CardCustom image={images[index]} />
               </Grid>
             ))}
           </Grid>
@@ -108,11 +120,45 @@ const Landing = () => {
         <Box
           sx={{
             display: "flex",
+            flexDirection: "column",
             margin: "10rem 0",
           }}
         >
           <Typography id="tournois" variant="h2" sx={{ fontWeight: "bold" }}>
             Tournois
+          </Typography>
+          <Grid
+            container
+            sx={{
+              display: "flex",
+              my: 10,
+            }}
+          >
+            {Array.from(Array(6)).map((_, index) => (
+              <Grid
+                key={index}
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={4}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "10px",
+                }}
+              >
+                <CardImage
+                  title={"tournois"}
+                  description={"le tournois débute le "}
+                  date={Date.now()}
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <Typography id="evenement" variant="h2" sx={{ fontWeight: "bold" }}>
+            Evenement
           </Typography>
         </Box>
       </Container>

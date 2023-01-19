@@ -4,7 +4,7 @@ import CustomButton from "@/common/components/Button/Button";
 import { SearchBar } from "@/common/components/SearchBar/SearchBar";
 import { Grid, Paper } from "@mui/material";
 import Video from "@/common/components/Video/Video";
-import background from "@/assets/landingVideo.mp4";
+import background from "@/assets/video/landingVideo.mp4";
 import Paginate from "@/common/components/Paginate/Paginate";
 import CardImage from "@/common/components/Card/CardImage";
 import useAxios from "@/common/hooks/useAxios";
@@ -42,7 +42,7 @@ export const Home = () => {
           justifyContent: "center",
           height: "100vh",
           width: "100%",
-          color: "white",
+
           textAlign: "center",
         }}
       >
@@ -86,7 +86,7 @@ export const Home = () => {
           Participer au tournoi
         </CustomButton>
       </Box>
-      <Container maxWidth="xl" sx={{ color: "white", border: "1px solid red" }}>
+      <Box>
         <Box
           sx={{
             display: "flex",
@@ -220,7 +220,7 @@ export const Home = () => {
             <Paginate />
           </Box>
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 };

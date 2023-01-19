@@ -1,12 +1,13 @@
-import { Box, Container } from "@mui/material";
-
-import { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import formBackground from "@/assets/form-background.mp4";
+
+import { Container } from "@mui/material";
 import Video from "@/common/components/Video/Video";
 import { Navbar } from "@/common/components/Navbar/Navbar";
-import Footer from "@/common/components/Footer/Footer";
 import { Wrapper } from "@/common/components/Wrapper/Wrapper";
+
+import { formBackground } from "@/assets/video/index";
+
 const AuthLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -23,7 +24,7 @@ const AuthLayout = () => {
     checkAuth();
   }, [navigate]);
   return (
-    <Container component="main">
+    <Container component="main" maxWidth="xl">
       <Navbar />
       <Video video={formBackground} />
       <Wrapper>
