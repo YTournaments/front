@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-
-import { Box, Modal, Button, Typography } from "@mui/material";
+import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, Modal, Typography, IconButton } from "@mui/material";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  maxWidth: 800,
+  width: "100%",
+
   bgcolor: "background.paper",
   border: "2px solid #FFF",
   borderRadius: "10px",
@@ -28,6 +30,15 @@ export const CustomModal = (props) => {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
+          <IconButton
+            onClick={onClose}
+            sx={{
+              top: "-30px",
+              left: "-20px",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
           <Typography id="keep-mounted-modal-title" variant="h6" component="h4">
             {title}
           </Typography>
