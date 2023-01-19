@@ -100,7 +100,6 @@ const Login = () => {
           margin: "auto",
           width: "678px",
           height: "600px",
-          marginTop: "5%",
         }}
       >
         <CardMedia

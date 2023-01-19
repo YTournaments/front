@@ -32,7 +32,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <>
+    <Box>
       <Video video={background} />
       <Box
         sx={{
@@ -224,7 +224,7 @@ export const Home = () => {
           </Box>
         </Box>
       </Container>
-    </>
+    </Box>
   );
 };
 
