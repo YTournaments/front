@@ -11,20 +11,19 @@ const CardCustom = ({ image }) => {
   return (
     <Card
       sx={{
+        display: "flex",
         maxWidth: 345,
         minWidth: 150,
+        minHeight: 200,
+        maxHeight: 200,
         borderRadius: "10px",
-        padding: "20px",
+        padding: "50px",
       }}
     >
       <CardActionArea>
         <CardMedia
           component="img"
           image={image ? image : DefaultImage}
-          sx={{
-            borderRadius: "5px",
-            height: "100%",
-          }}
           alt="Image Game"
         />
       </CardActionArea>

@@ -1,8 +1,9 @@
-import { Box, Container } from "@mui/material";
-import { useState, useEffect, lazy } from "react";
+import { React, useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+
+import { Container } from "@mui/material";
 import { Navbar } from "@/common/components/Navbar/Navbar";
-import { Wrapper } from "@/common/components/Wrapper/Wrapper";
+
 const AppLayout = () => {
   const navigate = useNavigate();
 
@@ -19,12 +20,9 @@ const AppLayout = () => {
     isAuth();
   }, [navigate]);
   return (
-    <Container component="main">
+    <Container component="main" maxWidth="xl">
       <Navbar />
-
-      <Wrapper>
-        <Outlet />
-      </Wrapper>
+      <Outlet />
     </Container>
   );
 };
