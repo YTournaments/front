@@ -115,7 +115,7 @@ const Profil = () => {
               sx={{
                 position: "relative",
                 top: "10px",
-                left: "100px",
+                left: "10px",
               }}
             >
               <AddPhotoAlternateIcon sx={{ color: "white" }} />
@@ -131,6 +131,8 @@ const Profil = () => {
             alt="image"
             style={{
               borderRadius: "28px",
+              display: "flex",
+              width: "100%",
             }}
           />
         </Badge>
