@@ -7,12 +7,16 @@ import {
   IconButton,
   Typography,
   FormControl,
+  Grid,
+  Divider,
 } from "@mui/material";
+import LockIcon from "@mui/icons-material/Lock";
 import useAxios from "@/common/hooks/useAxios";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import axios from "@/common/api/index";
 import { CustomModal } from "@/common/components/Modal/Modal";
 import { CustomButton } from "@/common/components/Button/Button";
+import CustomTextField from "@/common/components/Input/TextField";
 const Profil = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();
   const [profil, setProfil] = useState({});
@@ -38,6 +42,7 @@ const Profil = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
     });
+    setIsOpen(false);
   };
 
   const getProfil = async () => {
@@ -81,9 +86,7 @@ const Profil = () => {
               color={"purple"}
               loading={loading}
               component="span"
-              sx={{
-                mt: "10px",
-              }}
+              sx={{ mx: 2 }}
             >
               Upload
             </CustomButton>
@@ -91,7 +94,7 @@ const Profil = () => {
         </FormControl>
         <CustomButton
           variant="contained"
-          color={response?.status === 200 ? "success" : "purple"}
+          color={"primary"}
           loading={loading}
           onClick={() => updateProfil()}
         >
@@ -154,14 +157,14 @@ const Profil = () => {
             }
           >
             <Avatar
-              src={
-                data && data.profilePicture
-                  ? data.profilePicture
-                  : "https://picsum.photos/200/200"
-              }
+              src={data && data.profilePicture}
               sx={{
-                width: 150,
-                height: 150,
+                width: "100%",
+                height: "8rem",
+                objectFit: "cover",
+                objectPosition: "center",
+                display: "flex",
+
                 border: "2px solid white",
               }}
             />
@@ -177,40 +180,106 @@ const Profil = () => {
         <Container
           maxWidth="md"
           sx={{
-            mt: 4,
             border: "1px solid",
             display: "flex",
             borderRadius: "28px",
           }}
         >
-          <Box>
-            <FormControl
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            sx={{
+              mt: 2,
+              mb: 2,
+            }}
+          >
+            <Grid
+              item
+              xs={6}
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "center",
                 alignItems: "center",
-                width: "100%",
-                padding: "10px",
               }}
             >
               <Typography>Nom :</Typography>
-              <Typography fontSize="small">{data && data.name}</Typography>
-            </FormControl>
-            <FormControl
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                id="name"
+                required
+                fullWidth
+                name="name"
+                type="name"
+                label="name"
+                autoComplete="name"
+                placeholder="Name *"
+                value={data && data.name}
+                sx={{
+                  width: "100%",
+                  backgroundColor: "#34353C",
+                }}
+              />
+            </Grid>
+
+            <Grid
+              item
+              xs={6}
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "center",
                 alignItems: "center",
-                width: "100%",
-                padding: "10px",
               }}
             >
-              <Typography>Email :</Typography>
-              <Typography fontSize="small">{data && data.email}</Typography>
-            </FormControl>
-          </Box>
+              <Typography>Adresse Mail :</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                id="name"
+                required
+                fullWidth
+                disabled
+                name="name"
+                type="name"
+                placeholder="Name *"
+                value={data && data.email}
+                sx={{
+                  width: "100%",
+                  backgroundColor: "#34353C",
+                }}
+              />
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography>Mot de passe:</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <CustomTextField
+                id="password"
+                margin="normal"
+                required
+                fullWidth
+                label="password"
+                name="password"
+                placeholder="Mot de passe"
+                autoComplete="password"
+                type="password"
+                startAdornment={<LockIcon />}
+                sx={{
+                  width: "100%",
+                  backgroundColor: "#34353C",
+                }}
+              />
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </Container>
