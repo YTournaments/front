@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import Video from "@/common/components/Video/Video";
-import VersusVideo from "@/assets/versusVideo.mp4";
+import { versusVideo } from "@/assets/video/index";
 import { Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 const Match = () => {
@@ -83,7 +83,7 @@ const Match = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Video video={VersusVideo} />
+      <Video video={versusVideo} />
     </Box>
   );
 };
