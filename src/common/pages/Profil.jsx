@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import {
   Container,
   Box,
@@ -8,7 +8,6 @@ import {
   Typography,
   FormControl,
   Grid,
-  Divider,
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import useAxios from "@/common/hooks/useAxios";
@@ -19,25 +18,111 @@ import { CustomButton } from "@/common/components/Button/Button";
 import CustomTextField from "@/common/components/Input/TextField";
 const Profil = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();
-  const [profil, setProfil] = useState({});
-  const [profilPicture, setProfilPicture] = useState();
+  const [type, setType] = useState("");
+  const [picture, updatePicture] = useReducer(
+    (state, action) => {
+      return { ...state, ...action };
+    },
+    {
+      profilPicture: null,
+      bannerPicture: null,
+    }
+  );
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleModalOpen = () => {
+  const handleModalOpen = (type) => {
     setIsOpen(true);
+    setType(type);
   };
 
-  const updateProfil = () => {
+  const handlePicture = (e) => {
+    const { files } = e.target;
+    updatePicture({ [type]: files[0] });
+  };
+  const uploadPicture = async () => {
+    if (type === "profilPicture") {
+      updateProfilPicture();
+    }
+    if (type === "bannerPicture") {
+      updateBannerPicture();
+    }
+  };
+
+  const UploadModal = () => {
+    const image = picture[type];
+    console.log(image);
+    return (
+      <CustomModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title={"Mettre à jour votre photo de profil"}
+        description={"Veuillez choisir une photo de profil"}
+      >
+        <FormControl>
+          <input
+            id="upload"
+            name="upload"
+            type="file"
+            hidden
+            accept=".jpg,.jpeg,.png,"
+            onChange={(e) => {
+              handlePicture(e);
+            }}
+          />
+          <label htmlFor="upload">
+            {image && `${image.name} - ${image.type}`}
+            <CustomButton
+              variant="contained"
+              color={"purple"}
+              loading={loading}
+              component="span"
+              sx={{ mx: 2 }}
+            >
+              Upload
+            </CustomButton>
+          </label>
+        </FormControl>
+        <CustomButton
+          variant="contained"
+          color={"primary"}
+          loading={loading}
+          onClick={() => uploadPicture()}
+        >
+          Envoyer
+        </CustomButton>
+      </CustomModal>
+    );
+  };
+
+  const updateProfilPicture = () => {
     const formData = new FormData();
-    formData.append("upload", profilPicture);
-    console.log(profilPicture);
+    formData.append("upload", picture.profilPicture);
+    console.log(picture.profilPicture);
     axios({
       method: "put",
       url: "api/v1/users/profilepicture",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
-        "Content-Length": `${profilPicture.size}`,
+        "Content-Length": `${picture.profilPicture.size}`,
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    });
+    setIsOpen(false);
+  };
+  const updateBannerPicture = () => {
+    const formData = new FormData();
+    formData.append("upload", picture.bannerPicture);
+
+    axios({
+      method: "put",
+      url: "api/v1/users/bannerpicture",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Content-Length": `${picture.bannerPicture.size}`,
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
@@ -64,43 +149,6 @@ const Profil = () => {
 
   return (
     <Container>
-      <CustomModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title={"Mettre à jour votre photo de profil"}
-        description={"Veuillez choisir une photo de profil"}
-      >
-        <FormControl>
-          <input
-            id="upload"
-            name="upload"
-            type="file"
-            hidden
-            accept=".jpg,.jpeg,.png,"
-            onChange={(e) => setProfilPicture(e.target.files[0])}
-          />
-          <label htmlFor="upload">
-            {profilPicture && `${profilPicture.name} - ${profilPicture.type}`}
-            <CustomButton
-              variant="contained"
-              color={"purple"}
-              loading={loading}
-              component="span"
-              sx={{ mx: 2 }}
-            >
-              Upload
-            </CustomButton>
-          </label>
-        </FormControl>
-        <CustomButton
-          variant="contained"
-          color={"primary"}
-          loading={loading}
-          onClick={() => updateProfil()}
-        >
-          Envoyer
-        </CustomButton>
-      </CustomModal>
       <Box
         sx={{
           display: "flex",
@@ -109,12 +157,14 @@ const Profil = () => {
           alignItems: "center",
         }}
       >
+        {isOpen && UploadModal()}
         <Badge
           overlap="circular"
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           badgeContent={
             <IconButton
-              onClick={() => handleModalOpen}
+              id="bannerPicture"
+              onClick={() => handleModalOpen("bannerPicture")}
               sx={{
                 position: "relative",
                 top: "10px",
@@ -147,7 +197,10 @@ const Profil = () => {
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
-              <IconButton onClick={handleModalOpen}>
+              <IconButton
+                id="profilPicture"
+                onClick={() => handleModalOpen("profilPicture")}
+              >
                 <AddPhotoAlternateIcon sx={{ color: "white" }} />
               </IconButton>
             }
@@ -310,7 +363,7 @@ const Profil = () => {
                 variant="contained"
                 color={"purple"}
                 loading={loading}
-                onClick={() => updateProfil()}
+                onClick={() => updateProfilPicture()}
               >
                 Enregister les modifications
               </CustomButton>
