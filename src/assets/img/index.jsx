@@ -6,3 +6,4 @@ export { default as superSmashBros } from "./superSmashBros.webp";
 export { default as warcraft } from "./warcraft.webp";
 export { default as warzone } from "./warzone.webp";
 export { default as bloodHunt } from "./bloodHunt.webp";
+export { default as sophiaYnov } from "./sophiaYnov.webp";
