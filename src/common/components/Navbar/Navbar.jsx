@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "@/assets/logo.svg";
 import {
   AppBar,
@@ -125,15 +125,15 @@ const navItems = {
 
       text: "Evenement",
       //icon: <TournamentIcon />,
-      path: "#evenement",
+      path: "/#evenements",
       color: "transparent",
     },
     {
       id: 10,
 
-      text: "Notre Concept",
+      text: "Partenaire",
       //icon: <TournamentIcon />,
-      path: "#concept",
+      path: "/#partenaire",
       color: "transparent",
     },
     {
@@ -184,7 +184,7 @@ export const Navbar = () => {
       <Typography
         variant="h6"
         sx={{ my: 2 }}
-        onClick={() => (isrole ? navigate("/home") : navigate("/"))}
+        onClick={() => (isrole !== "guest" ? navigate("/home") : navigate("/"))}
       >
         <img src={logo} alt="logo ytournaments" width="60" />
       </Typography>
@@ -250,15 +250,12 @@ export const Navbar = () => {
           <Typography
             variant="h6"
             component="div"
-            onClick={() => (isrole ? navigate("/home") : navigate("/"))}
+            onClick={() =>
+              isrole !== "guest" ? navigate("/home") : navigate("/")
+            }
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <img
-              src={logo}
-              alt="logo ytournaments"
-              width="60"
-              onClick={() => navigate("/")}
-            />
+            <img src={logo} alt="logo ytournaments" width="60" />
           </Typography>
           <Box
             sx={{
@@ -283,7 +280,17 @@ export const Navbar = () => {
                     }}
                     onClick={() => handleLogout(item)}
                   >
-                    {item.action ? item.icon : item.text}
+                    {item.action ? (
+                      item.icon
+                    ) : (
+                      <Link
+                        to={item.path}
+                        reloadDocument
+                        style={{ textDecoration: "none", color: "white" }}
+                      >
+                        {item.text}
+                      </Link>
+                    )}
                   </Button>
                 ) : (
                   <Button>{item.component ? item.component : null}</Button>

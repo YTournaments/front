@@ -18,6 +18,7 @@ import {
   bloodHunt,
   mortalKombat,
   fifa23,
+  sophiaYnov,
 } from "@/assets/img/index";
 import { motion } from "framer-motion";
 
@@ -186,8 +187,49 @@ const Landing = () => {
               </Grid>
             ))}
           </Grid>
-          <Typography id="evenement" variant="h2" sx={{ fontWeight: "bold" }}>
+          <Typography id="evenements" variant="h2" sx={{ fontWeight: "bold" }}>
             Evenement
+          </Typography>
+          <Typography id="partenaire" variant="h2" sx={{ fontWeight: "bold" }}>
+            Partenaire
+          </Typography>
+          <Grid
+            sx={{
+              display: "flex",
+              my: 10,
+            }}
+            container
+            spacing={{ xs: 4, md: 4 }}
+            rowSpacing={{ xs: 4, sm: 8, md: 10 }}
+            columns={{ xs: 1, sm: 2, md: 2, lg: 4 }}
+          >
+            {Array.from(Array(4)).map((_, index) => (
+              <Grid item xs={2} sm={1} md={1} key={index}>
+                <motion.div
+                  viewport={{
+                    once: false,
+                  }}
+                  transition={{ duration: 0.1 }}
+                  initial={{
+                    pacity: 0,
+                    scale: 0,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  whileHover={{
+                    scale: 1.1,
+                    ease: [0.37, 0.04, 0.2, 1],
+                  }}
+                >
+                  <CardCustom image={sophiaYnov} />
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+          <Typography id="avis" variant="h2" sx={{ fontWeight: "bold" }}>
+            Avis
           </Typography>
         </Box>
       </Container>

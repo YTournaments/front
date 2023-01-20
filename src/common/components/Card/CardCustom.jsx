@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-} from "@mui/material";
+import { Card, CardMedia, Container } from "@mui/material";
 import DefaultImage from "../../../assets/defaultImage.png";
 const CardCustom = ({ image }) => {
   return (
@@ -16,17 +10,24 @@ const CardCustom = ({ image }) => {
         minWidth: 150,
         minHeight: 200,
         maxHeight: 200,
-        borderRadius: "10px",
-        padding: "50px",
+        borderRadius: "20px",
+        padding: "1rem",
       }}
     >
-      <CardActionArea>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <CardMedia
           component="img"
           image={image ? image : DefaultImage}
           alt="Image Game"
         />
-      </CardActionArea>
+      </Container>
     </Card>
   );
 };
