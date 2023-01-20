@@ -18,11 +18,12 @@ const style = {
 };
 
 export const CustomModal = (props) => {
-  const { isOpen, onClose, title, description, children } = props;
+  const { isOpen, onClose, title, description, type, children } = props;
 
   return (
     <div>
       <Modal
+        id={type}
         keepMounted
         open={isOpen}
         onClose={onClose}
