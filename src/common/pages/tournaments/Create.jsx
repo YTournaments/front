@@ -16,7 +16,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import useAxios from "@/common/hooks/useAxios";
 import axios from "@/common/api/index";
 import { useAlertContext } from "@/common/hooks/useAlertContext";
-
+import { games } from "@/common/constants/index";
 const Create = () => {
   const [startdate, setStartDate] = useState(new Date());
   const names = ["PC", "XBOX", "PS4", "Nintendo Switch", "Mobile", "Other"];
@@ -127,14 +127,22 @@ const Create = () => {
             disabled={loading}
           >
             <MenuItem value="">
-              <em>PLease select game</em>
+              <em>Veuillez chosir un jeux</em>
             </MenuItem>
             <ListSubheader>SPORT</ListSubheader>
-            <MenuItem value={1}>Aqua poney</MenuItem>
-            <MenuItem value={2}>Ping Pong</MenuItem>
+
+            {games[0].Sport.sort(
+              (a, b) => a.toLowerCase() > b.toLowerCase()
+            ).map((sport) => {
+              return <MenuItem value={sport}>{sport}</MenuItem>;
+            })}
+
             <ListSubheader>E-SPORT</ListSubheader>
-            <MenuItem value={3}>Csgo</MenuItem>
-            <MenuItem value={4}>Rocket League</MenuItem>
+            {games[0].ESport.sort(
+              (a, b) => a.toLowerCase() > b.toLowerCase()
+            ).map((e_sport) => {
+              return <MenuItem value={e_sport}>{e_sport}</MenuItem>;
+            })}
           </Select>
         </FormControl>
         <DatePicker

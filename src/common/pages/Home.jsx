@@ -204,7 +204,7 @@ export const Home = () => {
                       }}
                     >
                       <CardImage
-                        title={tournament.name}
+                        title={tournament.game}
                         tournamentId={tournament._id}
                         description={
                           "le tournois débute le " +
