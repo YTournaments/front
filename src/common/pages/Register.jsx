@@ -1,12 +1,5 @@
 import { useState, useMemo } from "react";
-import {
-  Box,
-  Button,
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "@/common/hooks/useAuthContext";
@@ -128,10 +121,17 @@ const Register = () => {
   }, [error]);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        marginTop: "10vh",
+        width: "100%",
+      }}
+    >
       <Card
         sx={{
           borderRadius: "20px",
+          marginTop: "200px",
           backgroundColor: "darkBlue.main",
           boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
           margin: "auto",
@@ -183,7 +183,12 @@ const Register = () => {
               helperText={nameErrText}
               sx={{
                 backgroundColor: "#34353C",
-                maxWidth: "50%",
+                maxWidth: {
+                  xs: "90%",
+                  sm: "50%",
+                  md: "50%",
+                  lg: "50%",
+                },
                 margin: "auto",
                 display: "flex",
                 marginTop: "30px",
@@ -205,7 +210,12 @@ const Register = () => {
               helperText={emailErrText}
               sx={{
                 backgroundColor: "#34353C",
-                maxWidth: "50%",
+                maxWidth: {
+                  xs: "90%",
+                  sm: "50%",
+                  md: "50%",
+                  lg: "50%",
+                },
                 margin: "auto",
                 display: "flex",
                 marginTop: "30px",
@@ -227,7 +237,12 @@ const Register = () => {
               helperText={passwordErrText}
               sx={{
                 backgroundColor: "#34353C",
-                maxWidth: "50%",
+                maxWidth: {
+                  xs: "90%",
+                  sm: "50%",
+                  md: "50%",
+                  lg: "50%",
+                },
                 margin: "auto",
                 display: "flex",
                 marginTop: "30px",
@@ -259,7 +274,12 @@ const Register = () => {
               helperText={confirmPasswordErrText}
               sx={{
                 backgroundColor: "#34353C",
-                maxWidth: "50%",
+                maxWidth: {
+                  xs: "90%",
+                  sm: "50%",
+                  md: "50%",
+                  lg: "50%",
+                },
                 margin: "auto",
                 display: "flex",
                 marginTop: "30px",
@@ -312,7 +332,7 @@ const Register = () => {
           </Box>
         </CardContent>
       </Card>
-    </>
+    </Box>
   );
 };
 
