@@ -141,14 +141,14 @@ const navItems = {
 
       text: "Se connecter",
       //   icon: <LoginIcon />,
-      path: "/login",
+      path: "/auth/login",
       color: "transparent",
     },
     {
       id: 12,
       text: "S'inscrire",
       //icon: <RegisterIcon />,
-      path: "/register",
+      path: "/auth/register",
       color: "primary.main",
     },
   ],
@@ -249,10 +249,8 @@ export const Navbar = () => {
           </IconButton>
           <Typography
             variant="h6"
-            component="div"
-            onClick={() =>
-              isrole !== "guest" ? navigate("/home") : navigate("/")
-            }
+            component={Link}
+            to={isrole !== "guest" ? "/home" : "/"}
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             <img src={logo} alt="logo ytournaments" width="60" />
