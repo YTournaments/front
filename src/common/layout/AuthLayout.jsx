@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import { Container } from "@mui/material";
 import Video from "@/common/components/Video/Video";
-import { Wrapper } from "@/common/components/Wrapper/Wrapper";
 
 import { formBackground } from "@/assets/video/index";
 

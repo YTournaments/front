@@ -10,7 +10,7 @@ export const useLogout = () => {
     // remove user from storage
     localStorage.removeItem("user");
     // navigate to login page
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
     // dispatch logout action
     dispatchAuth({ type: "LOGOUT" });
     dispatchRole({ type: "SET_ROLE", payload: "guest" });
