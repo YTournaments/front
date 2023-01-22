@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
-import { AdminContextProvider } from "@/common/context/adminContext";
+
 const AdminLayout = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -17,11 +17,9 @@ const AdminLayout = () => {
     isAuth();
   }, [navigate]);
   return (
-    <AdminContextProvider>
-      <Container>
-        <Outlet />
-      </Container>
-    </AdminContextProvider>
+    <Container>
+      <Outlet />
+    </Container>
   );
 };
 

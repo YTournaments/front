@@ -45,7 +45,7 @@ export default function Router() {
     {
       path: "/admin",
       element: <AdminLayout />,
-      children: [{ path: "blog", element: <Post /> }],
+      children: [{ path: "create", element: <Post /> }],
     },
     { path: "404", element: <Error /> },
     { path: "*", element: <Navigate to="/404" replace /> },

@@ -81,7 +81,7 @@ const navItems = {
       id: 2,
       text: "Créer Blog",
       //icon: <BlogIcon />,
-      path: "/admin/blog",
+      path: "/admin/create",
     },
     {
       id: 3,
@@ -101,7 +101,7 @@ const navItems = {
       id: 2,
       text: "Créer Blog",
       //icon: <BlogIcon />,
-      path: "/admin/blog",
+      path: "/admin/create",
     },
     {
       id: 3,

@@ -23,7 +23,7 @@ export const BracketGame = ({ bracket }) => {
         >
           <SeedItem
             onClick={() => {
-              console.log(seed);
+              // console.log(seed);
               if (seed.id !== undefined && seed.id !== null) {
                 navigate(`/match/${seed.id}`, {
                   state: {
