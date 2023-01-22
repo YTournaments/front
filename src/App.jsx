@@ -6,7 +6,7 @@ import { responsiveTheme } from "./theme";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { BrowserRouter } from "react-router-dom";
-// import AlertPopup from "@/common/components/AlertPopup";
+import AlertPopup from "./common/components/Popup/AlertPopup";
 
 import "./App.css";
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider theme={responsiveTheme}>
       <CssBaseLine>
         <LocalizationProvider dateAdapter={AdapterMoment}>
-          {/* <AlertPopup /> */}
+          <AlertPopup />
           <BrowserRouter>
             <Router />
           </BrowserRouter>

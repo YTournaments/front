@@ -23,16 +23,14 @@ export const verifyDataForm = (value) => {
   return true;
 };
 
-
 export const viewPassword = () => {
-  const password = document.getElementById("password");console.log(password.type)
+  const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirmPassword");
   if (password.type === "password") {
     password.type = "text";
     confirmPassword.type = "text";
-  } 
-  else {
+  } else {
     password.type = "password";
     confirmPassword.type = "password";
   }
-}
+};

@@ -5,7 +5,6 @@ import { Container } from "@mui/material";
 
 const AppLayout = () => {
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const isAuth = async () => {

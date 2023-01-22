@@ -1,5 +1,5 @@
-import { WindowSharp } from "@mui/icons-material";
 import { createContext, useReducer, useMemo, useEffect } from "react";
+import jwtDecode from "jwt-decode";
 export const RoleContext = createContext();
 
 export const roleReducer = (state, action) => {
@@ -19,37 +19,22 @@ export const RoleContextProvider = ({ children }) => {
   });
 
   const userRole = () => {
-    fetch(
-      import.meta.env.VITE_ENV === "prod"
-        ? import.meta.env.VITE_API_URL + "api/v1/users/role"
-        : "http://localhost:3001/user/role",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
-        },
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((data) => {
-        if (data) {
-          dispatch({
-            type: "SET_ROLE",
-            payload: data.role,
-          });
-        } else {
-          dispatch({
-            type: "SET_ROLE",
-            payload: "guest",
-          });
-        }
+    const token = localStorage.getItem("user");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const role = decodedToken.role;
+      dispatch({
+        type: "SET_ROLE",
+        payload: role,
       });
+    } else {
+      dispatch({
+        type: "SET_ROLE",
+        payload: "guest",
+      });
+    }
   };
+
   useEffect(() => {
     userRole();
   }, [
@@ -58,7 +43,6 @@ export const RoleContextProvider = ({ children }) => {
     localStorage.getItem("user") !== null,
   ]);
 
-  console.log("RoleContext state:", state);
   return (
     <RoleContext.Provider value={{ ...state, dispatch }}>
       {children}
