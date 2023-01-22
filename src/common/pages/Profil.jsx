@@ -341,13 +341,13 @@ const Profil = () => {
             </Grid>
             <Grid item xs={6}>
               <CustomTextField
-                id="password"
+                id="confirmpassword"
                 margin="normal"
                 required
                 fullWidth
                 label="password"
-                name="password"
-                placeholder="Mot de passe"
+                name="confirmpassword"
+                placeholder="Confirmer Mot de passe"
                 autoComplete="password"
                 type="password"
                 startAdornment={<LockIcon />}

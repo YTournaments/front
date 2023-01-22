@@ -271,7 +271,6 @@ export const Navbar = () => {
                   <Button
                     key={id}
                     sx={{
-                      color: "white",
                       fontWeight: "bold",
                       borderRadius: "100px",
                       backgroundColor: item.color,
@@ -284,6 +283,7 @@ export const Navbar = () => {
                       item.icon
                     ) : (
                       <Link
+                        key={id}
                         to={item.path}
                         reloadDocument
                         style={{ textDecoration: "none", color: "white" }}
@@ -293,7 +293,9 @@ export const Navbar = () => {
                     )}
                   </Button>
                 ) : (
-                  <Button>{item.component ? item.component : null}</Button>
+                  <Button key={id}>
+                    {item.component ? item.component : null}
+                  </Button>
                 )}
               </>
             ))}
