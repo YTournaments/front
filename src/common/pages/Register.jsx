@@ -95,12 +95,11 @@ const Register = () => {
 
   useMemo(() => {
     if (response) {
-      const json = response.data;
-      console.log(response);
       localStorage.setItem("user", data.token);
-      dispatchAuth({ type: "LOGIN", payload: json });
-      dispatchRole({ type: "SET_ROLE", payload: json.role });
+      dispatchAuth({ type: "LOGIN" });
+      dispatchRole({ type: "SET_ROLE", payload: "user" });
       setAlert("Bienvenue sur Ytournaments", "info");
+
       return navigate("/home");
     }
   }, [response]);
@@ -178,7 +177,6 @@ const Register = () => {
               name="name"
               placeholder="Pseudo"
               autoComplete="name"
-              disabled={loading ? true : false}
               error={nameErrText !== ""}
               helperText={nameErrText}
               sx={{
@@ -205,7 +203,6 @@ const Register = () => {
               name="email"
               placeholder="Email"
               autoComplete="email"
-              disabled={loading}
               error={emailErrText !== ""}
               helperText={emailErrText}
               sx={{
@@ -232,7 +229,6 @@ const Register = () => {
               placeholder="Mot de passe"
               autoComplete="password"
               type="password"
-              disabled={loading}
               error={passwordErrText !== ""}
               helperText={passwordErrText}
               sx={{
@@ -307,7 +303,6 @@ const Register = () => {
               fullWidth
               color="purple"
               type="submit"
-              loading={loading ? true : false}
             >
               S’inscrire
             </CustomButton>

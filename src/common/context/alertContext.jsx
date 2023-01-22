@@ -23,7 +23,7 @@ export const AlertContextProvider = ({ children }) => {
       setType("");
     }, ALERT_TIME);
   };
-  console.log("Alert state:", initialState);
+
   return (
     <AlertContext.Provider
       value={{

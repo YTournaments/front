@@ -71,11 +71,10 @@ const Login = () => {
 
   useMemo(() => {
     if (response) {
-      const json = response.data;
-      console.log(response);
       localStorage.setItem("user", data.token);
-      dispatchAuth({ type: "LOGIN", payload: json });
-      dispatchRole({ type: "SET_ROLE", payload: json.role });
+      dispatchAuth({ type: "LOGIN" });
+      dispatchRole({ type: "SET_ROLE" });
+
       setAlert("Vous etes connecté ", "success");
       return navigate("/home");
     }
@@ -149,7 +148,6 @@ const Login = () => {
               label="email"
               autoComplete="email"
               placeholder="Email *"
-              disabled={loading ? true : false}
               error={emailErrText !== ""}
               helperText={emailErrText}
               sx={{
@@ -177,7 +175,6 @@ const Login = () => {
               autoComplete="password"
               type="password"
               placeholder="Mot de passe *"
-              disabled={loading ? true : false}
               error={passwordErrText !== ""}
               helperText={passwordErrText}
               sx={{
@@ -215,7 +212,6 @@ const Login = () => {
               fullWidth
               color="purple"
               type="submit"
-              loading={loading ? true : false}
             >
               Conexion
             </CustomButton>

@@ -80,7 +80,6 @@ const Create = () => {
         },
       },
     });
-    console.log(data, error);
   };
   useEffect(() => {
     let errors = error?.response?.status;

@@ -51,7 +51,6 @@ const Profil = () => {
 
   const UploadModal = () => {
     const image = picture[type];
-    console.log(image);
     return (
       <CustomModal
         isOpen={isOpen}
@@ -98,7 +97,6 @@ const Profil = () => {
   const updateProfilPicture = () => {
     const formData = new FormData();
     formData.append("upload", picture.profilPicture);
-    console.log(picture.profilPicture);
     axios({
       method: "put",
       url: "api/v1/users/profilepicture",
