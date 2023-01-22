@@ -221,7 +221,7 @@ const Login = () => {
             </CustomButton>
             <Typography
               component={Link}
-              to="/register"
+              to="/auth/register"
               sx={{
                 textTransform: "none",
                 textDecoration: "none",

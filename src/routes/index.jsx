@@ -22,7 +22,7 @@ export default function Router() {
       element: <Landing />,
     },
     {
-      path: "/",
+      path: "/auth/",
       element: <AuthLayout />,
       children: [
         { path: "login", element: <Login /> },
@@ -31,10 +31,8 @@ export default function Router() {
     },
     {
       path: "/",
+      element: <AppLayout />,
       children: [
-        {
-          element: <AppLayout />,
-        },
         { path: "home", element: <Home /> },
         { path: "blog", element: <DevBlog /> },
         { path: "profil", element: <Profil /> },
