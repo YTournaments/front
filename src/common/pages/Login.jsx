@@ -91,15 +91,22 @@ const Login = () => {
   }, [error]);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        marginTop: "10vh",
+        width: "100%",
+      }}
+    >
       <Card
         sx={{
           borderRadius: "20px",
           backgroundColor: "darkBlue.main",
           boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
           margin: "auto",
-          width: "678px",
-          height: "600px",
+          minWidth: "20rem",
+          width: 678,
+          height: 600,
         }}
       >
         <CardMedia
@@ -147,7 +154,12 @@ const Login = () => {
               helperText={emailErrText}
               sx={{
                 backgroundColor: "#34353C",
-                maxWidth: "50%",
+                maxWidth: {
+                  xs: "90%",
+                  sm: "50%",
+                  md: "50%",
+                  lg: "50%",
+                },
                 margin: "auto",
                 display: "flex",
                 marginTop: "20px",
@@ -170,7 +182,12 @@ const Login = () => {
               helperText={passwordErrText}
               sx={{
                 backgroundColor: "#34353C",
-                maxWidth: "50%",
+                maxWidth: {
+                  xs: "90%",
+                  sm: "50%",
+                  md: "50%",
+                  lg: "50%",
+                },
                 margin: "auto",
                 display: "flex",
                 marginTop: "30px",
@@ -222,7 +239,7 @@ const Login = () => {
           </Box>
         </CardContent>
       </Card>
-    </>
+    </Box>
   );
 };
 
