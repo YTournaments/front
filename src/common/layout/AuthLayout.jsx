@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import { Container } from "@mui/material";
 import Video from "@/common/components/Video/Video";
-import { Navbar } from "@/common/components/Navbar/Navbar";
 import { Wrapper } from "@/common/components/Wrapper/Wrapper";
 
 import { formBackground } from "@/assets/video/index";
@@ -25,11 +24,9 @@ const AuthLayout = () => {
   }, [navigate]);
   return (
     <Container component="main" maxWidth="xl">
-      <Navbar />
       <Video video={formBackground} />
-      <Wrapper>
-        <Outlet />
-      </Wrapper>
+
+      <Outlet />
     </Container>
   );
 };
