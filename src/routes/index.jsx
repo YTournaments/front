@@ -2,16 +2,18 @@ import { Suspense, lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { Navbar } from "@/common/components/Navbar/Navbar";
 
-const AppLayout = lazy(() => import("@/common/layout/AppLayout"));
-const AuthLayout = lazy(() => import("@/common/layout/AuthLayout"));
-const AdminLayout = lazy(() => import("@/common/layout/AdminLayout"));
-
+import AppLayout from "@/common/layout/AppLayout";
+import AuthLayout from "@/common/layout/AuthLayout";
+import AdminLayout from "@/common/layout/AdminLayout";
+import { Loader } from "@/common/components/Loader/Loader";
 const Loadable = (Component) => (props) => {
   return (
-    <Suspense fallback={<></>}>
+    <>
       <Navbar />
-      <Component {...props} />
-    </Suspense>
+      <Suspense fallback={<Loader />}>
+        <Component {...props} />
+      </Suspense>
+    </>
   );
 };
 
@@ -22,7 +24,7 @@ export default function Router() {
       element: <Landing />,
     },
     {
-      path: "/auth/",
+      path: "/auth",
       element: <AuthLayout />,
       children: [
         { path: "login", element: <Login /> },
@@ -33,6 +35,7 @@ export default function Router() {
       path: "/",
       element: <AppLayout />,
       children: [
+        { element: <Navigate to="/home" replace />, index: true },
         { path: "home", element: <Home /> },
         { path: "blog", element: <DevBlog /> },
         { path: "profil", element: <Profil /> },
