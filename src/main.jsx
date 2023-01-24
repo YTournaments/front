@@ -5,6 +5,7 @@ import { AuthContextProvider } from "./common/context/authContext";
 import { AlertContextProvider } from "./common/context/alertContext";
 import { RoleContextProvider } from "./common/context/roleContext";
 import { registerSW } from "virtual:pwa-register";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 
 registerSW({
@@ -20,7 +21,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthContextProvider>
       <RoleContextProvider>
         <AlertContextProvider>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </AlertContextProvider>
       </RoleContextProvider>
     </AuthContextProvider>
