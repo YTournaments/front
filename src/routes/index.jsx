@@ -35,7 +35,6 @@ export default function Router() {
       path: "/",
       element: <AppLayout />,
       children: [
-        { element: <Navigate to="/home" replace />, index: true },
         { path: "home", element: <Home /> },
         { path: "blog", element: <DevBlog /> },
         { path: "profil", element: <Profil /> },
