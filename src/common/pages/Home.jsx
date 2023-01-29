@@ -10,6 +10,7 @@ import CardImage from "@/common/components/Card/CardImage";
 import useAxios from "@/common/hooks/useAxios";
 import axios from "@/common/api/index";
 import { useNavigate } from "react-router-dom";
+
 export const Home = () => {
   const navigate = useNavigate();
   const [response, data, error, loading, axiosFetch] = useAxios();
@@ -204,6 +205,7 @@ export const Home = () => {
                       }}
                     >
                       <CardImage
+                        image={tournament.image}
                         title={tournament.game}
                         tournamentId={tournament._id}
                         description={
@@ -217,7 +219,7 @@ export const Home = () => {
                 </>
               )}
             </Grid>
-            <Paginate />
+            <Paginate page={data?.page} pages={data?.pages} />
           </Box>
         </Box>
       </Box>

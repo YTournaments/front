@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { styled as styled } from "@mui/material/styles";
 import CustomButton from "../Button/Button";
-import DefaultImage from "../../../assets/defaultImage.png";
+import DefaultImage from "../../../assets/defaultImage.svg";
 import { useNavigate } from "react-router-dom";
 import { palette } from "@mui/system";
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -65,11 +65,19 @@ const CardImage = (props) => {
             left: "1px",
           }}
         />
+
         <CardMedia
           component="img"
+          loading="lazy"
+          decoding="async"
           src={image ? image : DefaultImage}
-          width="307px"
           alt={title}
+          sx={{
+            backgroundColor: "purple.main",
+
+            aspectRatio: "16/9",
+            objectFit: "contain",
+          }}
         />
       </Box>
 
