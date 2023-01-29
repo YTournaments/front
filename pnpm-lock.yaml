@@ -1,10 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@emotion/react': ^11.10.4
-  '@emotion/styled': ^11.10.4
+  '@emotion/react': ^11.10.5
+  '@emotion/styled': ^11.10.5
   '@mui/icons-material': ^5.10.15
-  '@mui/material': ^5.10.8
+  '@mui/material': ^5.10.17
   '@mui/x-date-pickers': ^5.0.8
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
@@ -13,6 +13,7 @@ specifiers:
   eslint: ^8.25.0
   eslint-plugin-react-hooks: ^4.6.0
   framer-motion: ^7.6.12
+  jwt-decode: ^3.1.2
   localforage: ^1.10.0
   lodash: ^4.17.21
   match-sorter: ^6.3.1
@@ -21,8 +22,9 @@ specifiers:
   react: ^18.2.0
   react-brackets: ^0.4.7
   react-dom: ^18.2.0
+  react-intersection-observer: ^9.4.1
   react-quill: ^2.0.0
-  react-router-dom: ^6.4.2
+  react-router-dom: ^6.7.0
   sort-by: ^1.2.0
   tournament-generator: ^1.2.0
   uuid: ^9.0.0
@@ -30,6 +32,7 @@ specifiers:
   vite-plugin-chunk-split: ^0.4.6
   vite-plugin-compression: ^0.5.1
   vite-plugin-pwa: ^0.13.1
+  workbox-window: ^6.5.4
 
 dependencies:
   '@emotion/react': 11.10.5_kzbn2opkn2327fwg5yzwzya5o4
@@ -39,6 +42,7 @@ dependencies:
   '@mui/x-date-pickers': 5.0.10_bzhwadzns4rhqilllcwievumra
   axios: 1.2.1
   framer-motion: 7.6.19_biqbaboplfbrettd7655fr4n2y
+  jwt-decode: 3.1.2
   localforage: 1.10.0
   lodash: 4.17.21
   match-sorter: 6.3.1
@@ -46,8 +50,9 @@ dependencies:
   react: 18.2.0
   react-brackets: 0.4.7_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
+  react-intersection-observer: 9.4.1_react@18.2.0
   react-quill: 2.0.0_biqbaboplfbrettd7655fr4n2y
-  react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
+  react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
   sort-by: 1.2.0
   tournament-generator: 1.2.0
   uuid: 9.0.0
@@ -62,7 +67,8 @@ devDependencies:
   vite: 4.0.0
   vite-plugin-chunk-split: 0.4.6_vite@4.0.0
   vite-plugin-compression: 0.5.1_vite@4.0.0
-  vite-plugin-pwa: 0.13.3_vite@4.0.0
+  vite-plugin-pwa: 0.13.3_hsd7wmhtxdre4ds2vghqydhvau
+  workbox-window: 6.5.4
 
 packages:
 
@@ -2059,8 +2065,8 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
-  /@remix-run/router/1.0.5:
-    resolution: {integrity: sha512-my0Mycd+jruq/1lQuO5LBB6WTlL/e8DTCYWp44DfMTDcXz8DcTlgF0ISaLsGewt+ctHN+yA8xMq3q/N7uWJPug==}
+  /@remix-run/router/1.3.1:
+    resolution: {integrity: sha512-+eun1Wtf72RNRSqgU7qM2AMX/oHp+dnx7BHk1qhK5ZHzdHTUU4LA1mGG1vT+jMc8sbhG3orvsfOmryjzx2PzQw==}
     engines: {node: '>=14'}
     dev: false
 
@@ -3380,6 +3386,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /jwt-decode/3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+    dev: false
+
   /keycode/2.2.1:
     resolution: {integrity: sha512-Rdgz9Hl9Iv4QKi8b0OlCRQEzp4AgVxyCtz5S/+VIHezDmrDhkp2N2TqBWOLz0/gbeREXOOiI9/4b8BY9uw2vFg==}
     dev: false
@@ -3760,6 +3770,14 @@ packages:
       warning: 4.0.3
     dev: false
 
+  /react-intersection-observer/9.4.1_react@18.2.0:
+    resolution: {integrity: sha512-IXpIsPe6BleFOEHKzKh5UjwRUaz/JYS0lT/HPsupWEQou2hDqjhLMStc5zyE3eQVT4Fk3FufM8Fw33qW1uyeiw==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
@@ -3786,26 +3804,26 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react-router-dom/6.4.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-a7HsgikBR0wNfroBHcZUCd9+mLRqZS8R5U1Z1mzLWxFXEkUT3vR1XXmSIVoVpxVX8Bar0nQYYYc9Yipq8dWwAA==}
+  /react-router-dom/6.8.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-hQouduSTywGJndE86CXJ2h7YEy4HYC6C/uh19etM+79FfQ6cFFFHnHyDlzO4Pq0eBUI96E4qVE5yUjA00yJZGQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.0.5
+      '@remix-run/router': 1.3.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-router: 6.4.5_react@18.2.0
+      react-router: 6.8.0_react@18.2.0
     dev: false
 
-  /react-router/6.4.5_react@18.2.0:
-    resolution: {integrity: sha512-1RQJ8bM70YEumHIlNUYc6mFfUDoWa5EgPDenK/fq0bxD8DYpQUi/S6Zoft+9DBrh2xmtg92N5HMAJgGWDhKJ5Q==}
+  /react-router/6.8.0_react@18.2.0:
+    resolution: {integrity: sha512-760bk7y3QwabduExtudhWbd88IBbuD1YfwzpuDUAlJUJ7laIIcqhMvdhSVh1Fur1PE8cGl84L0dxhR3/gvHF7A==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.0.5
+      '@remix-run/router': 1.3.1
       react: 18.2.0
     dev: false
 
@@ -4371,10 +4389,11 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.13.3_vite@4.0.0:
+  /vite-plugin-pwa/0.13.3_hsd7wmhtxdre4ds2vghqydhvau:
     resolution: {integrity: sha512-cjWXpZ7slAY14OKz7M8XdgTIi9wjf6OD6NkhiMAc+ogxnbUrecUwLdRtfGPCPsN2ftut5gaN1jTghb11p6IQAA==}
     peerDependencies:
       vite: ^3.1.0
+      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
       debug: 4.3.4

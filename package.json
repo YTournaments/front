@@ -18,10 +18,10 @@
     "last 2 ChromeAndroid versions"
   ],
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.15",
-    "@mui/material": "^5.10.8",
+    "@mui/material": "^5.10.17",
     "@mui/x-date-pickers": "^5.0.8",
     "axios": "^1.1.2",
     "framer-motion": "^7.6.12",
@@ -50,6 +50,7 @@
     "vite": "^4.0.0",
     "vite-plugin-chunk-split": "^0.4.6",
     "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-pwa": "^0.13.1"
+    "vite-plugin-pwa": "^0.13.1",
+    "workbox-window": "^6.5.4"
   }
 }
