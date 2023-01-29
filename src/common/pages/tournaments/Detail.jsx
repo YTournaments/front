@@ -6,10 +6,11 @@ import { CheckBox } from "@mui/icons-material";
 import useAxios from "@/common/hooks/useAxios";
 import axios from "@/common/api/index";
 import { useLocation, useNavigate } from "react-router-dom";
+import { set } from "lodash";
 
 const Detail = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();
-  const [nameErrText, setNameErrText] = useState("");
+  const [creator, setCreator] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const getDetail = () => {
@@ -38,15 +39,33 @@ const Detail = () => {
       requestConfig: {
         data: {
           title: data.name,
+          status: "Scheduled",
           tournament_id: data._id,
           players: data.participants,
         },
       },
     });
   };
+
+  const isCreator = () => {
+    axios({
+      method: "get",
+      url: "api/v1/users/profil",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    }).then((response) => {
+      setCreator(response.data.name);
+    });
+  };
+
   useEffect(() => {
     getDetail();
+    isCreator();
   }, []);
+
   console.log(data);
   return (
     <Box
@@ -84,7 +103,7 @@ const Detail = () => {
           Le tournois debute le : {data.start_date?.slice(0, 10)}
         </Typography>
 
-        <Typography>Créateur : </Typography>
+        <Typography>Créateur : {data?.creator} </Typography>
         <Typography
           sx={{
             textAlign: "center",
@@ -98,11 +117,13 @@ const Detail = () => {
           label={`${data.participants?.length} / ${data.max_players}`}
           color="primary"
         />
-        <Typography variant="h6">Plateform</Typography>
+        <Typography variant="h6">Plateforme</Typography>
         <Chip label="PC" color="default" />
         <Box>
           <CustomButton
             type="submit"
+            //disabled={data.participants?.length >= data.max_players}
+            disabled={true}
             sx={{
               margin: "1rem",
             }}
@@ -112,32 +133,62 @@ const Detail = () => {
             Rejoindre le tournois
           </CustomButton>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "auto",
-            border: "1px solid red",
-            padding: "2rem",
-            width: "50%",
-            borderRadius: "20px",
-          }}
-        >
-          <Typography
-            variant="h5"
+        {data.creator === creator && (
+          <Box
             sx={{
-              textAlign: "center",
-              fontWeight: "bold",
-              py: "1rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "auto",
+              border: "1px solid red",
+              padding: "2rem",
+              width: "50%",
+              borderRadius: "20px",
             }}
           >
-            Zone organisation du tournois
-          </Typography>
-          <Typography>
-            Voir le bracket du tournois en cliquant sur le bouton ci dessous
-          </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                textAlign: "center",
+                fontWeight: "bold",
+                py: "1rem",
+              }}
+            >
+              Zone organisation du tournois
+            </Typography>
+            <Typography>
+              Voir le bracket du tournois en cliquant sur le bouton ci dessous
+            </Typography>
+            <CustomButton
+              onClick={() =>
+                navigate(`/tournament/${data._id}`, {
+                  state: { tournament: data },
+                })
+              }
+              sx={{ margin: "auto" }}
+              variant="contained"
+              color="purple"
+            >
+              Brackets
+            </CustomButton>
+
+            <Typography>
+              Lancer le tournois en cliquant sur le bouton ci dessous
+            </Typography>
+            <CustomButton
+              onClick={() => startTournament()}
+              sx={{ margin: "auto" }}
+              variant="contained"
+              color="primary"
+            >
+              Lancer
+            </CustomButton>
+          </Box>
+        )}
+        {console.log("tounoisdate: " + data.start_date)}
+        {console.log("today: " + new Date().toISOString().slice(0, 10))}
+        {data?.start_date <= new Date().toISOString() ? (
           <CustomButton
             onClick={() =>
               navigate(`/tournament/${data._id}`, {
@@ -148,161 +199,18 @@ const Detail = () => {
             variant="contained"
             color="purple"
           >
-            Brackets
+            Voir le bracket du tournois
           </CustomButton>
-
-          <Typography>
-            Lancer le tournois en cliquant sur le bouton ci dessous
-          </Typography>
+        ) : (
           <CustomButton
-            onClick={() => startTournament()}
             sx={{ margin: "auto" }}
             variant="contained"
-            color="primary"
+            color="purple"
           >
-            Lancer
+            Le tournois n'a pas encore commencé
           </CustomButton>
-        </Box>
+        )}
       </Card>
-
-      {/* <Grid
-          container
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            border: "1px solid white",
-          }}
-        >
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            sx={{
-              border: "1px solid white",
-            }}
-          >
-            <Card
-              sx={{
-                overflow: "auto",
-                backgroundColor: "darkBlue.main",
-                boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
-                padding: "2rem",
-                width: "100%",
-
-                borderRadius: "2rem",
-                textAlign: "center",
-              }}
-            >
-              <Typography variant="h5">{data.name}</Typography>
-
-              <Typography color="primary">
-                Le tournois debute le : {data.start_date?.slice(0, 10)}
-              </Typography>
-
-              <Typography>Créateur :</Typography>
-              <Typography
-                sx={{
-                  textAlign: "center",
-                  margin: "2rem",
-                }}
-              >
-                {data.description}
-              </Typography>
-              <Typography variant="h6">Nombre de participant</Typography>
-              <Chip
-                label={`${data.participants?.length} / ${data.max_players}`}
-                color="primary"
-              />
-              <Typography variant="h6">Plateform</Typography>
-              <Chip label="PC" color="secondary" />
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <Card
-              sx={{
-                overflow: "auto",
-                backgroundColor: "darkBlue.main",
-                boxShadow: "0 0 10px 0 rgba(0,0,0,0.2)",
-                width: "100%",
-                padding: "2rem",
-
-                borderRadius: "2rem",
-                textAlign: "center",
-              }}
-            >
-              <CardContent>
-                <Typography
-                  component="h1"
-                  variant="h4"
-                  sx={{
-                    fontWeight: "bold",
-                  }}
-                >
-                  Participez au tournois !
-                </Typography>
-                <Typography
-                  sx={{
-                    textAlign: "center",
-                    margin: "2rem",
-                  }}
-                ></Typography>
-
-                <CustomButton
-                  type="submit"
-                  sx={{
-                    margin: "1rem",
-                  }}
-                  variant="contained"
-                  color="purple"
-                >
-                  Participer
-                </CustomButton>
-              </CardContent>
-              <Typography>
-                SI tournois est en cours, tu peux voir le brackets ici
-              </Typography>
-              <CustomButton
-                onClick={() =>
-                  navigate(`/tournament/${data._id}`, {
-                    state: { tournament: data },
-                  })
-                }
-                sx={{ margin: "auto" }}
-                variant="contained"
-                color="purple"
-              >
-                Brackets
-              </CustomButton>
-              <Typography>
-                SI tu es le créateur du tournois, tu peux le lancer ici
-              </Typography>
-              <CustomButton
-                onClick={() => startTournament()}
-                sx={{ margin: "auto" }}
-                variant="contained"
-                color="primary"
-              >
-                Lancer
-              </CustomButton>
-              <Box
-                sx={{
-                  display: "flex",
-
-                  justifyContent: "center",
-                  margin: "1rem",
-                }}
-              >
-                <CheckBox sx={{ color: "secondary" }} />
-                <Typography sx={{ margin: " 0 1rem" }}>
-                  En cochant cette case , vous accepetez la politique de
-                  confidentialité
-                </Typography>
-              </Box>
-            </Card>
-          </Grid>
-        </Grid> */}
     </Box>
   );
 };
