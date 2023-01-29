@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardMedia, Container } from "@mui/material";
-import DefaultImage from "../../../assets/defaultImage.png";
+import DefaultImage from "@/assets/defaultImage.svg";
 const CardCustom = ({ image }) => {
   return (
     <Card

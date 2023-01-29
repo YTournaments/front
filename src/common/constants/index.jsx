@@ -24,6 +24,7 @@ export const games = [
       "Hockey",
       "Rugby",
       "Tennis",
+      "Volleyball",
     ],
   },
 ];

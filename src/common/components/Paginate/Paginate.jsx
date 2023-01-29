@@ -3,7 +3,14 @@ import React from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 const Paginate = (props) => {
-  const { page, maxPage, setPage } = props;
+  const { page, pages, setPage } = props;
+  const handleNext = () => {
+    setPage(page + 1);
+  };
+  const handlePrev = () => {
+    setPage(page - 1);
+  };
+
   return (
     <Box
       sx={{
@@ -24,7 +31,7 @@ const Paginate = (props) => {
           display: "flex",
         }}
       >
-        {`Page ${page} sur ${maxPage}`}
+        {`Page ${page} sur ${pages}`}
       </Box>
       <Box
         sx={{
@@ -40,11 +47,13 @@ const Paginate = (props) => {
           sx={{
             color: "white",
           }}
+          onClick={handleNext}
         />
         <ArrowForwardIosIcon
           sx={{
             color: "white",
           }}
+          onClick={handlePrev}
         />
       </Box>
     </Box>

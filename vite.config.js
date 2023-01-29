@@ -4,11 +4,13 @@ import { VitePWA } from "vite-plugin-pwa";
 import viteCompression from "vite-plugin-compression";
 import path from "path";
 import { chunkSplitPlugin } from "vite-plugin-chunk-split";
-// https://vitejs.dev/config/
+import svgr from "vite-plugin-svgr";
+
 export default defineConfig({
   plugins: [
     react(),
     chunkSplitPlugin(),
+    svgr(),
     VitePWA({
       registerType: "autoUpdate",
       sourcemap: true,

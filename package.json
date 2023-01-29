@@ -38,7 +38,8 @@
     "react-router-dom": "^6.7.0",
     "sort-by": "^1.2.0",
     "tournament-generator": "^1.2.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
