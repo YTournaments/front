@@ -15,7 +15,6 @@ export default defineConfig({
       registerType: "autoUpdate",
       sourcemap: true,
       workbox: {
-        globPatterns: ["**/*.{js,css,html,png,jpg,gif,svg,woff2}"],
         globDirectory: "dist",
         globIgnores: ["**/node_modules/**/*"],
         swDest: "dist/sw.js",

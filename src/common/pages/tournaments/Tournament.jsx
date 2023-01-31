@@ -36,14 +36,20 @@ const Tournament = () => {
         </p>
       )}
       {!loading && !error && (
-        <Box sx={{ mt: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            height: "100vh",
+            width: "100%",
+          }}
+        >
           {data.seeds !== undefined || [] || null ? (
             <BracketGame
               bracket={data}
               onMatchClick={(match) => console.log(match)}
             />
           ) : (
-            <CustomButton>Generer le tournois</CustomButton>
+            <>Pas de tournois ici</>
           )}
         </Box>
       )}
