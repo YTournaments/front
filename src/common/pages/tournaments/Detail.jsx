@@ -2,11 +2,10 @@ import { Box, Typography, Card, CardContent, Chip, Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import CustomTextField from "@/common/components/Input/TextField";
 import CustomButton from "@/common/components/Button/Button";
-import { CheckBox } from "@mui/icons-material";
+
 import useAxios from "@/common/hooks/useAxios";
 import axios from "@/common/api/index";
 import { useLocation, useNavigate } from "react-router-dom";
-import { set } from "lodash";
 
 const Detail = () => {
   const [response, data, error, loading, axiosFetch] = useAxios();
@@ -66,7 +65,6 @@ const Detail = () => {
     isCreator();
   }, []);
 
-  console.log(data);
   return (
     <Box
       sx={{
@@ -132,18 +130,41 @@ const Detail = () => {
           >
             Rejoindre le tournois
           </CustomButton>
+          {data?.start_date <= new Date().toISOString() ? (
+            <CustomButton
+              onClick={() =>
+                navigate(`/tournament/${data._id}`, {
+                  state: { tournament: data },
+                })
+              }
+              sx={{ margin: "1rem" }}
+              variant="contained"
+              color="purple"
+            >
+              Voir le tournois
+            </CustomButton>
+          ) : (
+            <CustomButton
+              sx={{ margin: "auto" }}
+              variant="contained"
+              color="purple"
+            >
+              Le tournois n'a pas encore commencé
+            </CustomButton>
+          )}
         </Box>
         {data.creator === creator && (
           <Box
             sx={{
               display: "flex",
+              position: "relative",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
               margin: "auto",
               border: "1px solid red",
               padding: "2rem",
-              width: "50%",
+              width: { xs: "100%", md: "50%" },
               borderRadius: "20px",
             }}
           >
@@ -157,9 +178,7 @@ const Detail = () => {
             >
               Zone organisation du tournois
             </Typography>
-            <Typography>
-              Voir le bracket du tournois en cliquant sur le bouton ci dessous
-            </Typography>
+            <Typography>Voir le bracket du tournois</Typography>
             <CustomButton
               onClick={() =>
                 navigate(`/tournament/${data._id}`, {
@@ -173,9 +192,7 @@ const Detail = () => {
               Brackets
             </CustomButton>
 
-            <Typography>
-              Lancer le tournois en cliquant sur le bouton ci dessous
-            </Typography>
+            <Typography>Lancer le tournois</Typography>
             <CustomButton
               onClick={() => startTournament()}
               sx={{ margin: "auto" }}
@@ -185,30 +202,6 @@ const Detail = () => {
               Lancer
             </CustomButton>
           </Box>
-        )}
-        {console.log("tounoisdate: " + data.start_date)}
-        {console.log("today: " + new Date().toISOString().slice(0, 10))}
-        {data?.start_date <= new Date().toISOString() ? (
-          <CustomButton
-            onClick={() =>
-              navigate(`/tournament/${data._id}`, {
-                state: { tournament: data },
-              })
-            }
-            sx={{ margin: "auto" }}
-            variant="contained"
-            color="purple"
-          >
-            Voir le bracket du tournois
-          </CustomButton>
-        ) : (
-          <CustomButton
-            sx={{ margin: "auto" }}
-            variant="contained"
-            color="purple"
-          >
-            Le tournois n'a pas encore commencé
-          </CustomButton>
         )}
       </Card>
     </Box>

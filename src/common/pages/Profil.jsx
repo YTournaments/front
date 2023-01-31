@@ -153,6 +153,9 @@ const Profil = () => {
           justifyContent: "center",
           flexDirection: "column",
           alignItems: "center",
+          display: "flex",
+          height: "100vh",
+          width: "100%",
         }}
       >
         {isOpen && UploadModal()}
@@ -228,7 +231,9 @@ const Profil = () => {
           maxWidth="md"
           sx={{
             border: "1px solid",
-            display: "flex",
+            alignContent: "center",
+            textAlign: "center",
+            padding: "2rem",
             borderRadius: "28px",
           }}
         >
@@ -343,7 +348,7 @@ const Profil = () => {
                 margin="normal"
                 required
                 fullWidth
-                label="password"
+                label="confirmpassword"
                 name="confirmpassword"
                 placeholder="Confirmer Mot de passe"
                 autoComplete="password"
@@ -355,18 +360,18 @@ const Profil = () => {
                 }}
               />
             </Grid>
-            <Grid item xs={6}></Grid>
-            <Grid item xs={6}>
-              <CustomButton
-                variant="contained"
-                color={"purple"}
-                loading={loading}
-                onClick={() => updateProfilPicture()}
-              >
-                Enregister les modifications
-              </CustomButton>
-            </Grid>
           </Grid>
+          <CustomButton
+            variant="contained"
+            color={"purple"}
+            loading={loading}
+            sx={{
+              mt: 2,
+            }}
+            onClick={() => updateProfilPicture()}
+          >
+            Enregister les modifications
+          </CustomButton>
         </Container>
       </Box>
     </Container>

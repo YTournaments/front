@@ -25,7 +25,15 @@ const DevBlog = () => {
   }, []);
 
   return (
-    <Box sx={{ mt: 1, height: "100vh" }}>
+    <Box
+      sx={{
+        mt: 1,
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
       <Typography
         variant="h3"
         component="h1"
