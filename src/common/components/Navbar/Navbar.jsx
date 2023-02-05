@@ -253,7 +253,14 @@ export const Navbar = () => {
             to={isrole !== "guest" ? "/home" : "/"}
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <img src={logo} alt="logo ytournaments" width="60" />
+            <img
+              src={logo}
+              alt="logo ytournaments"
+              style={{
+                width: "60px",
+                height: "60px",
+              }}
+            />
           </Typography>
           <Box
             sx={{

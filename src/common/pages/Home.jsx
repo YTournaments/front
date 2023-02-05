@@ -72,7 +72,7 @@ export const Home = () => {
             margin: "2rem 0",
           }}
         >
-          Ce tournois sera cloturé le 30/06/2021
+          Ce tournois sera cloturé le 30/09/2023
         </Typography>
         <CustomButton
           variant="contained"

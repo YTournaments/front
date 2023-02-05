@@ -92,7 +92,7 @@ const Landing = () => {
           <CustomButton
             variant="contained"
             color="purple"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/auth/login")}
             sx={{
               margin: "1rem",
               padding: "1rem 2rem",
