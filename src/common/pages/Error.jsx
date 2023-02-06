@@ -21,7 +21,7 @@ const Error = () => {
           component="h1"
           sx={{ textAlign: "center", fontWeight: "bold" }}
         >
-          Aie, nous avons rencontrer une erreur
+          Aïe, nous avons rencontré une erreur
         </Typography>
         <Typography
           variant="h2"
