@@ -102,7 +102,6 @@ export const Home = () => {
         >
           <Box
             sx={{
-              border: "1px solid red",
               width: "30%",
               height: "100%",
               display: "flex",
@@ -171,7 +170,6 @@ export const Home = () => {
           </Box>
           <Box
             sx={{
-              border: "1px solid red",
               width: "70%",
             }}
           >
@@ -183,8 +181,6 @@ export const Home = () => {
               sx={{
                 display: "flex",
                 mt: 4,
-
-                border: "1px solid green",
               }}
             >
               {!loading && !error && (
