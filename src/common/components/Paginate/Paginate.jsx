@@ -25,7 +25,6 @@ const Paginate = (props) => {
     >
       <Box
         sx={{
-          border: "1px solid red",
           width: "50%",
           height: "100%",
           display: "flex",
@@ -35,7 +34,6 @@ const Paginate = (props) => {
       </Box>
       <Box
         sx={{
-          border: "1px solid red",
           width: "50%",
           height: "100%",
           justifyContent: "end",
