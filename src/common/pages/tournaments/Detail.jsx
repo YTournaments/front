@@ -201,6 +201,19 @@ const Detail = () => {
             >
               Lancer
             </CustomButton>
+            <Typography>Gérer le tournois</Typography>
+            <CustomButton
+              onClick={() =>
+                navigate(`/tournament/${data._id}/manage`, {
+                  state: { tournament: data },
+                })
+              }
+              sx={{ margin: "auto" }}
+              variant="contained"
+              color="purple"
+            >
+              Gérer
+            </CustomButton>
           </Box>
         )}
       </Card>

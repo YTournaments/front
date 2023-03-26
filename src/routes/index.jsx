@@ -41,6 +41,7 @@ export default function Router() {
         { path: "tournament/create", element: <Create /> },
         { path: "tournament/:id", element: <Tournament /> },
         { path: "tournament/:id/detail", element: <Detail /> },
+        { path: "tournament/:id/manage", element: <ManageTournament /> },
         { path: "match/:id", element: <Match /> },
       ],
     },
@@ -66,6 +67,9 @@ const Tournament = Loadable(
 );
 const Detail = Loadable(
   lazy(() => import("@/common/pages/tournaments/Detail"))
+);
+const ManageTournament = Loadable(
+  lazy(() => import("@/common/pages/tournaments/ManageTournament"))
 );
 const Match = Loadable(lazy(() => import("@/common/pages/Match")));
 const Login = Loadable(lazy(() => import("@/common/pages/Login")));
