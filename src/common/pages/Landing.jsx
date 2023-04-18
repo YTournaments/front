@@ -7,6 +7,7 @@ import { CustomButton } from "@/common/components/Button/Button";
 import { Navbar } from "@/common/components/Navbar/Navbar";
 import Video from "@/common/components/Video/Video";
 import CardImage from "@/common/components/Card/CardImage";
+import  Event  from "@/common/components/Event/Event";
 import { landingVideo } from "@/assets/video/index";
 import CardCustom from "@/common/components/Card/CardCustom";
 import {
@@ -190,6 +191,7 @@ const Landing = () => {
           <Typography id="evenements" variant="h2" sx={{ fontWeight: "bold" }}>
             Evenement
           </Typography>
+              <Event />
           <Typography id="partenaire" variant="h2" sx={{ fontWeight: "bold" }}>
             Partenaire
           </Typography>
